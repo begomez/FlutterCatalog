@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/catalog/CatalogListWidget.dart';
 import 'core/BaseStatelessScreen.dart';
 import '../utils/AppLocalizations.dart';
+import '../resources/AppDimens.dart';
+
 
 /*
  * Home screen displayed after login
  */
-class HomeScreen extends BaseStatelessScreen {
+class CatalogScreen extends BaseStatelessScreen {
 
-  const HomeScreen({String title = "", Key key})
+  const CatalogScreen({String title = "", Key key})
       : super(title: title, key: key);
 
   @override
   Widget buildScreenContents(BuildContext context) {
-    return Center(
-        child: Container(
-      child: Text(this.getScreenTitle(context)),
-    ));
+    return Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.all(AppDimens.MID_SPACING),
+      child: CatalogListWidget(),
+    );
   }
 
   @override
