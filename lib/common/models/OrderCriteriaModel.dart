@@ -8,14 +8,16 @@ import 'core/BaseModel.dart';
  */
 abstract class OrderCriteriaModelFactory {
 
-  static List<OrderCriteriaModel> allCriterias({@required String lbPriceAsc, @required String lbPriceDesc}) => [
+  static List<OrderCriteriaModel> getAllCriterias({@required String lbPriceAsc, @required String lbPriceDesc}) => [
     priceAscending(lbPriceAsc),
     priceDescending(lbPriceDesc)
   ];
 
-  static OrderCriteriaModel priceAscending(String lb) => OrderCriteriaModel.priceAscending(lb);
+  static OrderCriteriaModel defaultCriteria() => priceAscending("Price asc.");
 
-  static OrderCriteriaModel priceDescending(String lb) => OrderCriteriaModel.priceDescending(lb);
+  static OrderCriteriaModel priceAscending(String lbPriceAsc) => OrderCriteriaModel.priceAscending(lbPriceAsc);
+
+  static OrderCriteriaModel priceDescending(String lbPriceDesc) => OrderCriteriaModel.priceDescending(lbPriceDesc);
 }
 
 /*

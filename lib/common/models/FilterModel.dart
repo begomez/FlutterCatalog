@@ -14,6 +14,8 @@ class FilterModel extends BaseModel {
 
   const FilterModel({this.categ, this.price = 0.0, this.frameSize = 0}) : super();
 
+  factory FilterModel.empty() => FilterModel();
+
   @override
   bool validate() => this.hasValidCategory() || this.hasValidPrice() || this.hasValidFrameSize();
 

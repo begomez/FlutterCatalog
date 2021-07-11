@@ -1,11 +1,11 @@
 import 'dart:math';
 
-import '../../common/models/BikeModel.dart';
-import '../../common/models/ImageModel.dart';
-import '../../common/models/MessageModel.dart';
-import '../../common/models/PaginationModel.dart';
-import '../../common/models/PriceModel.dart';
-
+import '../models/FilterModel.dart';
+import '../models/BikeModel.dart';
+import '../models/ImageModel.dart';
+import '../models/MessageModel.dart';
+import '../models/PaginationModel.dart';
+import '../models/PriceModel.dart';
 import '../models/UserSessionModel.dart';
 
 
@@ -44,6 +44,9 @@ abstract class FakeModelFactory {
     }
   }
 
+  static BikeCategories _randomCateg() =>
+    BikeCategories.values[Random().nextInt(2) + 1];
+
   static UserSessionModel randomUser() =>
     UserSessionModel(
       name: _randomUserName(),
@@ -56,13 +59,20 @@ abstract class FakeModelFactory {
       id: id,
       name: "Supercaliber $id",
       frameSize: _randomFrame(),
-      categ: BikeCategories.values[Random().nextInt(2) + 1],
+      categ: _randomCateg(),
       mainImg: _randomImg(),
       price: _randomPrice()
     );
 
   static List<BikeModel> randomBikes({int num = 20}) =>
     List<BikeModel>.generate(num, (index) => randomBike(id: index));
+
+  static FilterModel randomFilter() =>
+    FilterModel(
+      price: _randomPrice().amount,
+      categ: _randomCateg(),
+      frameSize: _randomFrame(),
+    );
 
   static PaginationModel paginationForPage(int page) =>
     PaginationModel(
