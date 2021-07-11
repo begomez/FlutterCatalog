@@ -5,9 +5,9 @@ import 'core/BaseModel.dart';
  * Factory that provides ordering criteria objects
  */
 abstract class OrderCriteriaModelFactory {
-  OrderCriteriaModel priceAscending() => OrderCriteriaModel.priceAscending();
+  static OrderCriteriaModel priceAscending() => OrderCriteriaModel.priceAscending();
 
-  OrderCriteriaModel priceDescending() => OrderCriteriaModel.priceDescending();
+  static OrderCriteriaModel priceDescending() => OrderCriteriaModel.priceDescending();
 }
 
 /*
