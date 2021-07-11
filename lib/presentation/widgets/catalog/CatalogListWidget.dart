@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/presentation/navigation/AppNavigator.dart';
-import 'package:flutter_catalog/presentation/widgets/catalog/CatalogItemWidget.dart';
-import 'package:flutter_catalog/presentation/widgets/convenient/AppNoDataWidget.dart';
+
+import '../../navigation/AppNavigator.dart';
+import '../catalog/CatalogItemWidget.dart';
+import '../convenient/AppNoDataWidget.dart';
+import '../core/BaseBlocWidget.dart';
 
 import '../../../common/models/FilterModel.dart';
 import '../../../common/models/OrderCriteriaModel.dart';
 import '../../../common/models/BikeModel.dart';
 import '../../../common/models/BikeListModel.dart';
+
 import '../../../domain/bloc/CatalogBloc.dart';
 import '../../../domain/event/CatalogEvent.dart';
 
 import '../../../network/api/CatalogAPIImpl.dart';
-
-import '../core/BaseBlocWidget.dart';
 
 
 /*
  * Widget displaying a list of bike items
  */
 class CatalogListWidget extends BaseBlocWidget<CatalogBloc> {
+  final OrderCriteriaModel order;
+  final FilterModel filter;
 
-  CatalogListWidget({Key key}) : super(key: key);
+  const CatalogListWidget({@required this.order, @required this.filter, Key key}) :  assert(order != null), assert(filter != null), super(key: key);
 
   @override
   _CatalogListWidgetState createState() => _CatalogListWidgetState();
@@ -31,6 +34,9 @@ class CatalogListWidget extends BaseBlocWidget<CatalogBloc> {
  */
 class _CatalogListWidgetState
     extends BaseBlocWidgetState<CatalogListWidget, CatalogBloc, CatalogEvent, BikeListModel> {
+  int currentPage = 1;
+
+  _CatalogListWidgetState() : super();
 
   @override
   Widget buildInitial(BuildContext cntxt) {
@@ -56,7 +62,7 @@ class _CatalogListWidgetState
 
   @override
   CatalogEvent getEvent() =>
-    CatalogEvent(1, OrderCriteriaModelFactory.priceAscending(), FilterModel());
+    CatalogEvent(this.currentPage, this.widget.order, this.widget.filter);
 
   @override
   bool isAutocall() => true;

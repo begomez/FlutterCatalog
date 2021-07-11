@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/catalog/CatalogMainWidget.dart';
 
 import '../../widgets/catalog/CatalogListWidget.dart';
 import '../core/BaseStatelessScreen.dart';
@@ -19,7 +20,7 @@ class CatalogScreen extends BaseStatelessScreen {
     return Container(
       alignment: Alignment.center,
       margin: EdgeInsets.all(AppDimens.MID_SPACING),
-      child: CatalogListWidget(),
+      child: CatalogMainWidget(),
     );
   }
 
