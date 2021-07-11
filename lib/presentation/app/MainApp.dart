@@ -3,7 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../navigation/AppNavigator.dart';
 import '../resources/AppStyles.dart';
-import '../screens/CatalogScreen.dart';
+import '../screens/catalog/CatalogScreen.dart';
+import '../screens/filter/FilterScreen.dart';
 import '../screens/SplashScreen.dart';
 import '../utils/AppLocalizations.dart';
 
@@ -32,7 +33,8 @@ class MainApp extends StatelessWidget {
         ],
         routes: {
           Routes.splash: (cntxt) => SplashScreen(title: ""),
-          Routes.home: (cntxt) => CatalogScreen(title: "")
+          Routes.catalog: (cntxt) => CatalogScreen(title: ""),
+          Routes.filter: (cntxt) => FilterScreen(title: "")
         }
       );
   }

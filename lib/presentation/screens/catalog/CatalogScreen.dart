@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/catalog/CatalogListWidget.dart';
-import 'core/BaseStatelessScreen.dart';
-import '../utils/AppLocalizations.dart';
-import '../resources/AppDimens.dart';
+import '../../widgets/catalog/CatalogListWidget.dart';
+import '../core/BaseStatelessScreen.dart';
+import '../../utils/AppLocalizations.dart';
+import '../../resources/AppDimens.dart';
 
 
 /*

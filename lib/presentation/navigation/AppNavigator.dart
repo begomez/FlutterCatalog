@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/common/models/BikeModel.dart';
+import '../screens/detail/BikeScreen.dart';
 
 
 /*
@@ -6,12 +8,18 @@ import 'package:flutter/material.dart';
  */
 abstract class AppNavigator {
 
-  static void closeAll(BuildContext cntxt) {
-    return Navigator.of(cntxt).popUntil((route) => route.settings.name == Routes.login);
+  static Future<void> toCatalog(BuildContext cntxt) async {
+    return await Navigator.of(cntxt).pushReplacementNamed(Routes.catalog);
   }
 
-  static Future<void> toHome(BuildContext cntxt) async {
-    return await Navigator.of(cntxt).pushReplacementNamed(Routes.home);
+  static Future<void> toFilter(BuildContext cntxt) async {
+    return await Navigator.of(cntxt).pushNamed(Routes.filter);
+  }
+
+  static Future<void> toDetail(BuildContext cntxt, BikeModel item) async {
+    return await Navigator.of(cntxt).push(
+      MaterialPageRoute(builder: (cntxt) => BikeScreen(item))
+    );
   }
 }
 
@@ -21,7 +29,7 @@ abstract class AppNavigator {
 abstract class Routes {
   static final String init = "/";
   static final String splash = "/splash";
-  static final String login = "/login";
-  static final String home = "/home";
+  static final String catalog = "/catalog";
+  static final String filter = "/filter";
 }
 
