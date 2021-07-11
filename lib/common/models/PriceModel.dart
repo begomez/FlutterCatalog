@@ -1,6 +1,8 @@
 import 'package:flutter_catalog/common/models/core/BaseModel.dart';
 
 
+enum PriceRanges {AFFORDABLE, MID, EXPENSIVE}
+
 /*
  * Data model that represents a price entity, encapsulating a currency and a certain amount.
  * Ex: 99.99 €
