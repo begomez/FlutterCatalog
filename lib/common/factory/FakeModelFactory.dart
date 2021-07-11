@@ -41,7 +41,7 @@ abstract class FakeModelFactory {
 
   static BikeCategories _randomCateg() =>
     BikeCategories.values[Random().nextInt(2) + 1];
-  
+
   static BikeModel randomBike({int id = 1}) =>
     BikeModel(
       id: id,

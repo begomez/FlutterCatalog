@@ -1,5 +1,4 @@
-import 'package:flutter_catalog/common/models/catalog/PriceModel.dart';
-
+import 'PriceModel.dart';
 import 'ImageModel.dart';
 import '../core/BaseModel.dart';
 

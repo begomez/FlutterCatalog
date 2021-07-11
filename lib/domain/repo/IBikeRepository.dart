@@ -1,6 +1,5 @@
-import 'package:flutter_catalog/common/models/catalog/FilterModel.dart';
-import 'package:flutter_catalog/common/models/catalog/OrderCriteriaModel.dart';
-
+import '../../common/models/catalog/FilterModel.dart';
+import '../../common/models/catalog/OrderCriteriaModel.dart';
 import '../../common/models/catalog/BikeListModel.dart';
 
 

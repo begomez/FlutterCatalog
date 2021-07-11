@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/common/models/catalog/BikeModel.dart';
+
+import '../../common/models/catalog/BikeModel.dart';
 import '../screens/detail/BikeScreen.dart';
 
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../common/models/catalog/OrderCriteriaModel.dart';
 import '../../../common/models/catalog/FilterModel.dart';
 
-import '../settings/OrderingWidget.dart';
+import 'OrderingWidget.dart';
 import '../../widgets/catalog/CatalogListWidget.dart';
 import '../../utils/AppLocalizations.dart';
 
