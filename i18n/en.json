@@ -20,5 +20,8 @@
     "lb_model" : "Model: ",
     "lb_price" : "Price: ",
     "lb_category" : "Category: ",
-    "lb_frame" : "Frame size: "
+    "lb_frame" : "Frame size: ",
+
+    "order_price_asc" : "Price asc.",
+    "order_price_desc" : "Price desc."
 }
