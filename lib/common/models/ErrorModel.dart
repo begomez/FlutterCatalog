@@ -4,7 +4,7 @@ import '../ErrorCodes.dart';
 
 
 /*
- * Custom error model encapsulating code and description
+ * Data model for custom errors encapsulating code and description
  */
 class ErrorModel extends BaseModel {
   static const int NO_ERROR_CODE = ErrorCodes.INVALID;
