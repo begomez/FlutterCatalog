@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 
-import '../../../common/models/OrderCriteriaModel.dart';
-import '../../../common/models/FilterModel.dart';
+import '../../../common/models/catalog/OrderCriteriaModel.dart';
+import '../../../common/models/catalog/FilterModel.dart';
 
 import '../settings/OrderingWidget.dart';
 import '../../widgets/catalog/CatalogListWidget.dart';
@@ -24,7 +24,7 @@ class CatalogMainWidget extends BaseStatelessWidget {
 
   @override
   Widget buildWidgetContents(BuildContext context) {
-    
+
     final criterias = OrderCriteriaModelFactory.getAllCriterias(
         lbPriceAsc: AppLocalizations.of(context).translate("order_price_asc"),
         lbPriceDesc: AppLocalizations.of(context).translate("order_price_desc")

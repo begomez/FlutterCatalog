@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../common/models/FilterModel.dart';
-import '../../common/models/OrderCriteriaModel.dart';
-import '../../common/models/core/BaseModel.dart';
+import 'FilterModel.dart';
+import 'OrderCriteriaModel.dart';
+import '../core/BaseModel.dart';
 
 
 /*

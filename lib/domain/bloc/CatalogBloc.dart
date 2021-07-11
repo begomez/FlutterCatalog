@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import '../../common/ErrorCodes.dart';
-import '../../common/models/BikeListModel.dart';
+import '../../common/models/catalog/BikeListModel.dart';
 import '../../data/api/ICatalogAPI.dart';
 import '../../data/repo/BikeRepositoryImpl.dart';
 import '../../domain/repo/IBikeRepository.dart';

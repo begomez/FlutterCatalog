@@ -1,7 +1,7 @@
-import 'package:flutter_catalog/common/models/PriceModel.dart';
+import 'package:flutter_catalog/common/models/catalog/PriceModel.dart';
 
 import 'ImageModel.dart';
-import 'core/BaseModel.dart';
+import '../core/BaseModel.dart';
 
 
 enum BikeCategories {UNKNOWN, MOUNTAIN, CITY, EBIKE}

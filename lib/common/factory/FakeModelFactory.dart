@@ -1,22 +1,17 @@
 import 'dart:math';
 
-import '../models/FilterModel.dart';
-import '../models/BikeModel.dart';
-import '../models/ImageModel.dart';
+import '../models/catalog/FilterModel.dart';
+import '../models/catalog/BikeModel.dart';
+import '../models/catalog/ImageModel.dart';
 import '../models/MessageModel.dart';
-import '../models/PaginationModel.dart';
-import '../models/PriceModel.dart';
-import '../models/UserSessionModel.dart';
+import '../models/catalog/PaginationModel.dart';
+import '../models/catalog/PriceModel.dart';
 
 
 /*
  * Factory class used to create dummy instances of several data types
  */
 abstract class FakeModelFactory {
-
-  static String _randomUserName() => "Dev";
-
-  static String _randomEmail() => "dev@gmail.com";
 
   static String _randomString({int len = 10}) =>
     String.fromCharCodes(
@@ -46,14 +41,7 @@ abstract class FakeModelFactory {
 
   static BikeCategories _randomCateg() =>
     BikeCategories.values[Random().nextInt(2) + 1];
-
-  static UserSessionModel randomUser() =>
-    UserSessionModel(
-      name: _randomUserName(),
-      mail: _randomEmail(),
-      token: _randomString());
-
-
+  
   static BikeModel randomBike({int id = 1}) =>
     BikeModel(
       id: id,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../common/factory/FakeModelFactory.dart';
-import '../../../common/models/OrderCriteriaModel.dart';
+import '../../../common/models/catalog/OrderCriteriaModel.dart';
 
 import '../../resources/AppDimens.dart';
 import '../../resources/AppColors.dart';

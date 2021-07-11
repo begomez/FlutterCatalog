@@ -1,6 +1,6 @@
 import 'BikeModel.dart';
 
-import 'core/BaseModel.dart';
+import '../core/BaseModel.dart';
 
 
 /*

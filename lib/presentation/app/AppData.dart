@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../common/models/SettingsModel.dart';
-import '../../common/models/FilterModel.dart';
-import '../../common/models/OrderCriteriaModel.dart';
+import '../../common/models/catalog/SettingsModel.dart';
+import '../../common/models/catalog/FilterModel.dart';
+import '../../common/models/catalog/OrderCriteriaModel.dart';
 
 
 /*

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'core/BaseModel.dart';
+import '../core/BaseModel.dart';
 
 
 /*

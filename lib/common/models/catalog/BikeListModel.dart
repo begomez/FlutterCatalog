@@ -1,7 +1,7 @@
-import 'package:flutter_catalog/common/models/PaginationModel.dart';
+import 'package:flutter_catalog/common/models/catalog/PaginationModel.dart';
 
 import 'BikeModel.dart';
-import 'core/BaseModel.dart';
+import '../core/BaseModel.dart';
 
 
 /*

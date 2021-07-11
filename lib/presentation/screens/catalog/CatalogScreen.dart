@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/models/SettingsModel.dart';
+import '../../../common/models/catalog/SettingsModel.dart';
 import '../../app/AppData.dart';
 import '../../widgets/catalog/CatalogMainWidget.dart';
 import '../core/BaseStatelessScreen.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/models/BikeModel.dart';
+import '../../../common/models/catalog/BikeModel.dart';
 import '../core/BaseStatelessWidget.dart';
 import '../../resources/AppDimens.dart';
 

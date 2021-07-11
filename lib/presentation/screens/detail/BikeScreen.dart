@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../common/models/BikeModel.dart';
+import '../../../common/models/catalog/BikeModel.dart';
 import '../../utils/AppLocalizations.dart';
 
 import '../core/BaseStatelessScreen.dart';

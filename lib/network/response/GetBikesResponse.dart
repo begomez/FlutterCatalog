@@ -1,6 +1,6 @@
-import '../../common/models/BikeModel.dart';
+import '../../common/models/catalog/BikeModel.dart';
 import '../../common/models/MessageModel.dart';
-import '../../common/models/PaginationModel.dart';
+import '../../common/models/catalog/PaginationModel.dart';
 
 import 'core/BaseResponse.dart';
 

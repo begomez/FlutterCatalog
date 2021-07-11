@@ -5,10 +5,10 @@ import '../catalog/CatalogItemWidget.dart';
 import '../convenient/AppNoDataWidget.dart';
 import '../core/BaseBlocWidget.dart';
 
-import '../../../common/models/FilterModel.dart';
-import '../../../common/models/OrderCriteriaModel.dart';
-import '../../../common/models/BikeModel.dart';
-import '../../../common/models/BikeListModel.dart';
+import '../../../common/models/catalog/FilterModel.dart';
+import '../../../common/models/catalog/OrderCriteriaModel.dart';
+import '../../../common/models/catalog/BikeModel.dart';
+import '../../../common/models/catalog/BikeListModel.dart';
 
 import '../../../domain/bloc/CatalogBloc.dart';
 import '../../../domain/event/CatalogEvent.dart';

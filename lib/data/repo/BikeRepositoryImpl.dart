@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import '../../common/models/BikeListModel.dart';
-import '../../common/models/FilterModel.dart';
-import '../../common/models/OrderCriteriaModel.dart';
+import '../../common/models/catalog/BikeListModel.dart';
+import '../../common/models/catalog/FilterModel.dart';
+import '../../common/models/catalog/OrderCriteriaModel.dart';
 import '../../common/utils/AppLogger.dart';
 
 import '../../domain/repo/IBikeRepository.dart';
