@@ -2,14 +2,23 @@
     "app_name" : "BikeStore",
 
     "screen_home" : "Inicio",
-    "screen_detail" : "Detail",
-    "screen_filter" : "Filter",
+    "screen_detail" : "Detalle",
+    "screen_filter" : "Filtros",
     "screen_error" : "Error",
 
-    "action_login" : "Acceder",
     "action_yes" : "Sí",
     "action_no" : "No",
+    "action_more" : "Más datos",
+    "action_hide" : "Ocultar",
+    "action_retry" : "Volver a intentar",
 
     "error_general" : "Se ha producido un error",
-    "error_no_data" : "No se han encontrado datos"
+    "error_no_data" : "No se han encontrado datos",
+
+    "lb_order" : "Ordenar por",
+    "lb_filter" : "Filtrar",
+    "lb_model" : "Modelo: ",
+    "lb_price" : "Precio: ",
+    "lb_category" : "Categoría: ",
+    "lb_frame" : "Tamaño de frame: "
 }
