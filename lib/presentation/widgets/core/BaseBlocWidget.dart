@@ -39,7 +39,7 @@ abstract class BaseBlocWidgetState<
         TargetBloc extends BaseBloc,
         TargetEvent extends BaseEvent,
         TargetModel extends BaseModel>
-    extends BaseStatefulWidgetState<TargetWidget>
+    extends BaseState<TargetWidget>
     with BlocMixin<TargetBloc, TargetEvent, TargetModel> {
 
   BaseBlocWidgetState() : super() {

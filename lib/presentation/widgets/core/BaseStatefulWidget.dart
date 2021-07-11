@@ -9,15 +9,15 @@ abstract class BaseStatefulWidget extends StatefulWidget {
   const BaseStatefulWidget({Key key}) : super(key: key);
 
   @override
-  BaseStatefulWidgetState createState();
+  BaseState createState();
 }
 
 /*
  * Companion state class
  */
-abstract class BaseStatefulWidgetState<T extends BaseStatefulWidget>
+abstract class BaseState<T extends BaseStatefulWidget>
     extends State<T> {
-  BaseStatefulWidgetState() : super();
+  BaseState() : super();
 
   @override
   Widget build(BuildContext context) {
