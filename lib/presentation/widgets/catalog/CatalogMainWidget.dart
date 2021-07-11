@@ -12,16 +12,19 @@ import '../core/BaseStatelessWidget.dart';
 
 
 /*
- * Widget containing a selector and a list
+ * Widget containing:
+ * - an order selector
+ * - a list of bikes
  */
 class CatalogMainWidget extends BaseStatelessWidget {
-  final OrderCriteriaModel order = OrderCriteriaModelFactory.priceAscending("");
-  final FilterModel filter = FilterModel();
+  final OrderCriteriaModel order;
+  final FilterModel filter;
 
-  CatalogMainWidget({Key key}) : super(key: key);
+  CatalogMainWidget({@required this.order, @required this.filter, Key key}) : assert(order != null), assert(filter != null), super(key: key);
 
   @override
   Widget buildWidgetContents(BuildContext context) {
+    
     final criterias = OrderCriteriaModelFactory.getAllCriterias(
         lbPriceAsc: AppLocalizations.of(context).translate("order_price_asc"),
         lbPriceDesc: AppLocalizations.of(context).translate("order_price_desc")
@@ -34,10 +37,10 @@ class CatalogMainWidget extends BaseStatelessWidget {
       children: [
         OrderingWidget(
           criterias: criterias,
-          selectedId: this.order.id),
+          current: this.order),
         Expanded(
           child: CatalogListWidget(
-            order: this.order,
+            order:this.order,
             filter: this.filter
           )
         )

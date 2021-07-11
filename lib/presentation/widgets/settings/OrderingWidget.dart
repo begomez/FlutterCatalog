@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/factory/FakeModelFactory.dart';
 import '../../../common/models/OrderCriteriaModel.dart';
 
 import '../../resources/AppDimens.dart';
@@ -7,31 +8,18 @@ import '../../resources/AppColors.dart';
 import '../../resources/AppStyles.dart';
 import '../../resources/CatalogStyles.dart';
 import '../../utils/AppLocalizations.dart';
-import '../core/BaseStatefulWidget.dart';
+import '../core/BaseStatelessWidget.dart';
+import '../../app/AppData.dart';
 
 
 /*
  * Widget displaying a selector with ordering options
  */
-class OrderingWidget extends BaseStatefulWidget {
+class OrderingWidget extends BaseStatelessWidget {
   final List<OrderCriteriaModel> criterias;
-  final int selectedId;// ID for current order criteria
+  final OrderCriteriaModel current;
 
-  const OrderingWidget({@required this.criterias, @required this.selectedId, Key key}) : assert(criterias != null), assert(selectedId != null), super(key: key);
-
-  @override
-  _OrderingWidgetState createState() => _OrderingWidgetState(
-      this.criterias.where((element) => element.id == this.selectedId).toList()[0]
-  );
-}
-
-/*
- * Companion state class
- */
-class _OrderingWidgetState extends BaseState<OrderingWidget> {
-  OrderCriteriaModel _currentCriteria;
-
-  _OrderingWidgetState(this._currentCriteria) : super();
+  const OrderingWidget({@required this.criterias, @required this.current, Key key}) : assert(criterias != null), assert(current != null), super(key: key);
 
   @override
   Widget buildWidgetContents(BuildContext context) {
@@ -71,12 +59,12 @@ class _OrderingWidgetState extends BaseState<OrderingWidget> {
         isDense: false,
         underline: Container(width: 0.0,),
         dropdownColor: AppColors.white,
-        value: this._getSelectedValue(this._currentCriteria.id),
+        value: this._getSelectedValue(this.current.id),
         icon: Icon(Icons.arrow_drop_down),
         isExpanded: true,
-        items: this.widget.criterias.map((e) => this._buildDropItem(e)).toList(),
+        items: this.criterias.map((e) => this._buildDropItem(e)).toList(),
         onChanged: (order) {
-          //TODO
+          AppData.of(cntxt).updateOrder(order);
         },
       ),
     );
@@ -87,11 +75,11 @@ class _OrderingWidgetState extends BaseState<OrderingWidget> {
         value: order,
         child: Text(
             order.name,
-            style: this._currentCriteria == order? CatalogStyles.selectedItem : CatalogStyles.unselectedItem));
+            style: this.current == order? CatalogStyles.selectedItem : CatalogStyles.unselectedItem));
   }
 
   OrderCriteriaModel _getSelectedValue(int target) {
-    final candidates = this.widget.criterias.where((element) => element.id == target).toList();
+    final candidates = this.criterias.where((element) => element.id == target).toList();
 
     return candidates.isNotEmpty? candidates[0] : null;
   }
