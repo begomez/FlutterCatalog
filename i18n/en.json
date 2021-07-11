@@ -1,10 +1,13 @@
 {
-    "app_name" : "Sample application...",
+    "app_name" : "BikeStore",
 
     "screen_home" : "Home",
     "screen_error" : "Error",
 
     "action_login" : "Login",
     "action_yes" : "Yes",
-    "action_no" : "No"
+    "action_no" : "No",
+
+    "error_general" : "An error ocurred",
+    "error_no_data" : "No data was found"
 }
