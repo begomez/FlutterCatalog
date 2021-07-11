@@ -2,6 +2,8 @@
     "app_name" : "BikeStore",
 
     "screen_home" : "Home",
+    "screen_detail" : "Detail",
+    "screen_filter" : "Filter",
     "screen_error" : "Error",
 
     "action_login" : "Login",
