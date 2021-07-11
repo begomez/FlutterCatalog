@@ -19,6 +19,8 @@ class PriceModel extends BaseModel {
 
   factory PriceModel.free() => const PriceModel();
 
+  factory PriceModel.forAmount(double amount) => PriceModel(amount: amount, currency: DEFAULT_CURRENCY);
+
   @override
   bool validate() => this.amount > NO_AMOUNT;
 

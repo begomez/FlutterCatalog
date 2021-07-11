@@ -1,8 +1,10 @@
 import 'dart:math';
 
-import 'package:flutter_catalog/common/models/BikeModel.dart';
-import 'package:flutter_catalog/common/models/ImageModel.dart';
-import 'package:flutter_catalog/common/models/PriceModel.dart';
+import '../../common/models/BikeModel.dart';
+import '../../common/models/ImageModel.dart';
+import '../../common/models/MessageModel.dart';
+import '../../common/models/PaginationModel.dart';
+import '../../common/models/PriceModel.dart';
 
 import '../models/UserSessionModel.dart';
 
@@ -16,19 +18,20 @@ abstract class FakeModelFactory {
 
   static String _randomEmail() => "dev@gmail.com";
 
-  static String _randomString({int len = 10}) {
-    final rand = Random();
-    return String.fromCharCodes(
-        List.generate(len, (index) => rand.nextInt(33) + 89)
+  static String _randomString({int len = 10}) =>
+    String.fromCharCodes(
+        List.generate(len, (index) => Random().nextInt(33) + 89)
     );
-  }
 
-  static bool _randomBool() => Random().nextBool();
+  static bool _randomBool() =>
+      Random().nextBool();
 
-  static int _randomFrame() => Random().nextInt(100) + 40;
+  static int _randomFrame() =>
+      Random().nextInt(100) + 40;
 
   //https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber_BikeoftheYear_ES_HomepageMarquee?$responsive-pjpg$&cache=on,on&wid=1920
-  static ImageModel _randomImg() => ImageModel(url: "https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber_BikeoftheYear_ES_HomepageMarquee?");
+  static ImageModel _randomImg() =>
+      ImageModel(url: "https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber_BikeoftheYear_ES_HomepageMarquee?");
 
   static PriceModel _randomPrice({PriceRanges range = PriceRanges.MID}) {
     switch (range) {
@@ -58,7 +61,20 @@ abstract class FakeModelFactory {
       price: _randomPrice()
     );
 
-  static List<BikeModel> randomBikes({int num = 20}) {
-    return List<BikeModel>.generate(num, (index) => randomBike(id: index));
-  }
+  static List<BikeModel> randomBikes({int num = 20}) =>
+    List<BikeModel>.generate(num, (index) => randomBike(id: index));
+
+  static PaginationModel paginationForPage(int page) =>
+    PaginationModel(
+      currentPage: page,
+      totalPages: TOTAL_PAGES,
+      itemsPerPage: 20,
+      hasMoreData: page < TOTAL_PAGES
+    );
+
+  static MessageModel success() => MessageModel.success();
+
+  static MessageModel error() => MessageModel.error();
+
+  static const TOTAL_PAGES = 10;
 }
