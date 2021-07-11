@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/presentation/navigation/AppNavigator.dart';
 import 'package:flutter_catalog/presentation/widgets/catalog/CatalogItemWidget.dart';
 import 'package:flutter_catalog/presentation/widgets/convenient/AppNoDataWidget.dart';
 
@@ -46,7 +47,7 @@ class _CatalogListWidgetState
     if (list.isEmpty) {
       return AppNoDataWidget();
     } else {
-      return ListView.builder(itemBuilder: (cntxt, index) => CatalogItemWidget(list[index]), itemCount: list.length,);
+      return ListView.builder(itemBuilder: (cntxt, index) => CatalogItemWidget(this._onItemClicked, list[index]), itemCount: list.length,);
     }
   }
 
@@ -59,4 +60,8 @@ class _CatalogListWidgetState
 
   @override
   bool isAutocall() => true;
+
+  void _onItemClicked(BikeModel bike) async {
+    await AppNavigator.toDetail(this.context, bike);
+  }
 }
