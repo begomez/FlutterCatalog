@@ -1,6 +1,8 @@
 /*
  * Marking class for response objects in network layer
  */
-class BaseResponse {
+abstract class BaseResponse {
   const BaseResponse();
+
+  bool hasData();
 }
