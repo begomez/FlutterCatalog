@@ -53,6 +53,9 @@ flutter:
      - i18n/en.json
      - i18n/es.json
      - assets/images/splash.png
+     - assets/images/city.png
+     - assets/images/electric.png
+     - assets/images/mountain.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
