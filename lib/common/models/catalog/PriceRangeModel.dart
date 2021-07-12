@@ -13,6 +13,12 @@ class PriceRangeModel extends BaseModel {
 
   const PriceRangeModel({@required this.min, @required this.max}) : assert(min != null), assert(max != null), super();
 
+  factory PriceRangeModel.empty() => PriceRangeModel(min: PriceModel.free(), max: PriceModel.unit());
+
   @override
   bool validate() => this.min.validate() && this.max.validate() && (this.min < this.max);
+
+  int getStepSize() => (this.max.amount - this.min.amount) ~/ getNumSteps();
+
+  int getNumSteps() => 7;
 }

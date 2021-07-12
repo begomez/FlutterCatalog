@@ -16,6 +16,13 @@ class FilterModel extends BaseModel {
 
   factory FilterModel.empty() => FilterModel();
 
+  FilterModel copyWith({double price, int size, BikeCategories categ}) =>
+      FilterModel(
+        frameSize: size?? this.frameSize,
+        categ: categ?? this.categ,
+        price: price?? this.price
+      );
+
   @override
   bool validate() => this.hasValidCategory() || this.hasValidPrice() || this.hasValidFrameSize();
 
