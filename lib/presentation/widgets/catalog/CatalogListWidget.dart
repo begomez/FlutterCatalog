@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../resources/AppDimens.dart';
 import '../../navigation/AppNavigator.dart';
 import '../catalog/CatalogItemWidget.dart';
 import '../convenient/AppNoDataWidget.dart';
@@ -40,12 +41,29 @@ class _CatalogListWidgetState
 
   @override
   Widget buildInitial(BuildContext cntxt) {
-    return this._buildList(cntxt, []);
+    return this._buildListWrapper(cntxt, []);
   }
 
   @override
   Widget buildSuccess(BuildContext cntxt, BikeListModel data) {
-    return this._buildList(cntxt, data.collection);
+    return this._buildListWrapper(cntxt, data.collection);
+  }
+  
+  @override
+  Widget buildLoading(BuildContext cntxt) {
+    return Container(
+        alignment: Alignment.center,
+        height: MediaQuery.of(cntxt).size.height / 2,
+        child: super.buildLoading(cntxt)
+    );
+  }
+
+  Widget _buildListWrapper(BuildContext cntxt, List<BikeModel> data) {
+    return Container(
+      margin: EdgeInsets.only(bottom: AppDimens.BIG_SPACING),
+      height: MediaQuery.of(cntxt).size.height * 1.0,
+      child: this._buildList(cntxt, data)
+    );
   }
 
   Widget _buildList(BuildContext cntxt, List<BikeModel> list) {
@@ -53,7 +71,12 @@ class _CatalogListWidgetState
     if (list.isEmpty) {
       return AppNoDataWidget();
     } else {
-      return ListView.builder(itemBuilder: (cntxt, index) => CatalogItemWidget(this._onItemClicked, list[index]), itemCount: list.length,);
+      return ListView.builder(
+          itemBuilder: (cntxt, index) {
+            return CatalogItemWidget(this._onItemClicked, list[index]);
+          },
+          itemCount: list.length,
+      );
     }
   }
 

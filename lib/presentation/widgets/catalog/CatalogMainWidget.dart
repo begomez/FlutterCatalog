@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
-
 import '../../../common/models/catalog/OrderCriteriaModel.dart';
 import '../../../common/models/catalog/FilterModel.dart';
 
-import 'OrderingWidget.dart';
-import '../../widgets/catalog/CatalogListWidget.dart';
-import '../../utils/AppLocalizations.dart';
-
+import '../../resources/AppDimens.dart';
 import '../core/BaseStatelessWidget.dart';
+import '../../utils/AppLocalizations.dart';
+import '../AppBarWidget.dart';
+import 'OrderingWidget.dart';
+import 'CatalogListWidget.dart';
+
 
 
 /*
  * Widget containing:
- * - an order selector
- * - a list of bikes
+ * - app bar
+ * - order selector
+ * - list of bikes
  */
 class CatalogMainWidget extends BaseStatelessWidget {
   final OrderCriteriaModel order;
@@ -24,27 +26,31 @@ class CatalogMainWidget extends BaseStatelessWidget {
 
   @override
   Widget buildWidgetContents(BuildContext context) {
-
     final criterias = OrderCriteriaModelFactory.getAllCriterias(
         lbPriceAsc: AppLocalizations.of(context).translate("order_price_asc"),
         lbPriceDesc: AppLocalizations.of(context).translate("order_price_desc")
     );
+    
+    return Scaffold(
+      body: CustomScrollView(
+      slivers: [
 
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        OrderingWidget(
-          criterias: criterias,
-          current: this.order),
-        Expanded(
-          child: CatalogListWidget(
-            order:this.order,
-            filter: this.filter
-          )
-        )
-      ],
+        // bar
+        AppBarWidget(title: AppLocalizations.of(context).translate("app_name")),
+
+        // order
+        SliverPadding(
+          padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
+          sliver: SliverToBoxAdapter(
+            child: OrderingWidget(
+                criterias: criterias,
+                current: this.order),
+          ),
+        ),
+
+        // list
+        SliverToBoxAdapter(child: CatalogListWidget(order: this.order, filter: this.filter))
+      ]),
     );
   }
 }

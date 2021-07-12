@@ -20,7 +20,7 @@ class CatalogScreen extends BaseStatelessScreen {
   Widget buildScreenContents(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.all(AppDimens.MID_SPACING),
+      margin: EdgeInsets.zero,
       child: ValueListenableBuilder(
           valueListenable: AppData.of(context).vSettings,
           builder: (BuildContext cntxt, SettingsModel settings, Widget child) {
@@ -31,8 +31,4 @@ class CatalogScreen extends BaseStatelessScreen {
           },
     ));
   }
-
-  @override
-  String getScreenTitle(BuildContext cntxt) =>
-      AppLocalizations.of(cntxt).translate("screen_home");
 }

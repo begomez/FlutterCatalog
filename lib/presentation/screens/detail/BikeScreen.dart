@@ -18,10 +18,24 @@ class BikeScreen extends BaseStatelessScreen {
   Widget buildScreenContents(BuildContext context) {
     return Center(
         child: Container(
-      child: Text(this.getScreenTitle(context)),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          this._buildImg(context)
+        ],
+      ),
     ));
   }
   
+  Widget _buildImg(BuildContext cntxt) {
+    return Hero(
+      tag: this.bike.toTag(),
+      child: Image.network(this.bike.mainImg.url),
+    );
+  } 
+  
   @override
-  String getScreenTitle(BuildContext cntxt) => AppLocalizations.of(cntxt).translate("screen_detail");
+  String getScreenTitle(BuildContext cntxt) => this.bike.name;
 }

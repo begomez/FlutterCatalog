@@ -14,7 +14,9 @@ class SplashScreen extends BaseStatelessScreen {
 
   @override
   Widget buildScreenContents(BuildContext context) {
-    this._navigateDelayed(context);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      this._navigateDelayed(context);
+    });
 
     return Center(
         child: Container(
