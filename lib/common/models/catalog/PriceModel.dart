@@ -28,4 +28,19 @@ class PriceModel extends BaseModel {
   String toString() {
     return "${this.amount.toStringAsFixed(NUM_DECIMALS)} ${this.currency}";
   }
+
+  bool operator <(Object other) {
+    return false;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PriceModel &&
+          runtimeType == other.runtimeType &&
+          currency == other.currency &&
+          amount == other.amount;
+
+  @override
+  int get hashCode => currency.hashCode ^ amount.hashCode;
 }

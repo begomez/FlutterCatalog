@@ -1,3 +1,5 @@
+import 'package:flutter_catalog/common/models/catalog/FrameSizeModel.dart';
+
 import 'PriceModel.dart';
 import 'ImageModel.dart';
 import '../core/BaseModel.dart';
@@ -9,16 +11,15 @@ enum BikeCategories {UNKNOWN, MOUNTAIN, CITY, EBIKE}
  * Data model that represents a bike entity
  */
 class BikeModel extends BaseModel {
-  static const MIN_FRAME_SIZE = 40;
 
   final int id;
   final PriceModel price;
   final String name;
   final ImageModel mainImg;
   final BikeCategories categ;
-  final int frameSize;//In cm
+  final FrameSizeModel frameSize;
 
-  const BikeModel({this.id = BaseModel.NO_ID, this.price = const PriceModel(), this.name = "", this.mainImg = const ImageModel(), this.categ = BikeCategories.UNKNOWN, this.frameSize = MIN_FRAME_SIZE}) : super();
+  const BikeModel({this.id = BaseModel.NO_ID, this.price = const PriceModel(), this.name = "", this.mainImg = const ImageModel(), this.categ = BikeCategories.UNKNOWN, this.frameSize = const FrameSizeModel(size: FrameSizeModel.MIN_FRAME_SIZE)}) : super();
 
   @override
   bool validate() {

@@ -9,4 +9,8 @@ abstract class ErrorCodes {
   static const int CATALOG = 2;
 
   static const int MORE_INFO = 3;
+
+  static const int FRAME_SIZES = 4;
+
+  static const int PRICE_RANGES = 5;
 }

@@ -1,11 +1,15 @@
 import 'dart:math';
 
+import 'package:flutter_catalog/common/models/catalog/FrameSizeModel.dart';
+
 import '../models/catalog/FilterModel.dart';
 import '../models/catalog/BikeModel.dart';
 import '../models/catalog/ImageModel.dart';
 import '../models/MessageModel.dart';
 import '../models/catalog/PaginationModel.dart';
+import '../models/catalog/FrameSizeModel.dart';
 import '../models/catalog/PriceModel.dart';
+import '../models/catalog/PriceRangeModel.dart';
 
 
 /*
@@ -21,8 +25,15 @@ abstract class FakeModelFactory {
   static bool _randomBool() =>
       Random().nextBool();
 
-  static int _randomFrame() =>
-      Random().nextInt(100) + 40;
+  static FrameSizeModel _randomFrame() {
+      final size = Random().nextInt(FrameSizeModel.FRAME_STEP) + FrameSizeModel.MIN_FRAME_SIZE;// [15-21]
+
+      return FrameSizeModel(size: size);
+  }
+
+  static List<FrameSizeModel> allFrameSizes() {
+    return List.generate(7, (index) => FrameSizeModel(size: FrameSizeModel.MIN_FRAME_SIZE + index)).toList();
+  }
 
   //https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber_BikeoftheYear_ES_HomepageMarquee?$responsive-pjpg$&cache=on,on&wid=1920
   static ImageModel _randomImg() =>
@@ -37,6 +48,13 @@ abstract class FakeModelFactory {
       case PriceRanges.EXPENSIVE:
         return PriceModel(amount: 5000.0 + Random().nextInt(500).toDouble());
     }
+  }
+
+  static PriceRangeModel randomRange() {
+    return PriceRangeModel(
+        min: _randomPrice(range: PriceRanges.AFFORDABLE),
+        max: _randomPrice(range: PriceRanges.EXPENSIVE)
+    );
   }
 
   static BikeCategories _randomCateg() =>
@@ -59,7 +77,7 @@ abstract class FakeModelFactory {
     FilterModel(
       price: _randomPrice().amount,
       categ: _randomCateg(),
-      frameSize: _randomFrame(),
+      frameSize: _randomFrame().size,
     );
 
   static PaginationModel paginationForPage(int page) =>
