@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/presentation/resources/AppDimens.dart';
-import 'package:flutter_catalog/presentation/resources/AppStyles.dart';
-import 'package:flutter_catalog/presentation/widgets/factory/WidgetFactory.dart';
-import 'package:flutter_catalog/presentation/widgets/filter/PriceRangeWidget.dart';
+
+import '../../resources/AppDimens.dart';
+import '../../resources/AppStyles.dart';
+import '../../widgets/factory/WidgetFactory.dart';
+import '../../widgets/filter/BikeTypeSelectorWidget.dart';
+import '../../widgets/filter/PriceRangeWidget.dart';
 import '../../utils/AppLocalizations.dart';
 
-import '../../navigation/AppNavigator.dart';
 import '../core/BaseStatelessScreen.dart';
 
 
@@ -27,6 +28,7 @@ class FilterScreen extends BaseStatelessScreen {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Expanded(child: BikeTypeSelectorWidget(),),
           Expanded(child: PriceRangeWidget()),
           WidgetFactory.buildBtn(
               text: AppLocalizations.of(context).translate("action_close"),

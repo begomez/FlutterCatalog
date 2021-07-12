@@ -39,7 +39,7 @@ abstract class FakeModelFactory {
     switch (categ) {
       case BikeCategories.CITY:
         return _cityBike();
-      case BikeCategories.EBIKE:
+      case BikeCategories.ELECTRIC:
         return _eBikeImg();
       case BikeCategories.MOUNTAIN:
         return _mountainBike();
