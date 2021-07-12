@@ -102,7 +102,9 @@ abstract class FakeModelFactory {
   static FilterModel randomFilter() =>
     FilterModel(
       price: _randomPrice().amount,
-      categ: _randomCateg(),
+      categs: [
+        _randomCateg()
+      ],
       frameSize: _randomFrame().size,
     );
 
