@@ -24,5 +24,9 @@
     "lb_frame" : "Tamaño de frame: ",
 
     "order_price_asc" : "Precio asc.",
-    "order_price_desc" : "Precio desc."
+    "order_price_desc" : "Precio desc.",
+
+    "type_mountain" : "Bicicleta\nde Montaña",
+    "type_city" : "Bicicleta\nUrbana",
+    "type_electric" : "Bicicleta\nEléctrica"
 }

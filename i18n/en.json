@@ -24,5 +24,9 @@
     "lb_frame" : "Frame size: ",
 
     "order_price_asc" : "Price asc.",
-    "order_price_desc" : "Price desc."
+    "order_price_desc" : "Price desc.",
+
+    "type_mountain" : "Mountain\nBike",
+    "type_city" : "City\nBike",
+    "type_electric" : "Electric\nBike"
 }
