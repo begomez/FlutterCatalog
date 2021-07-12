@@ -38,7 +38,7 @@ class CatalogMainWidget extends BaseStatelessWidget {
         // bar
         AppBarWidget(title: AppLocalizations.of(context).translate("app_name")),
 
-        // order
+        // ordering
         SliverPadding(
           padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
           sliver: SliverToBoxAdapter(
