@@ -11,6 +11,7 @@
     "action_more" : "More info",
     "action_hide" : "Hide",
     "action_retry" : "Retry",
+    "action_close" : "Close",
 
     "error_general" : "An error ocurred",
     "error_no_data" : "No data was found",
