@@ -11,6 +11,8 @@ abstract class AppStyles {
         fontWeight: FontWeight.bold,
       );
 
+  static TextStyle get titleWhite => title.copyWith(color: AppColors.white);
+
   static TextStyle get subtitle => TextStyle(
         color: AppColors.textColor,
         fontSize: 14,

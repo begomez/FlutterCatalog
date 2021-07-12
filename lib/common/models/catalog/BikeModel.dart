@@ -46,4 +46,6 @@ class BikeModel extends BaseModel {
       mainImg.hashCode ^
       categ.hashCode ^
       frameSize.hashCode;
+
+  String toTag() => "bike${this.id}";
 }
