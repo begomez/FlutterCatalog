@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/presentation/widgets/SplashWidget.dart';
 
 import '../navigation/AppNavigator.dart';
 import 'core/BaseStatelessScreen.dart';
@@ -18,10 +19,7 @@ class SplashScreen extends BaseStatelessScreen {
       this._navigateDelayed(context);
     });
 
-    return Center(
-        child: Container(
-      child: Image.asset("assets/images/splash.png"),
-    ));
+    return SplashWidget();
   }
 
   void _navigateDelayed(BuildContext cntxt) async {
