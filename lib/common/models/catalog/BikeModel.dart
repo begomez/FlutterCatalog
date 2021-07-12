@@ -7,6 +7,7 @@ import '../core/BaseModel.dart';
 
 enum BikeCategories {UNKNOWN, MOUNTAIN, CITY, EBIKE}
 
+
 /*
  * Data model that represents a bike entity
  */

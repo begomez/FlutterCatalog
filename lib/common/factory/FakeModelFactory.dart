@@ -34,6 +34,28 @@ abstract class FakeModelFactory {
   static List<FrameSizeModel> allFrameSizes() {
     return List.generate(7, (index) => FrameSizeModel(size: FrameSizeModel.MIN_FRAME_SIZE + index)).toList();
   }
+  
+  static ImageModel _getImgForCateg(BikeCategories categ) {
+    switch (categ) {
+      case BikeCategories.CITY:
+        return _cityBike();
+      case BikeCategories.EBIKE:
+        return _eBikeImg();
+      case BikeCategories.MOUNTAIN:
+        return _mountainBike();
+      default:
+        return _randomImg();
+    }
+  }
+
+  static ImageModel _mountainBike() =>
+    ImageModel(url: "https://cdn.brujulabike.com/media/13401/conversions/1-1-1600.jpg");
+
+  static ImageModel _cityBike() =>
+    ImageModel(url: "https://www.wigglestatic.com/product-media/104680990/Vitus-Dee-VR-City-Bike-Nexus-2021-Hybrid-Bikes-Black-Quartz-2021-VDVR29NEX21SMBLKQTZ.jpg?w=960&h=550&a=7");
+
+  static ImageModel _eBikeImg() =>
+    ImageModel(url: "https://www.ruff-cycles.com/pub/media/img-cms/ruff-cycles-pauljrdesigns-ruffian-3.png");
 
   //https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber_BikeoftheYear_ES_HomepageMarquee?$responsive-pjpg$&cache=on,on&wid=1920
   static ImageModel _randomImg() =>
@@ -58,17 +80,21 @@ abstract class FakeModelFactory {
   }
 
   static BikeCategories _randomCateg() =>
-    BikeCategories.values[Random().nextInt(2) + 1];
+    BikeCategories.values[Random().nextInt(3) + 1];
 
-  static BikeModel randomBike({int id = 1}) =>
-    BikeModel(
-      id: id,
-      name: "Supercaliber $id",
-      frameSize: _randomFrame(),
-      categ: _randomCateg(),
-      mainImg: _randomImg(),
-      price: _randomPrice()
+  static BikeModel randomBike({int id = 1}) {
+    BikeCategories categ = _randomCateg();
+    
+    return BikeModel(
+        id: id,
+        name: "Bike num. $id",
+        frameSize: _randomFrame(),
+        categ: categ,
+        mainImg: _getImgForCateg(categ),
+        price: _randomPrice()
     );
+    
+  }
 
   static List<BikeModel> randomBikes({int num = 20}) =>
     List<BikeModel>.generate(num, (index) => randomBike(id: index));
