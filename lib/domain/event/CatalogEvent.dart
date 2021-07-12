@@ -6,6 +6,8 @@ import 'core/BaseEvent.dart';
 
 /*
  * Input class used for catalog BLoC
+ *
+ * @see CatalogBloc
  */
 class CatalogEvent extends BaseEvent {
   final int page;
