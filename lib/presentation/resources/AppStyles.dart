@@ -4,6 +4,16 @@ import 'AppColors.dart';
 
 
 abstract class AppStyles {
+
+  static TextStyle get caption => TextStyle(
+    color: AppColors.textColor,
+    fontSize: 14,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle get captionWhite => caption.copyWith(color: AppColors.white);
+
   static TextStyle get title => TextStyle(
         color: AppColors.textColor,
         fontSize: 16,
@@ -19,6 +29,8 @@ abstract class AppStyles {
         fontStyle: FontStyle.italic,
         fontWeight: FontWeight.normal,
       );
+
+  static TextStyle get subtitleWhite => subtitle.copyWith(color: AppColors.white);
 
   static TextStyle get body => TextStyle(
         color: AppColors.textColor,

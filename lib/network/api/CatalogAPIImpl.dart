@@ -32,7 +32,7 @@ class CatalogAPIImpl implements ICatalogAPI {
 
   @override
   Future<GetFrameSizesResponse> getFrameSizes(GetFrameSizesRequest req) async {
-    return await Future.delayed(Duration(seconds: Random().nextInt(MAX_RESPONSE_TIME_IN_SECS))).then((value) =>
+    return await Future.delayed(Duration(seconds: 1)).then((value) =>
         GetFrameSizesResponse(
           FakeModelFactory.allFrameSizes(),
           FakeModelFactory.success()

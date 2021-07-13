@@ -10,10 +10,10 @@ import 'core/BaseBloc.dart';
 /*
  * BLoC class that retrieves available frame sizes
  */
-class FrameSizeBloc extends BaseBloc<FrameSizesEvent, FrameSizeListModel> {
+class FrameSizesBloc extends BaseBloc<FrameSizesEvent, FrameSizeListModel> {
   IBikeRepository _repo;
 
-  FrameSizeBloc(ICatalogAPI api) {
+  FrameSizesBloc(ICatalogAPI api) {
     this._repo = BikeRepositoryImpl(api);
   }
 
