@@ -19,17 +19,18 @@ import '../../../network/api/CatalogAPIImpl.dart';
  * Widget that allows setting a price inside a price range
  */
 class PriceRangeWidget extends BaseBlocWidget {
-  
-  const PriceRangeWidget({Key key}) : super(key: key);
-  
+  final PriceModel currentPrice;
+
+  const PriceRangeWidget({this.currentPrice, Key key}) : super(key: key);
+
   @override
-  _PriceRangeWidgetState createState() => _PriceRangeWidgetState();
+  _PriceRangeWidgetState createState() => _PriceRangeWidgetState(this.currentPrice);
 }
 
 class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, PriceRangeBloc, PriceRangeEvent, PriceRangeModel> {
-  double _currentVal;
+  PriceModel currentPrice;
 
-  _PriceRangeWidgetState() : super();
+  _PriceRangeWidgetState(this.currentPrice) : super();
 
   @override
   Widget buildInitial(BuildContext cntxt) {
@@ -50,8 +51,12 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           this._buildTitle(cntxt),
-          this._buildSlider(cntxt, data),
-          this._buildHintsRow(cntxt, data)
+          Visibility(
+            visible: data.validate(),
+            child: this._buildSlider(cntxt, data)),
+          Visibility(
+            visible: data.validate(),
+            child: this._buildHintsRow(cntxt, data))
         ],
       ),
     );
@@ -68,12 +73,12 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
       child: Slider(
         activeColor: AppColors.primaryDark,
         inactiveColor: AppColors.primary,
-        min: range.min.amount,
-        max: range.max.amount,
-        value: this._currentVal?? range.min.amount,
+        min: range.validate()? range.min.amount : 0.0,
+        max: range.validate()? range.max.amount : 0.0,
+        value: range.validate() && this.currentPrice.validate()? this.currentPrice.amount : range.min.amount,
         divisions: range.getNumSteps(),
         onChanged: this._onValueSelected,
-        label: this._currentVal == null? "": PriceModel.forAmount(this._currentVal).toString(),
+        label: this.currentPrice.validate()? "": this.currentPrice.toString(),
       ),
     );
   }
@@ -82,10 +87,6 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
     final currentFilter = AppData.of(this.context).vSettings.value.filter;
 
     AppData.of(this.context).updateFilter(currentFilter.copyWith(price: value));
-
-    this.setState(() {
-      this._currentVal = value;
-    });
   }
 
   Widget _buildHintsRow(BuildContext cntxt, PriceRangeModel range) {

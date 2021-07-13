@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import '../../common/models/catalog/FrameSizeModel.dart';
 import '../../common/factory/FakeModelFactory.dart';
 import '../../data/api/ICatalogAPI.dart';
 import '../request/GetFrameSizesRequest.dart';
@@ -43,7 +42,7 @@ class CatalogAPIImpl implements ICatalogAPI {
 
   @override
   Future<GetPriceRangesResponse> getPriceRange(GetPriceRangesRequest req) async {
-    return await Future.delayed(Duration(seconds: Random().nextInt(MAX_RESPONSE_TIME_IN_SECS))).then((value) =>
+    return await Future.delayed(Duration(seconds: 1)).then((value) =>
         GetPriceRangesResponse(
           FakeModelFactory.randomRange(),
           FakeModelFactory.success()

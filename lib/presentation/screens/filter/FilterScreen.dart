@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../resources/AppDimens.dart';
-import '../../resources/AppStyles.dart';
-import '../../widgets/factory/WidgetFactory.dart';
-import '../../widgets/filter/BikeTypeSelectorWidget.dart';
-import '../../widgets/filter/PriceRangeWidget.dart';
+import '../../app/AppData.dart';
+import '../../widgets/filter/FilterMainWidget.dart';
 import '../../utils/AppLocalizations.dart';
-
 import '../core/BaseStatelessScreen.dart';
 
+import '../../../common/models/catalog/SettingsModel.dart';
 
 /*
  * Filter screen
@@ -20,25 +17,12 @@ class FilterScreen extends BaseStatelessScreen {
 
   @override
   Widget buildScreenContents(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(AppDimens.MID_SPACING),
-      alignment: Alignment.topCenter,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(child: BikeTypeSelectorWidget(),),
-          Expanded(child: PriceRangeWidget()),
-          WidgetFactory.buildBtn(
-              text: AppLocalizations.of(context).translate("action_close"),
-              callback: () {
-                Navigator.of(context).pop();
-              },
-              style: AppStyles.action)
-        ],
-      ),
-    );
+    return ValueListenableBuilder(
+        valueListenable: AppData.of(context).vSettings,
+        builder: (BuildContext cntxt, SettingsModel settings, Widget child) {
+          return FilterMainWidget(currentFilter: settings.filter, key: ValueKey(settings.filter.hashCode),);
+        },
+      );
   }
   
   @override

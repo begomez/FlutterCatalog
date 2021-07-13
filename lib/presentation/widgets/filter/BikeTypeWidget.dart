@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/presentation/resources/AppStyles.dart';
 
+import '../../resources/AppStyles.dart';
 import '../../resources/AppColors.dart';
 import '../../resources/AppDimens.dart';
 import '../../resources/AppValues.dart';
 import '../../utils/AppLocalizations.dart';
-import '../core/BaseStatefulWidget.dart';
+import '../core/BaseStatelessWidget.dart';
+import '../../app/AppData.dart';
 
 import '../../../common/models/catalog/BikeModel.dart';
 
@@ -13,29 +14,21 @@ import '../../../common/models/catalog/BikeModel.dart';
 /*
  * Widget displaying an icon and a label for a given bike category (type) item
  */
-class BikeTypeWidget extends BaseStatefulWidget {
+class BikeTypeWidget extends BaseStatelessWidget {
+  //final Function(BikeCategories) onItemClicked;
   final BikeCategories categ;
+  final bool selected;
 
-  const BikeTypeWidget({@required this.categ, Key key}) : assert(categ != null), super(key: key);
-
-  @override
-  BaseState<BaseStatefulWidget> createState() => _BikeTypeWidgetState();
-}
-
-/*
- * Companion state class
- */
-class _BikeTypeWidgetState extends BaseState<BikeTypeWidget> {
-  bool _selected = false;
-
-  _BikeTypeWidgetState() : super();
+  const BikeTypeWidget({@required this.categ, this.selected = false, Key key}) : assert(categ != null), super(key: key);
 
   @override
   Widget buildWidgetContents(BuildContext context) {
     final DURATION_IN_SECS = 1;
 
     return InkWell(
-      onTap: this._toogleSelection,
+      onTap: () {
+        this._toogleSelection(context);
+      },
       child: ClipRect(
         child: AnimatedContainer(
           height: _BikeTypeDimens.ITEM_H,
@@ -56,20 +49,29 @@ class _BikeTypeWidgetState extends BaseState<BikeTypeWidget> {
 
   Widget _buildImg(BuildContext cntxt) => Image.asset(this._getImgResourceForCategory(), color: this._getForeground(),);
 
-  Widget _buildTypeName(BuildContext cntxt) => Text(this._getLabelForCategory(cntxt), style: this._selected? AppStyles.title : AppStyles.titleWhite, maxLines: AppValues.TWO_LINES, overflow: TextOverflow.ellipsis,);
+  Widget _buildTypeName(BuildContext cntxt) => Text(this._getLabelForCategory(cntxt), style: this.selected? AppStyles.title : AppStyles.titleWhite, maxLines: AppValues.TWO_LINES, overflow: TextOverflow.ellipsis,);
 
-  Color _getForeground() => this._selected? AppColors.black : AppColors.white;
+  Color _getForeground() => this.selected? AppColors.black : AppColors.white;
 
-  Color _getBackground() => !this._selected? AppColors.primary : AppColors.primaryDark;
+  Color _getBackground() => !this.selected? AppColors.primary : AppColors.primaryDark;
 
-  void _toogleSelection() {
-    this.setState(() {
-      this._selected = !this._selected;
-    });
+  void _toogleSelection(BuildContext cntxt) {
+    final filter = AppData.of(cntxt).vSettings.value.filter;
+
+    final List<BikeCategories> categs = List.of(filter.categs);
+
+    if (categs.contains(this.categ)) {
+      categs.remove(this.categ);
+
+    } else {
+      categs.add(this.categ);
+    }
+
+    AppData.of(cntxt).updateFilter(filter.copyWith(categs: categs));
   }
 
   String _getLabelForCategory(BuildContext cntxt) {
-    switch (this.widget.categ) {
+    switch (this.categ) {
       case BikeCategories.MOUNTAIN:
         return AppLocalizations.of(cntxt).translate("type_mountain");
       case BikeCategories.ELECTRIC:
@@ -84,7 +86,7 @@ class _BikeTypeWidgetState extends BaseState<BikeTypeWidget> {
     final PATH = "assets/images/";
     final EXTENSION = ".png";
 
-    switch (this.widget.categ) {
+    switch (this.categ) {
       case BikeCategories.MOUNTAIN:
         return "$PATH${"mountain"}$EXTENSION";
       case BikeCategories.ELECTRIC:

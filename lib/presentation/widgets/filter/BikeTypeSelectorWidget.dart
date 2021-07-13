@@ -13,8 +13,9 @@ import '../../../common/models/catalog/BikeModel.dart';
  * Widget that allows user selecting different bike categories
  */
 class BikeTypeSelectorWidget extends BaseStatelessWidget {
+  final List<BikeCategories> currentSelection;
 
-  BikeTypeSelectorWidget({Key key}) : super(key: key);
+  BikeTypeSelectorWidget({this.currentSelection = const [], Key key}) : super(key: key);
 
   @override
   Widget buildWidgetContents(BuildContext context) {
@@ -26,7 +27,7 @@ class BikeTypeSelectorWidget extends BaseStatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           this._buildTitle(context),
-          this._buildSelector(context)
+          this._buildSelector(context, this.currentSelection)
         ],
       ),
     );
@@ -34,15 +35,15 @@ class BikeTypeSelectorWidget extends BaseStatelessWidget {
 
   Widget _buildTitle(BuildContext cntxt) => Text(AppLocalizations.of(cntxt).translate("lb_category"), style: AppStyles.title, );
 
-  Widget _buildSelector(BuildContext cntxt) {
+  Widget _buildSelector(BuildContext cntxt, List<BikeCategories> categs) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(child: BikeTypeWidget(categ: BikeCategories.CITY)),
-        Expanded(child: BikeTypeWidget(categ: BikeCategories.MOUNTAIN)),
-        Expanded(child: BikeTypeWidget(categ: BikeCategories.ELECTRIC)),
+        Expanded(child: BikeTypeWidget(categ: BikeCategories.CITY, selected: this.currentSelection.contains(BikeCategories.CITY),)),
+        Expanded(child: BikeTypeWidget(categ: BikeCategories.MOUNTAIN, selected: this.currentSelection.contains(BikeCategories.MOUNTAIN),)),
+        Expanded(child: BikeTypeWidget(categ: BikeCategories.ELECTRIC, selected: this.currentSelection.contains(BikeCategories.ELECTRIC),)),
       ],
     );
   }
