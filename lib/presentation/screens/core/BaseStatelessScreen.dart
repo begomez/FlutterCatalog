@@ -21,3 +21,7 @@ abstract class BaseStatelessScreen extends StatelessWidget with ScreenMixin {
   @override
   String getScreenTitle(BuildContext cntxt) => this.title;
 }
+
+abstract class ScreenDimens {
+  static const BAR_ICON_SIZE = 24.0;
+}

@@ -6,6 +6,7 @@ import '../../utils/AppLocalizations.dart';
 import '../core/BaseStatelessScreen.dart';
 
 import '../../../common/models/catalog/SettingsModel.dart';
+import '../../../common/models/catalog/FilterModel.dart';
 
 /*
  * Filter screen
@@ -27,4 +28,13 @@ class FilterScreen extends BaseStatelessScreen {
   
   @override
   String getScreenTitle(BuildContext cntxt) => AppLocalizations.of(cntxt).translate("screen_filter");
+
+  @override
+  List<Widget> getBarActions(BuildContext cntxt) => [
+    IconButton(icon: Icon(Icons.autorenew), iconSize: ScreenDimens.BAR_ICON_SIZE, onPressed: () {
+      AppData.of(cntxt).updateFilter(FilterModel.defaultFilter());
+    },)
+  ];
 }
+
+

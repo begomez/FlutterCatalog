@@ -30,6 +30,7 @@ mixin ScreenMixin {
       return AppBar(
         title: Text(title),
         automaticallyImplyLeading: this.leading,
+        actions: this.getBarActions(cntxt),
       );
     } else {
       return null;
@@ -50,6 +51,11 @@ mixin ScreenMixin {
    * Can be overriden by children
    */
   bool get leading => true;
+
+  /*
+   * Accessor for embedded app bar actions
+   */
+  List<Widget> getBarActions(BuildContext cntxt) => [];
 
   /*
    * Builds a widget representing the contents of the screen.
