@@ -10,5 +10,5 @@ class FrameSizeListModel extends BaseModel {
   const FrameSizeListModel({this.collection = const []}) : super();
 
   @override
-  bool validate() => this.collection != null;
+  bool validate() => this.collection != null && this.collection.isNotEmpty;
 }

@@ -40,7 +40,7 @@ class OrderCriteriaModel extends BaseModel {
 
   @override
   bool validate() {
-    this.name.isNotEmpty;
+    this.id != null && this.name.isNotEmpty;
   }
 
   @override

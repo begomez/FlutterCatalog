@@ -24,7 +24,7 @@ class PriceModel extends BaseModel {
   factory PriceModel.forAmount(double amount) => PriceModel(amount: amount, currency: DEFAULT_CURRENCY);
 
   @override
-  bool validate() => this.amount > NO_AMOUNT;
+  bool validate() => this.amount > NO_AMOUNT;//XXX: not selling "for free"...
 
   @override
   String toString() {
@@ -32,7 +32,21 @@ class PriceModel extends BaseModel {
   }
 
   bool operator <(Object other) {
-    return false;
+    if (other is PriceModel) {
+      return this.amount < other.amount;
+
+    } else {
+      return false;
+    }
+  }
+
+  bool operator >(Object other) {
+    if (other is PriceModel) {
+      return this.amount > other.amount;
+
+    } else {
+      return false;
+    }
   }
 
   @override

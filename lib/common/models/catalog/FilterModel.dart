@@ -16,10 +16,10 @@ class FilterModel extends BaseModel {
 
   factory FilterModel.empty() => FilterModel();
 
-  FilterModel copyWith({double price, int size, BikeCategories categ}) =>
+  FilterModel copyWith({double price, int frameSize, List<BikeCategories> categs}) =>
       FilterModel(
-        frameSize: size?? this.frameSize,
-        categs: categ?? this.categs,
+        frameSize: frameSize?? this.frameSize,
+        categs: categs?? this.categs,
         price: price?? this.price
       );
 

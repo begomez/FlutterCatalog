@@ -21,6 +21,11 @@ class FrameSizeModel extends BaseModel {
   factory FrameSizeModel.max() => FrameSizeModel(size: MAX_FRAME_SIZE);
 
   @override
+  bool validate() {
+    return this.size >= MIN_FRAME_SIZE && this.size <= MAX_FRAME_SIZE;
+  }
+
+  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is FrameSizeModel &&

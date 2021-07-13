@@ -25,7 +25,7 @@ abstract class FakeModelFactory {
   static bool _randomBool() =>
       Random().nextBool();
 
-  static FrameSizeModel _randomFrame() {
+  static FrameSizeModel randomFrame() {
       final size = Random().nextInt(FrameSizeModel.FRAME_STEP) + FrameSizeModel.MIN_FRAME_SIZE;// [15-21]
 
       return FrameSizeModel(size: size);
@@ -44,7 +44,7 @@ abstract class FakeModelFactory {
       case BikeCategories.MOUNTAIN:
         return _mountainBike();
       default:
-        return _randomImg();
+        return randomImg();
     }
   }
 
@@ -58,7 +58,7 @@ abstract class FakeModelFactory {
     ImageModel(url: "https://www.ruff-cycles.com/pub/media/img-cms/ruff-cycles-pauljrdesigns-ruffian-3.png");
 
   //https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber_BikeoftheYear_ES_HomepageMarquee?$responsive-pjpg$&cache=on,on&wid=1920
-  static ImageModel _randomImg() =>
+  static ImageModel randomImg() =>
       ImageModel(url: "https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber_BikeoftheYear_ES_HomepageMarquee?");
 
   static PriceModel _randomPrice({PriceRanges range = PriceRanges.MID}) {
@@ -88,7 +88,7 @@ abstract class FakeModelFactory {
     return BikeModel(
         id: id,
         name: "Bike num. $id",
-        frameSize: _randomFrame(),
+        frameSize: randomFrame(),
         categ: categ,
         mainImg: _getImgForCateg(categ),
         price: _randomPrice()
@@ -105,7 +105,7 @@ abstract class FakeModelFactory {
       categs: [
         _randomCateg()
       ],
-      frameSize: _randomFrame().size,
+      frameSize: randomFrame().size,
     );
 
   static PaginationModel paginationForPage(int page) =>

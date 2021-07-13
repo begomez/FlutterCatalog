@@ -26,6 +26,8 @@ class BikeModel extends BaseModel {
     return this.id >= 0 && this.price.validate() && this.name.isNotEmpty;
   }
 
+  String toTag() => "bike${this.id}";
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -46,6 +48,4 @@ class BikeModel extends BaseModel {
       mainImg.hashCode ^
       categ.hashCode ^
       frameSize.hashCode;
-
-  String toTag() => "bike${this.id}";
 }
