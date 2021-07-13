@@ -6,8 +6,10 @@ import '../../resources/AppStyles.dart';
 import '../../utils/AppLocalizations.dart';
 import '../core/BaseBlocWidget.dart';
 import '../../resources/AppDimens.dart';
+import '../../resources/AppColors.dart';
 
 import '../../../common/models/catalog/PriceRangeModel.dart';
+import '../../../common/models/catalog/PriceModel.dart';
 
 import '../../../domain/bloc/PriceRangeBloc.dart';
 import '../../../domain/event/PriceRangeEvent.dart';
@@ -31,7 +33,7 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
 
   @override
   Widget buildInitial(BuildContext cntxt) {
-    return this._buildUI(cntxt, PriceRangeModel.empty());
+    return this._buildUI(cntxt, PriceRangeModel.invalid());
   }
 
   @override
@@ -64,12 +66,14 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,
       child: Slider(
+        activeColor: AppColors.primaryDark,
+        inactiveColor: AppColors.primary,
         min: range.min.amount,
         max: range.max.amount,
-        value: this._currentVal ?? range.min.amount,
+        value: this._currentVal?? range.min.amount,
         divisions: range.getNumSteps(),
         onChanged: this._onValueSelected,
-        label: this._currentVal.toString(),
+        label: this._currentVal == null? "": PriceModel.forAmount(this._currentVal).toString(),
       ),
     );
   }
@@ -88,7 +92,7 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.zero,
-      margin: EdgeInsets.zero,
+      margin: EdgeInsets.symmetric(vertical: AppDimens.MID_SPACING),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,7 +107,10 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
         range.getNumSteps() + 1,
         (index) => Transform.rotate(
             angle: pi / 2,
-            child: Text((range.min.amount + (range.getStepSize() * index)).round().toString())));
+            child: Text(PriceModel.forAmount(range.min.amount + (range.getStepSize() * index)).toString()
+            )
+        )
+    );
   }
 
   @override
@@ -114,5 +121,4 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
 
   @override
   bool isAutocall() => true;
-
 }

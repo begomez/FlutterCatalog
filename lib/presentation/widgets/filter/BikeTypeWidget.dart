@@ -3,6 +3,7 @@ import 'package:flutter_catalog/presentation/resources/AppStyles.dart';
 
 import '../../resources/AppColors.dart';
 import '../../resources/AppDimens.dart';
+import '../../resources/AppValues.dart';
 import '../../utils/AppLocalizations.dart';
 import '../core/BaseStatefulWidget.dart';
 
@@ -45,7 +46,7 @@ class _BikeTypeWidgetState extends BaseState<BikeTypeWidget> {
           child: Column(
             children: [
               this._buildImg(context),
-              this._buildTypeName(context)
+              Expanded(child: this._buildTypeName(context))
             ],
           )
         ),
@@ -55,7 +56,7 @@ class _BikeTypeWidgetState extends BaseState<BikeTypeWidget> {
 
   Widget _buildImg(BuildContext cntxt) => Image.asset(this._getImgResourceForCategory(), color: this._getForeground(),);
 
-  Widget _buildTypeName(BuildContext cntxt) => Text(this._getLabelForCategory(cntxt), style: this._selected? AppStyles.title : AppStyles.titleWhite,);
+  Widget _buildTypeName(BuildContext cntxt) => Text(this._getLabelForCategory(cntxt), style: this._selected? AppStyles.title : AppStyles.titleWhite, maxLines: AppValues.TWO_LINES, overflow: TextOverflow.ellipsis,);
 
   Color _getForeground() => this._selected? AppColors.black : AppColors.white;
 
@@ -96,5 +97,5 @@ class _BikeTypeWidgetState extends BaseState<BikeTypeWidget> {
 }
 
 abstract class _BikeTypeDimens {
-  static const ITEM_H = 110.0;
+  static const ITEM_H = 100.0;
 }
