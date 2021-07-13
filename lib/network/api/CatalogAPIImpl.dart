@@ -1,13 +1,17 @@
 import 'dart:math';
 
 import '../../common/factory/FakeModelFactory.dart';
+
 import '../../data/api/ICatalogAPI.dart';
+
 import '../request/GetFrameSizesRequest.dart';
 import '../request/GetPriceRangesRequest.dart';
 import '../response/GetFrameSizesResponse.dart';
 import '../response/GetPriceRangesResponse.dart';
 import '../request/GetBikesRequest.dart';
 import '../response/GetBikesResponse.dart';
+import '../request/GetBikeInfoRequest.dart';
+import '../response/GetBikeInfoResponse.dart';
 
 
 /*
@@ -19,6 +23,7 @@ class CatalogAPIImpl implements ICatalogAPI {
   final MAX_RESPONSE_TIME_IN_SECS = 3;
 
   const CatalogAPIImpl();
+
 
   @override
   Future<GetBikesResponse> getBikes(GetBikesRequest req) async {
@@ -49,4 +54,12 @@ class CatalogAPIImpl implements ICatalogAPI {
         )
     );
   }
+
+  @override
+  Future<GetBikeInfoResponse> getBikeResponse(GetBikeInfoRequest req) {
+    // TODO: implement getBikeResponse
+    throw UnimplementedError();
+  }
+  
+  
 }
