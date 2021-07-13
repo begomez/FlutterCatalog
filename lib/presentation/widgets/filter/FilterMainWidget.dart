@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../resources/AppDimens.dart';
 import '../../resources/AppStyles.dart';
-import '../factory/WidgetFactory.dart';
+import '../factory/AppWidgetFactory.dart';
 import '../core/BaseStatelessWidget.dart';
 import '../../utils/AppLocalizations.dart';
 import '../../app/AppData.dart';
@@ -43,7 +43,7 @@ class FilterMainWidget extends BaseStatelessWidget {
             Expanded(child: this._buildFramesExpandable(context)),
 
             // action
-            WidgetFactory.buildBtn(
+            AppWidgetFactory.buildBtn(
                 text: AppLocalizations.of(context).translate("action_close"),
                 callback: () {
                   Navigator.of(context).pop();

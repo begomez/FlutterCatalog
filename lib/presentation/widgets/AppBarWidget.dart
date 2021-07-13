@@ -50,7 +50,7 @@ class AppBarWidget extends BaseStatelessWidget {
         child: Padding(
             padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
             child: Icon(
-              Icons.filter,
+              Icons.analytics_sharp,
               color: AppColors.white,
               size: _AppBarDimens.ICON_PADDING,
             )));

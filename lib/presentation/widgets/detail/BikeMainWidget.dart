@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../resources/AppColors.dart';
 import '../../resources/AppDimens.dart';
-import '../core/BaseStatefulWidget.dart';
 import '../../utils/AppLocalizations.dart';
-import '../factory/WidgetFactory.dart';
+import '../factory/AppWidgetFactory.dart';
+import '../core/BaseStatefulWidget.dart';
+import 'BikeAdditionalInfoWidget.dart';
 
 import '../../../common/models/catalog/BikeModel.dart';
 
@@ -86,17 +87,16 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
   Widget _buildBtn(BuildContext cntxt) {
     return SlideTransition(
         position: this._tween.animate(this._ctrl),
-
         child: ClipRRect(child: Container(
             width: double.maxFinite,
             child:
             ElevatedButton(
                 onPressed: () {
-                  WidgetFactory.showBottomInfo(
-                    cntxt,
-                    Container(),
+                  AppWidgetFactory.showBottomInfo(
+                    context: cntxt,
+                    child: BikeAdditionalInfoWidget(bike: this.widget.bike),
                     color: AppColors.white,
-                    height: MediaQuery.of(cntxt).size.height / 2,
+                    height: MediaQuery.of(cntxt).size.height * 3/4,
                     onClose: () {
                       Navigator.of(cntxt).pop();
                     },
@@ -104,7 +104,6 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
                   );
                 },
                 child: Text(AppLocalizations.of(cntxt).translate("action_more"))
-
             )
         )
       )
