@@ -21,9 +21,10 @@ abstract class OrderCriteriaModelFactory {
 }
 
 /*
- * Model that encapsulates info about an ordering criteria.
- * Has no visible constructors, enforcing instantiation of objects through
- * the OrderCriteriaModelFactory object
+ * Model that encapsulates ordering criteria.
+ *
+ * Has no visible constructors, enforcing instantiation of objects
+ * through OrderCriteriaModelFactory object
  *
  */
 class OrderCriteriaModel extends BaseModel {

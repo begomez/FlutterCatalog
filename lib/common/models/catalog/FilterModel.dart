@@ -1,10 +1,12 @@
 import 'BikeModel.dart';
 
 import '../core/BaseModel.dart';
+import 'PriceModel.dart';
+import 'FrameSizeModel.dart';
 
 
 /*
- * Model to encapsulate filtering data
+ * Model to encapsulate data filters
  */
 class FilterModel extends BaseModel {
   final List<BikeCategories> categs;
@@ -12,9 +14,11 @@ class FilterModel extends BaseModel {
   final int frameSize;
 
 
-  const FilterModel({this.categs, this.price = 0.0, this.frameSize = 0}) : super();
+  const FilterModel({this.categs = const [], this.price = PriceModel.NO_AMOUNT, this.frameSize = FrameSizeModel.NO_FRAME_SIZE}) : super();
 
   factory FilterModel.empty() => FilterModel();
+
+  factory FilterModel.defaultFilter() => FilterModel();
 
   FilterModel copyWith({double price, int frameSize, List<BikeCategories> categs}) =>
       FilterModel(
@@ -28,7 +32,7 @@ class FilterModel extends BaseModel {
 
   bool hasValidCategory() => this.categs != null;
 
-  bool hasValidPrice() => this.price > 0.0;
+  bool hasValidPrice() => this.price > PriceModel.NO_AMOUNT;
 
-  bool hasValidFrameSize() => this.frameSize > 0;
+  bool hasValidFrameSize() => this.frameSize > FrameSizeModel.NO_FRAME_SIZE;
 }

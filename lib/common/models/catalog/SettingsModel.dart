@@ -5,7 +5,7 @@ import '../core/BaseModel.dart';
 
 
 /*
- * Model encapsulating catalog settings: ordering, filter
+ * Model encapsulating catalog-related settings: ordering, filter
  */
 class SettingsModel extends BaseModel {
   final FilterModel filter;
@@ -15,7 +15,7 @@ class SettingsModel extends BaseModel {
 
   factory SettingsModel.defaultSettings() =>
       SettingsModel(
-          FilterModel.empty(),
+          FilterModel.defaultFilter(),
           OrderCriteriaModelFactory.defaultCriteria()
       );
 

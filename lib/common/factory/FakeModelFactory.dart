@@ -66,16 +66,16 @@ abstract class FakeModelFactory {
       case PriceRanges.AFFORDABLE:
         return PriceModel(amount: 1000.0 + Random().nextInt(100).toDouble());
       case PriceRanges.MID:
-        return PriceModel(amount: 3000.0 + Random().nextInt(300).toDouble());
+        return PriceModel(amount: 3000.0 + Random().nextInt(500).toDouble());
       case PriceRanges.EXPENSIVE:
-        return PriceModel(amount: 5000.0 + Random().nextInt(500).toDouble());
+        return PriceModel(amount: 5000.0 + Random().nextInt(1000).toDouble());
     }
   }
 
   static PriceRangeModel randomRange() {
     return PriceRangeModel(
-        min: _randomPrice(range: PriceRanges.AFFORDABLE),
-        max: _randomPrice(range: PriceRanges.EXPENSIVE)
+        min: PriceModel(amount: 1000.0),
+        max: PriceModel(amount: 6000.0)
     );
   }
 
