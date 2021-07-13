@@ -22,4 +22,15 @@ class SettingsModel extends BaseModel {
   SettingsModel copyWith({FilterModel filter, OrderCriteriaModel order}) {
     return SettingsModel(filter?? this.filter, order?? this.order);
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SettingsModel &&
+          runtimeType == other.runtimeType &&
+          filter == other.filter &&
+          order == other.order;
+
+  @override
+  int get hashCode => filter.hashCode ^ order.hashCode;
 }

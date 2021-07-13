@@ -18,6 +18,13 @@ class FrameSizeModel extends BaseModel {
 
   const FrameSizeModel({this.size = MIN_FRAME_SIZE, this.unit = DEFAULT_UNIT, this.descrip = ""}) : assert(size >= MIN_FRAME_SIZE || size <= MAX_FRAME_SIZE), super();
 
+  factory FrameSizeModel.forSize(int size) {
+    assert(size >= MIN_FRAME_SIZE);
+    assert(size <= MAX_FRAME_SIZE);
+
+    return FrameSizeModel(size: size);
+  }
+
   factory FrameSizeModel.min() => FrameSizeModel(size: MIN_FRAME_SIZE);
 
   factory FrameSizeModel.max() => FrameSizeModel(size: MAX_FRAME_SIZE);
@@ -25,6 +32,23 @@ class FrameSizeModel extends BaseModel {
   @override
   bool validate() {
     return this.size >= MIN_FRAME_SIZE && this.size <= MAX_FRAME_SIZE;
+  }
+
+  @override
+  String toString() {
+    final SEP = " ";
+
+    StringBuffer strb = StringBuffer("");
+
+    strb.write(this.size.toString());
+    strb.write(SEP);
+    strb.write(this.unit);
+    if (this.descrip.isNotEmpty) {
+      strb.write(SEP);
+      strb.write(this.descrip);
+    }
+
+    return strb.toString();
   }
 
   @override

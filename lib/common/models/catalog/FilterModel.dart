@@ -35,4 +35,16 @@ class FilterModel extends BaseModel {
   bool hasValidPrice() => this.price > PriceModel.NO_AMOUNT;
 
   bool hasValidFrameSize() => this.frameSize > FrameSizeModel.NO_FRAME_SIZE;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is FilterModel &&
+          runtimeType == other.runtimeType &&
+          categs == other.categs &&
+          price == other.price &&
+          frameSize == other.frameSize;
+
+  @override
+  int get hashCode => categs.hashCode ^ price.hashCode ^ frameSize.hashCode;
 }

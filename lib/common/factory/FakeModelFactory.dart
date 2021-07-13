@@ -32,7 +32,7 @@ abstract class FakeModelFactory {
   }
 
   static List<FrameSizeModel> allFrameSizes() {
-    return List.generate(7, (index) => FrameSizeModel(size: FrameSizeModel.MIN_FRAME_SIZE + index)).toList();
+    return List.generate(7, (index) => FrameSizeModel.forSize(FrameSizeModel.MIN_FRAME_SIZE + index)).toList();
   }
   
   static ImageModel _getImgForCateg(BikeCategories categ) {
