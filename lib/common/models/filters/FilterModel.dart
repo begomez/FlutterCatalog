@@ -1,8 +1,8 @@
-import 'BikeModel.dart';
+import '../catalog/BikeModel.dart';
 
 import '../core/BaseModel.dart';
-import 'PriceModel.dart';
-import 'FrameSizeModel.dart';
+import '../catalog/PriceModel.dart';
+import '../catalog/FrameSizeModel.dart';
 
 
 /*

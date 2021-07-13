@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'FilterModel.dart';
-import 'OrderCriteriaModel.dart';
+import '../catalog/OrderCriteriaModel.dart';
 import '../core/BaseModel.dart';
 
 

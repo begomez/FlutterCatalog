@@ -6,7 +6,7 @@ import '../catalog/CatalogItemWidget.dart';
 import '../convenient/AppNoDataWidget.dart';
 import '../core/BaseBlocWidget.dart';
 
-import '../../../common/models/catalog/FilterModel.dart';
+import '../../../common/models/filters/FilterModel.dart';
 import '../../../common/models/catalog/OrderCriteriaModel.dart';
 import '../../../common/models/catalog/BikeModel.dart';
 import '../../../common/models/catalog/BikeListModel.dart';

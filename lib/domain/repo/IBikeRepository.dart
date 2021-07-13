@@ -1,7 +1,7 @@
 import 'package:flutter_catalog/common/models/catalog/FrameSizeListModel.dart';
 import 'package:flutter_catalog/common/models/catalog/PriceRangeModel.dart';
 
-import '../../common/models/catalog/FilterModel.dart';
+import '../../common/models/filters/FilterModel.dart';
 import '../../common/models/catalog/OrderCriteriaModel.dart';
 import '../../common/models/catalog/BikeListModel.dart';
 

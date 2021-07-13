@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../common/models/catalog/OrderCriteriaModel.dart';
-import '../../../common/models/catalog/FilterModel.dart';
+import '../../../common/models/filters/FilterModel.dart';
 
 import '../../resources/AppDimens.dart';
 import '../core/BaseStatelessWidget.dart';

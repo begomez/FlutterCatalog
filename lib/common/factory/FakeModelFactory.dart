@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter_catalog/common/models/catalog/FrameSizeModel.dart';
 
-import '../models/catalog/FilterModel.dart';
+import '../models/filters/FilterModel.dart';
 import '../models/catalog/BikeModel.dart';
 import '../models/catalog/ImageModel.dart';
 import '../models/MessageModel.dart';

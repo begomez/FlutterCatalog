@@ -11,7 +11,7 @@ import 'PriceRangeWidget.dart';
 import 'FrameSizeSelectorWidget.dart';
 
 import '../../../common/models/catalog/FrameSizeModel.dart';
-import '../../../common/models/catalog/FilterModel.dart';
+import '../../../common/models/filters/FilterModel.dart';
 import '../../../common/models/catalog/PriceModel.dart';
 
 

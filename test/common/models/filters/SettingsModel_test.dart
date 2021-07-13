@@ -1,6 +1,6 @@
 import 'package:flutter_catalog/common/factory/FakeModelFactory.dart';
 import 'package:flutter_catalog/common/models/catalog/OrderCriteriaModel.dart';
-import 'package:flutter_catalog/common/models/catalog/SettingsModel.dart';
+import 'package:flutter_catalog/common/models/filters/SettingsModel.dart';
 import 'package:test/test.dart';
 
 

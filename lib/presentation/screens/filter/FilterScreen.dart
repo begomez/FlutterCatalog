@@ -5,8 +5,8 @@ import '../../widgets/filter/FilterMainWidget.dart';
 import '../../utils/AppLocalizations.dart';
 import '../core/BaseStatelessScreen.dart';
 
-import '../../../common/models/catalog/SettingsModel.dart';
-import '../../../common/models/catalog/FilterModel.dart';
+import '../../../common/models/filters/SettingsModel.dart';
+import '../../../common/models/filters/FilterModel.dart';
 
 /*
  * Filter screen

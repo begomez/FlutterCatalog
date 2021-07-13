@@ -1,4 +1,4 @@
-import 'package:flutter_catalog/common/models/catalog/BikeInfoModel.dart';
+import 'package:flutter_catalog/common/models/detail/BikeInfoModel.dart';
 
 import 'package:test/test.dart';
 

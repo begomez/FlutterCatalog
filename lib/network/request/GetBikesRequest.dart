@@ -1,4 +1,4 @@
-import '../../common/models/catalog/FilterModel.dart';
+import '../../common/models/filters/FilterModel.dart';
 import '../../common/models/catalog/OrderCriteriaModel.dart';
 
 import 'core/BaseRequest.dart';
