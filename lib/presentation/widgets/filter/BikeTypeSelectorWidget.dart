@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../resources/AppValues.dart';
 import '../../resources/AppDimens.dart';
 import '../../resources/AppStyles.dart';
 import '../../utils/AppLocalizations.dart';
@@ -20,7 +21,7 @@ class BikeTypeSelectorWidget extends BaseStatelessWidget {
   @override
   Widget buildWidgetContents(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
+      margin: EdgeInsets.all(AppDimens.MID_SPACING),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -33,7 +34,7 @@ class BikeTypeSelectorWidget extends BaseStatelessWidget {
     );
   }
 
-  Widget _buildTitle(BuildContext cntxt) => Text(AppLocalizations.of(cntxt).translate("lb_category"), style: AppStyles.title, );
+  Widget _buildTitle(BuildContext cntxt) => Text(AppLocalizations.of(cntxt).translate("lb_category"), style: AppStyles.title,  textAlign: TextAlign.start, maxLines: AppValues.ONE_LINE,);
 
   Widget _buildSelector(BuildContext cntxt, List<BikeCategories> categs) {
     return Row(

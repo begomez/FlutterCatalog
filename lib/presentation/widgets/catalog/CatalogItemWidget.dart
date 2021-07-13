@@ -24,7 +24,7 @@ class CatalogItemWidget extends BaseStatelessWidget {
       },
       child: Container(
         height: _ItemWidgetDimens.HEIGHT,
-        margin: EdgeInsets.all(AppDimens.MID_SPACING),
+        margin: EdgeInsets.all(AppDimens.SMALL_SPACING),
         child: Card(
           color: AppColors.white,
           child: Stack(children: [

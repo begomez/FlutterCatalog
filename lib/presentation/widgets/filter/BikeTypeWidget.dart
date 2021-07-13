@@ -15,7 +15,6 @@ import '../../../common/models/catalog/BikeModel.dart';
  * Widget displaying an icon and a label for a given bike category (type) item
  */
 class BikeTypeWidget extends BaseStatelessWidget {
-  //final Function(BikeCategories) onItemClicked;
   final BikeCategories categ;
   final bool selected;
 
@@ -34,12 +33,12 @@ class BikeTypeWidget extends BaseStatelessWidget {
           height: _BikeTypeDimens.ITEM_H,
           duration: Duration(seconds: DURATION_IN_SECS),
           margin: EdgeInsets.all(AppDimens.SMALL_SPACING),
-          padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
+          padding: EdgeInsets.symmetric(vertical: AppDimens.SMALL_SPACING),
           color: this._getBackground(),
           child: Column(
             children: [
               this._buildImg(context),
-              Expanded(child: this._buildTypeName(context))
+              (this._buildTypeName(context)),
             ],
           )
         ),
@@ -49,7 +48,7 @@ class BikeTypeWidget extends BaseStatelessWidget {
 
   Widget _buildImg(BuildContext cntxt) => Image.asset(this._getImgResourceForCategory(), color: this._getForeground(),);
 
-  Widget _buildTypeName(BuildContext cntxt) => Text(this._getLabelForCategory(cntxt), style: this.selected? AppStyles.title : AppStyles.titleWhite, maxLines: AppValues.TWO_LINES, overflow: TextOverflow.ellipsis,);
+  Widget _buildTypeName(BuildContext cntxt) => Text(this._getLabelForCategory(cntxt), style: this.selected? AppStyles.caption : AppStyles.captionWhite, maxLines: AppValues.TWO_LINES, overflow: TextOverflow.ellipsis,);
 
   Color _getForeground() => this.selected? AppColors.black : AppColors.white;
 
@@ -99,5 +98,5 @@ class BikeTypeWidget extends BaseStatelessWidget {
 }
 
 abstract class _BikeTypeDimens {
-  static const ITEM_H = 100.0;
+  static const ITEM_H = 110.0;
 }

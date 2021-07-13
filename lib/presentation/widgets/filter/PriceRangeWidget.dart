@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import '../../app/AppData.dart';
+import '../../resources/AppValues.dart';
 import '../../resources/AppStyles.dart';
-import '../../utils/AppLocalizations.dart';
-import '../core/BaseBlocWidget.dart';
 import '../../resources/AppDimens.dart';
 import '../../resources/AppColors.dart';
+import '../../utils/AppLocalizations.dart';
+import '../core/BaseBlocWidget.dart';
 
 import '../../../common/models/catalog/PriceRangeModel.dart';
 import '../../../common/models/catalog/PriceModel.dart';
@@ -63,7 +64,7 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
   }
 
   Widget _buildTitle(BuildContext cntxt) =>
-    Text(AppLocalizations.of(cntxt).translate("lb_price"), style: AppStyles.title,);
+    Text(AppLocalizations.of(cntxt).translate("lb_price"), style: AppStyles.title, maxLines: AppValues.ONE_LINE,  textAlign: TextAlign.start);
 
   Widget _buildSlider(BuildContext cntxt, PriceRangeModel range) {
     return Container(
