@@ -12,6 +12,8 @@
     "action_hide" : "Ocultar",
     "action_retry" : "Volver a intentar",
     "action_close" : "Cerrar",
+    "action_buy" : "Comprar",
+    "action_accept" : "Aceptar",
 
     "error_general" : "Se ha producido un error",
     "error_no_data" : "No se han encontrado datos",
@@ -19,14 +21,25 @@
     "lb_order" : "Ordenar por",
     "lb_filter" : "Filtrar",
     "lb_model" : "Modelo: ",
+    
     "lb_price" : "Precio: ",
     "lb_category" : "Categoría: ",
     "lb_frame" : "Tamaño de frame: ",
+
+    "info_overview" : "Información",
+    "info_weight" : "Peso:",
+    "info_wheel_size" : "Tamaño rueda:",
+    "info_lights" : "Luces:",
+    "info_lights_front" : "frontal",
+    "info_lights_rear" : "trasera",
+    "info_lights_none" : "n/d",
 
     "order_price_asc" : "Precio asc.",
     "order_price_desc" : "Precio desc.",
 
     "type_mountain" : "Bicicleta\nde Montaña",
     "type_city" : "Bicicleta\nUrbana",
-    "type_electric" : "Bicicleta\nEléctrica"
+    "type_electric" : "Bicicleta\nEléctrica",
+
+    "msg_not_available" : "No disponible"
 }
