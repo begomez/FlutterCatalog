@@ -28,7 +28,7 @@ class CatalogItemWidget extends BaseStatelessWidget {
         child: Card(
           color: AppColors.white,
           child: Stack(children: [
-            this._buildImg(),
+            this._buildDecoration(context),
             Positioned(top: 0, left: 0, child: this._buildPrice()),
             Positioned(bottom: 0, right: 0, child: this._buildName())
           ]),
@@ -37,18 +37,36 @@ class CatalogItemWidget extends BaseStatelessWidget {
     );
   }
 
-  Widget _buildImg() {
+  Widget _buildDecoration(BuildContext cntxt) {
+    return DecoratedBox(
+      position: DecorationPosition.foreground,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          stops: [0.0, 0.5, 1.0],
+          begin: Alignment.bottomLeft,
+          end: Alignment.bottomRight,
+          colors: [AppColors.trans, AppColors.trans, Colors.grey],
+        ),
+      ),
+      child: this._buildImg(cntxt),
+    );
+  }
+
+  Widget _buildImg(BuildContext cntxt) {
     return Hero(
       tag: this.item.toTag(),
-      child: Image.network(
-        this.item.mainImg.url,
-        fit: BoxFit.cover,
+      child: Container(
+        width: double.maxFinite,
+        child: Image.network(
+          this.item.mainImg.url,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
 
   Widget _buildName() {
-    return Padding(padding: EdgeInsets.all(AppDimens.SMALL_SPACING), child: Text(this.item.name.toUpperCase(), style: AppStyles.title,));
+    return Padding(padding: EdgeInsets.all(AppDimens.SMALL_SPACING), child: Text(this.item.name.toUpperCase(), style: AppStyles.titleWhite,));
   }
 
   Widget _buildPrice() {

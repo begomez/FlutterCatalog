@@ -4,6 +4,7 @@ import 'package:flutter_catalog/presentation/resources/AppDimens.dart';
 import '../../../common/models/catalog/FrameSizeModel.dart';
 
 import '../../app/AppData.dart';
+import '../../resources/AppColors.dart';
 import '../../resources/AppStyles.dart';
 import '../../resources/AppValues.dart';
 import '../core/BaseStatelessWidget.dart';
@@ -36,7 +37,7 @@ class FrameSizeWidget extends BaseStatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(this.frame.toString(), maxLines: AppValues.ONE_LINE, style: AppStyles.body,),
-            Visibility(visible: this.selected, child: Icon(Icons.check))
+            Visibility(visible: this.selected, child: Icon(Icons.check, color: AppColors.primaryDark,))
           ],
         ),
       ),
