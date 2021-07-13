@@ -1,6 +1,6 @@
-import 'package:flutter_catalog/common/models/catalog/FrameSizeListModel.dart';
-import 'package:flutter_catalog/common/models/catalog/PriceRangeModel.dart';
-
+import '../../common/models/catalog/FrameSizeListModel.dart';
+import '../../common/models/catalog/PriceRangeModel.dart';
+import '../../common/models/detail/BikeInfoModel.dart';
 import '../../common/models/filters/FilterModel.dart';
 import '../../common/models/catalog/OrderCriteriaModel.dart';
 import '../../common/models/catalog/BikeListModel.dart';
@@ -25,4 +25,9 @@ abstract class IBikeRepository {
    * Retrieve min and max price in the catalog
    */
   Future<PriceRangeModel> getPricesRange();
+
+  /*
+   * Retrieve additional info about an item given its ID
+   */
+  Future<BikeInfoModel> getBikeInfo(int id);
 }

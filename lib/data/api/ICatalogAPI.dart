@@ -11,7 +11,7 @@ import '../../network/response/GetBikeInfoResponse.dart';
  * Abstraction for operations in remote catalog API
  */
 abstract class ICatalogAPI {
-  Future<GetBikeInfoResponse> getBikeResponse(GetBikeInfoRequest req);
+  Future<GetBikeInfoResponse> getBikeInfo(GetBikeInfoRequest req);
   Future<GetBikesResponse> getBikes(GetBikesRequest req);
   Future<GetFrameSizesResponse> getFrameSizes(GetFrameSizesRequest req);
   Future<GetPriceRangesResponse> getPriceRange(GetPriceRangesRequest req);

@@ -56,10 +56,12 @@ class CatalogAPIImpl implements ICatalogAPI {
   }
 
   @override
-  Future<GetBikeInfoResponse> getBikeResponse(GetBikeInfoRequest req) {
-    // TODO: implement getBikeResponse
-    throw UnimplementedError();
+  Future<GetBikeInfoResponse> getBikeInfo(GetBikeInfoRequest req) async {
+    return await Future.delayed(Duration(seconds: Random().nextInt(3))).then((value) =>
+        GetBikeInfoResponse(
+          FakeModelFactory.randomInfo(),
+          FakeModelFactory.success()
+        )
+    );
   }
-  
-  
 }

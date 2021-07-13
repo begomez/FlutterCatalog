@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import '../../common/models/detail/BikeInfoModel.dart';
 import '../../common/models/catalog/FrameSizeListModel.dart';
 import '../../common/models/catalog/PriceRangeModel.dart';
 import '../../common/models/catalog/BikeListModel.dart';
@@ -15,6 +16,7 @@ import '../../data/exception/DataException.dart';
 import '../../network/request/GetBikesRequest.dart';
 import '../../network/request/GetFrameSizesRequest.dart';
 import '../../network/request/GetPriceRangesRequest.dart';
+import '../../network/request/GetBikeInfoRequest.dart';
 
 /*
  * Implementation of bike repository
@@ -100,6 +102,32 @@ class BikeRepositoryImpl implements IBikeRepository {
 
     } on Exception catch (e) {
       AppLogger.e(tag: "getPricesRange()", msg: "", error: e);
+
+      throw DataException();
+    }
+  }
+
+  @override
+  Future<BikeInfoModel> getBikeInfo(int id) async {
+    try {
+      final result = await this._api.getBikeInfo(
+          GetBikeInfoRequest(id)
+      );
+
+      if (result.hasData()) {
+        return result.data;
+
+      } else {
+        throw Exception();
+      }
+
+    } on IOException catch (ioe) {
+      AppLogger.e(tag: "getBikeInfo()", msg: "", error: ioe);
+
+      throw ioe;
+
+    } on Exception catch (e) {
+      AppLogger.e(tag: "getBikeInfo()", msg: "", error: e);
 
       throw DataException();
     }

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_catalog/common/models/catalog/FrameSizeModel.dart';
+import 'package:flutter_catalog/common/models/detail/BikeInfoModel.dart';
 
 import '../models/filters/FilterModel.dart';
 import '../models/catalog/BikeModel.dart';
@@ -25,16 +26,6 @@ abstract class FakeModelFactory {
   static bool _randomBool() =>
       Random().nextBool();
 
-  static FrameSizeModel randomFrame() {
-      final size = Random().nextInt(FrameSizeModel.FRAME_STEP) + FrameSizeModel.MIN_FRAME_SIZE;// [15-21]
-
-      return FrameSizeModel(size: size);
-  }
-
-  static List<FrameSizeModel> allFrameSizes() {
-    return List.generate(7, (index) => FrameSizeModel.forSize(FrameSizeModel.MIN_FRAME_SIZE + index)).toList();
-  }
-  
   static ImageModel _getImgForCateg(BikeCategories categ) {
     switch (categ) {
       case BikeCategories.CITY:
@@ -82,9 +73,31 @@ abstract class FakeModelFactory {
   static BikeCategories _randomCateg() =>
     BikeCategories.values[Random().nextInt(3) + 1];
 
+  static List<FrameSizeModel> allFrameSizes() {
+    return List.generate(7, (index) => FrameSizeModel.forSize(FrameSizeModel.MIN_FRAME_SIZE + index)).toList();
+  }
+
+  static FrameSizeModel randomFrame() {
+    final size = Random().nextInt(FrameSizeModel.FRAME_STEP) + FrameSizeModel.MIN_FRAME_SIZE;// [15-21]
+
+    return FrameSizeModel(size: size);
+  }
+
+  static FilterModel randomFilter() =>
+      FilterModel(
+        price: _randomPrice().amount,
+        categs: [
+          _randomCateg()
+        ],
+        frameSize: randomFrame().size,
+      );
+
+  static List<BikeModel> randomBikes({int num = 20}) =>
+    List<BikeModel>.generate(num, (index) => randomBike(id: index));
+
   static BikeModel randomBike({int id = 1}) {
     BikeCategories categ = _randomCateg();
-    
+
     return BikeModel(
         id: id,
         name: "Bike num. $id",
@@ -93,20 +106,22 @@ abstract class FakeModelFactory {
         mainImg: _getImgForCateg(categ),
         price: _randomPrice()
     );
-    
   }
 
-  static List<BikeModel> randomBikes({int num = 20}) =>
-    List<BikeModel>.generate(num, (index) => randomBike(id: index));
+  static BikeInfoModel randomInfo() => BikeInfoModel(
+    descrip: _randomDescrip(),
+    weight: _randomWeight(),
+    wheelSize: _randomWheelSize(),
+    rearLight: _randomBool(),
+    frontLight: _randomBool(),
+  );
 
-  static FilterModel randomFilter() =>
-    FilterModel(
-      price: _randomPrice().amount,
-      categs: [
-        _randomCateg()
-      ],
-      frameSize: randomFrame().size,
-    );
+  static String _randomDescrip() =>
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+  static double _randomWeight() => Random().nextInt(40).toDouble();
+
+  static double _randomWheelSize() => Random().nextInt(60).toDouble();
 
   static PaginationModel paginationForPage(int page) =>
     PaginationModel(
