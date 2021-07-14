@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/models/catalog/FrameSizeModel.dart';
+import '../../../common/models/catalog/PriceModel.dart';
+import '../../../common/models/filters/FilterModel.dart';
+
+import '../../app/AppData.dart';
 import '../../resources/AppDimens.dart';
 import '../../resources/AppStyles.dart';
 import '../../utils/AppLocalizations.dart';
-import '../../app/AppData.dart';
-import '../factory/AppWidgetFactory.dart';
 import '../core/BaseStatelessWidget.dart';
+import '../factory/AppWidgetFactory.dart';
 import 'BikeTypeSelectorWidget.dart';
-import 'PriceRangeWidget.dart';
 import 'FrameSizeSelectorWidget.dart';
-
-import '../../../common/models/catalog/FrameSizeModel.dart';
-import '../../../common/models/filters/FilterModel.dart';
-import '../../../common/models/catalog/PriceModel.dart';
+import 'PriceRangeWidget.dart';
 
 
 /*
@@ -27,26 +27,26 @@ class FilterMainWidget extends BaseStatelessWidget {
   @override
   Widget buildWidgetContents(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        width: double.maxFinite,
-        height: MediaQuery.of(context).size.height,
-        margin: EdgeInsets.all(AppDimens.MID_SPACING),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+        child: Container(
+          width: double.maxFinite,
+          height: MediaQuery.of(context).size.height,
+          margin: EdgeInsets.all(AppDimens.MID_SPACING),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
 
-            this._buildTypeSelector(context),
+              this._buildTypeSelector(context),
 
-            this._buildPriceSlider(context),
+              this._buildPriceSlider(context),
 
-            Expanded(child: this._buildFrameSizeSelector(context)),
+              Expanded(child: this._buildFrameSizeSelector(context)),
 
-            this._buildAction(context)
-          ],
+              this._buildAction(context)
+            ],
+          ),
         ),
-      ),
     );
   }
 
