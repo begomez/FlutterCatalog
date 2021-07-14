@@ -1,38 +1,62 @@
-# flutter_template
+# BuyCycle
 
-Flutter architecture template.
+Flutter application containing a list-detail structure displaying a collection of items
 
 ## Architecture Overview
 
 Project is structured in the following layers/modules:
 
-- Presentation
+- PRESENTATION LAYER is Flutter dependent. Defines its own custom hierarchy:
 
-- Domain
+* screens (widgets usually used as containers, similar to Android activities)
+* widgets (pieces of UI with behavior, similar to Android fragments).
 
-- Data
+- DOMAIN LAYER provides state management through BLoC's for different use cases. Ex: retrieving a product list
 
-- Network
+- DATA LAYER is used to manage and orchestrate different data sources.
 
-PRESENTATION LAYER is Flutter dependent. Defines its own custom hierarchy: screens (
-widgets usually used as containers, similar to Android activities) and widgets (pieces of UI with behavior, similar to
-Android fragments).
+- NETWORK LAYER performs net connections with remote server.
 
-DOMAIN LAYER provides state management through BLoC's for different use cases. Ex: performing a login
+## About state management
 
-DATA LAYER is used to manage and orchestrate different data sources.
+Different state management approaches are implemented in the app, depending on the requirements. Basically:
 
-NETWORK LAYER performs net connections either directly or indirectly.
+- as mentioned before, data retrieval and widget rebuilding is done using the BLoC pattern.
 
-Data models are share across all modules, there is no custom data model per layer.
+- global data/state shared across different views is implemented with the "Lifting-State-Up" pattern. This component contains
+info about current ordering and filtering.
+
+- local state for some widgets is persisted using StatefulWidgets.
+
+## About data structures
+
+Data models are share across all modules, so there is no specific data model per layer. Presentation layer does not
+use custom viewmodels for the corresponding widgets either.
 
 Events (in fact just simple Data Transport Object) are used to define use case inputs in domain layer and provide type safety.
 
+## About requested features
+
+The app uses a fake/dummy API that generates random data dinamically.
+
+Considering that in a production environment the catalog would contain thousands of items,
+filtering and ordering should be implemented in the backend. Since there is no backend support,
+these operations are implemented in the app, inside the DATA layer. Why? Because then we would be able
+to reuse this logic when working with different data sources. Nevertheless, as mentioned before, it should
+be implemented in the server-side, not the client.
+
+## About testing
+
+The app contains several unit tests in the "test" directory.
+
 ## Code generation commands
 
-JSON serializable classes when required:
+- Mockito auto generated classes:
 flutter packages pub run build_runner build --delete-conflicting-ouputs
 
-Mockito auto generated classes:
-flutter packages pub run build_runner build
+or
+
 dart run build_runner build
+
+- Launcher icons:
+flutter pub run flutter_launcher_icons:main
