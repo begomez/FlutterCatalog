@@ -28,9 +28,9 @@ class FilterModel extends BaseModel {
       );
 
   @override
-  bool validate() => this.hasValidCategory() || this.hasValidPrice() || this.hasValidFrameSize();
+  bool validate() => this.hasValidCategories() || this.hasValidPrice() || this.hasValidFrameSize();
 
-  bool hasValidCategory() => this.categs != null;
+  bool hasValidCategories() => this.categs != null && this.categs.isNotEmpty;
 
   bool hasValidPrice() => this.price > PriceModel.NO_AMOUNT;
 
@@ -47,4 +47,9 @@ class FilterModel extends BaseModel {
 
   @override
   int get hashCode => categs.hashCode ^ price.hashCode ^ frameSize.hashCode;
+
+  @override
+  String toString() {
+    return "categs: ${categs.toString()} frame: $frameSize price: $price";
+  }
 }

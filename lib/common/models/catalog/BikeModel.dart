@@ -7,6 +7,8 @@ import '../core/BaseModel.dart';
 
 enum BikeCategories {UNKNOWN, MOUNTAIN, CITY, ELECTRIC}
 
+
+
 /*
  * Data model that represents a bike entity
  */
@@ -48,4 +50,9 @@ class BikeModel extends BaseModel {
       mainImg.hashCode ^
       categ.hashCode ^
       frameSize.hashCode;
+
+  @override
+  String toString() {
+    return "ID: $id price: $price frame: $frameSize categ: $categ";
+  }
 }

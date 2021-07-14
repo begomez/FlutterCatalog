@@ -41,7 +41,7 @@ class OrderCriteriaModel extends BaseModel {
 
   @override
   bool validate() {
-    this.id != null && this.name.isNotEmpty;
+    return this.id != null && this.name.isNotEmpty;
   }
 
   @override
@@ -55,4 +55,9 @@ class OrderCriteriaModel extends BaseModel {
 
   @override
   int get hashCode => id.hashCode ^ name.hashCode ^ reverse.hashCode;
+
+  @override
+  String toString() {
+    return "id: $id name: $name reverse: $reverse";
+  }
 }
