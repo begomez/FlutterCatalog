@@ -70,6 +70,9 @@ abstract class FakeModelFactory {
     );
   }
 
+  static PriceRanges _randomPriceRange() =>
+    PriceRanges.values[Random().nextInt(3)];
+
   static BikeCategories _randomCateg() =>
     BikeCategories.values[Random().nextInt(3) + 1];
 
@@ -104,7 +107,7 @@ abstract class FakeModelFactory {
         frameSize: randomFrame(),
         categ: categ,
         mainImg: _getImgForCateg(categ),
-        price: _randomPrice()
+        price: _randomPrice(range: _randomPriceRange())
     );
   }
 
