@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import '../../common/models/catalog/BikeModel.dart';
 import '../../common/models/detail/BikeInfoModel.dart';
 import '../../common/models/catalog/FrameSizeListModel.dart';
 import '../../common/models/catalog/PriceRangeModel.dart';
@@ -18,6 +19,10 @@ import '../../network/request/GetFrameSizesRequest.dart';
 import '../../network/request/GetPriceRangesRequest.dart';
 import '../../network/request/GetBikeInfoRequest.dart';
 
+
+const String TAG = "BikeRepositoryImpl";
+
+
 /*
  * Implementation of bike repository
  *
@@ -35,7 +40,11 @@ class BikeRepositoryImpl implements IBikeRepository {
       final result = await this._api.getBikes(GetBikesRequest(page, order, filter));
 
       if (result.hasData()) {
-        return BikeListModel(collection: result.data, pagination: result.pagination);
+        var rawData = result.data;
+
+        final processedData = this._filterAndSort(rawData, filter, order);
+
+        return BikeListModel(collection: processedData, pagination: result.pagination);
 
       } else {
         throw Exception();
@@ -133,4 +142,50 @@ class BikeRepositoryImpl implements IBikeRepository {
     }
   }
 
+// HELPERS //////////////////////////////////////////////////////////////////////////////
+
+  /*
+   * Applies sorting and filtering constraints over a list so the resulting items meet the specifications
+   */
+  List<BikeModel> _filterAndSort(List<BikeModel> data, FilterModel filter, OrderCriteriaModel order) {
+
+    // BY CATEG
+    if (filter.hasValidCategories()) {
+      data = data.where((element) => filter.categs.contains(element.categ)).toList();
+    }
+
+    // BY FRAME SIZE
+    if (filter.hasValidFrameSize()) {
+      data = data.where((element) => (filter.frameSize == element.frameSize.size)).toList();
+    }
+
+    // BY PRICE
+    if (filter.hasValidPrice()) {
+      data = data.where((element) => element.price.amount <= filter.price).toList();
+    }
+
+    // ORDERING
+    if (order.validate()) {
+      Comparator<BikeModel> compAsc = (a, b) => (a.price.amount - b.price.amount).toInt();
+      Comparator<BikeModel> compDesc = (a, b) => (b.price.amount - a.price.amount).toInt();
+
+      data.sort(order.reverse? compDesc : compAsc);
+    }
+
+    this._dumpSelection(data, filter: filter, order: order);
+
+    return data;
+  }
+
+  /*
+   * Outputs a collection
+   */
+  void _dumpSelection(List<BikeModel> list, {FilterModel filter, OrderCriteriaModel order}) {
+    AppLogger.i(tag: TAG, msg: filter?.toString());
+    AppLogger.i(tag: TAG, msg: order?.toString());
+
+    list?.forEach((element) {AppLogger.i(tag: TAG, msg: element.toString());});
+
+    AppLogger.i(tag: TAG, msg: "Containing ${list?.length?? 0} items");
+  }
 }
