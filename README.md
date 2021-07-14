@@ -30,4 +30,9 @@ Events (in fact just simple Data Transport Object) are used to define use case i
 
 ## Code generation commands
 
-flutter packages pub run build_runner build --delete-conflicting-ouputs 
+JSON serializable classes when required:
+flutter packages pub run build_runner build --delete-conflicting-ouputs
+
+Mockito auto generated classes:
+flutter packages pub run build_runner build
+dart run build_runner build
