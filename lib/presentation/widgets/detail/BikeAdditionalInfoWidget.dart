@@ -41,7 +41,7 @@ class _BikeAdditionalInfoWidgetState extends BaseBlocWidgetState<
 
   @override
   Widget buildInitial(BuildContext cntxt) {
-    return this._buildUI(cntxt, BikeInfoModel());
+    return this._buildUI(cntxt, BikeInfoModel.empty());
   }
 
   @override

@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:mockito/annotations.dart';
+
 import '../../common/factory/FakeModelFactory.dart';
 
 import '../../data/api/ICatalogAPI.dart';
@@ -59,7 +61,7 @@ class CatalogAPIImpl implements ICatalogAPI {
   Future<GetBikeInfoResponse> getBikeInfo(GetBikeInfoRequest req) async {
     return await Future.delayed(Duration(seconds: Random().nextInt(3))).then((value) =>
         GetBikeInfoResponse(
-          FakeModelFactory.randomInfo(),
+          FakeModelFactory.randomInfo(id: req.id),
           FakeModelFactory.success()
         )
     );

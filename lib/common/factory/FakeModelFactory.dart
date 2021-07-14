@@ -108,12 +108,14 @@ abstract class FakeModelFactory {
     );
   }
 
-  static BikeInfoModel randomInfo() => BikeInfoModel(
-    descrip: _randomDescrip(),
-    weight: _randomWeight(),
-    wheelSize: _randomWheelSize(),
-    rearLight: _randomBool(),
-    frontLight: _randomBool(),
+  static BikeInfoModel randomInfo({int id}) =>
+    BikeInfoModel(
+      id: id,
+      descrip: _randomDescrip(),
+      weight: _randomWeight(),
+      wheelSize: _randomWheelSize(),
+      rearLight: _randomBool(),
+      frontLight: _randomBool(),
   );
 
   static String _randomDescrip() =>
