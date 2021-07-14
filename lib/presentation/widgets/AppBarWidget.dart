@@ -23,7 +23,9 @@ class AppBarWidget extends BaseStatelessWidget {
   @override
   Widget buildWidgetContents(BuildContext context) {
     return SliverAppBar(
-      pinned: false,
+      pinned: true,
+      floating: true,
+      snap: true,
       automaticallyImplyLeading: false,
       toolbarHeight: _AppBarDimens.APPBAR_H,
       expandedHeight: _AppBarDimens.EXPANDED_APPBAR_H,
