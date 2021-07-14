@@ -9,11 +9,20 @@ import '../../common/models/catalog/OrderCriteriaModel.dart';
  * Simple impl. of "Lifting state up" pattern using an inherited widget that holds global app state
  */
 class AppData extends InheritedWidget {
+
+  /*
+   * Observable data storing ordering and applied filters
+   */
   ValueNotifier<SettingsModel> vSettings;
 
+  /*
+   * Temporary, not observable data, to store filter selection before submitting filter changes
+   */
+  FilterModel filterCache;
 
   AppData({@required Widget child,  Key key}) : assert(child != null), super(key: key, child: child) {
     this.vSettings = ValueNotifier<SettingsModel>(SettingsModel.defaultSettings());
+    this.filterCache = FilterModel.defaultFilter();
   }
 
   static AppData of(BuildContext cntxt) {
@@ -29,11 +38,23 @@ class AppData extends InheritedWidget {
 // STATE
 ////////////////////////////////////////////////////////////////////////////////
 
+  void applyFilterCache() {
+    this.updateFilter(this.filterCache);
+  }
+
   void updateOrder(OrderCriteriaModel order) {
     this.vSettings.value = this.vSettings.value.copyWith(order: order);
   }
 
   void updateFilter(FilterModel filter) {
     this.vSettings.value = this.vSettings.value.copyWith(filter: filter);
+  }
+
+////////////////////////////////////////////////////////////////////////////////
+// TEMPORARY
+////////////////////////////////////////////////////////////////////////////////
+
+  void saveFilterCache(FilterModel cache) {
+    this.filterCache = this.filterCache.copyWith(frameSize: cache.frameSize, categs: cache.categs, price: cache.price);
   }
 }

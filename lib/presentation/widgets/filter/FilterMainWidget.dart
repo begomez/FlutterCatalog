@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../resources/AppDimens.dart';
 import '../../resources/AppStyles.dart';
-import '../factory/AppWidgetFactory.dart';
-import '../core/BaseStatelessWidget.dart';
 import '../../utils/AppLocalizations.dart';
 import '../../app/AppData.dart';
+import '../factory/AppWidgetFactory.dart';
+import '../core/BaseStatelessWidget.dart';
 import 'BikeTypeSelectorWidget.dart';
 import 'PriceRangeWidget.dart';
 import 'FrameSizeSelectorWidget.dart';
@@ -28,6 +28,7 @@ class FilterMainWidget extends BaseStatelessWidget {
   Widget buildWidgetContents(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
+        width: double.maxFinite,
         height: MediaQuery.of(context).size.height,
         margin: EdgeInsets.all(AppDimens.MID_SPACING),
         child: Column(
@@ -36,19 +37,13 @@ class FilterMainWidget extends BaseStatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
-            (this._buildTypeSelector(context)),
+            this._buildTypeSelector(context),
 
-            (this._buildPriceSlider(context)),
+            this._buildPriceSlider(context),
 
-            Expanded(child: this._buildFramesExpandable(context)),
+            Expanded(child: this._buildFrameSizeSelector(context)),
 
-            // action
-            AppWidgetFactory.buildBtn(
-                text: AppLocalizations.of(context).translate("action_close"),
-                callback: () {
-                  Navigator.of(context).pop();
-                },
-                style: AppStyles.action)
+            this._buildAction(context)
           ],
         ),
       ),
@@ -56,23 +51,41 @@ class FilterMainWidget extends BaseStatelessWidget {
   }
 
   Widget _buildTypeSelector(BuildContext cntxt) {
+    final currentType = this.currentFilter.categs;
+
     return BikeTypeSelectorWidget(
-      key: ValueKey(this.currentFilter.categs?.toString()),
-      currentSelection: this.currentFilter.categs?? const []
+      key: ValueKey(currentType.hashCode),
+      currentSelection: currentType?? const []
     );
   }
-
 
   Widget _buildPriceSlider(BuildContext cntxt) {
+    final currentPrice = this.currentFilter.price;
+
     return PriceRangeWidget(
-      key: ValueKey(PriceModel.forAmount(this.currentFilter.price).hashCode),
-      currentPrice: PriceModel.forAmount(this.currentFilter.price)
+      key: ValueKey(PriceModel.forAmount(currentPrice)),
+      currentSelection: PriceModel.forAmount(currentPrice)
     );
   }
 
-  Widget _buildFramesExpandable(BuildContext cntxt) {
-    final currentFrame = AppData.of(cntxt).vSettings.value.filter.frameSize;
+  Widget _buildFrameSizeSelector(BuildContext cntxt) {
+    final currentFrame = this.currentFilter.frameSize;
 
-    return FrameSizeSelectorWidget(currentSelection: currentFrame != FrameSizeModel.NO_FRAME_SIZE? FrameSizeModel.forSize(currentFrame) : null);
+    return FrameSizeSelectorWidget(
+        key: ValueKey(currentFrame.hashCode),
+        currentSelection: currentFrame != FrameSizeModel.NO_FRAME_SIZE? FrameSizeModel.forSize(currentFrame) : null);
+  }
+
+  Widget _buildAction(BuildContext cntxt) {
+    return AppWidgetFactory.buildBtn(
+        text: AppLocalizations.of(cntxt).translate("action_close"),
+        callback: () {
+
+          // Update filters only when confirming, by applying temporary selection stored
+          AppData.of(cntxt).applyFilterCache();
+          Navigator.of(cntxt).pop();
+        },
+        style: AppStyles.action
+    );
   }
 }

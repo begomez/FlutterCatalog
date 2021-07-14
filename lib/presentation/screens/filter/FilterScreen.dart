@@ -8,8 +8,9 @@ import '../core/BaseStatelessScreen.dart';
 import '../../../common/models/filters/SettingsModel.dart';
 import '../../../common/models/filters/FilterModel.dart';
 
+
 /*
- * Filter screen
+ * Filter screen used to config catalog settings
  */
 class FilterScreen extends BaseStatelessScreen {
 
