@@ -1,5 +1,5 @@
 {
-    "app_name" : "BikeStore",
+    "app_name" : "BuyCycle",
 
     "screen_home" : "Inicio",
     "screen_detail" : "Detalle",
@@ -36,6 +36,8 @@
 
     "order_price_asc" : "Precio asc.",
     "order_price_desc" : "Precio desc.",
+    "order_categ_asc" : "Categ.",
+    "order_name_asc" : "Nombre",
 
     "type_mountain" : "Bicicleta\nde Montaña",
     "type_city" : "Bicicleta\nUrbana",

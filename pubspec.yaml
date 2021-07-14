@@ -62,6 +62,7 @@ flutter:
      - assets/images/city.png
      - assets/images/electric.png
      - assets/images/mountain.png
+     - assets/images/loading.png
      - assets/icon/icon.png
 
 

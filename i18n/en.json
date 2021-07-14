@@ -1,5 +1,5 @@
 {
-    "app_name" : "BikeStore",
+    "app_name" : "BuyCycle",
 
     "screen_home" : "Home",
     "screen_detail" : "Detail",
@@ -36,6 +36,8 @@
 
     "order_price_asc" : "Price asc.",
     "order_price_desc" : "Price desc.",
+    "order_categ_asc" : "Categ.",
+    "order_name_asc" : "Name",
 
     "type_mountain" : "Mountain\nBike",
     "type_city" : "City\nBike",
