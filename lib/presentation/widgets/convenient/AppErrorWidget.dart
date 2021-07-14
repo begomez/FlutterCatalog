@@ -14,7 +14,15 @@ class AppErrorWidget extends BaseStatelessWidget {
   Widget buildWidgetContents(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: Text(AppLocalizations.of(context).translate("screen_error")),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset("assets/images/error.png"),
+          Text(AppLocalizations.of(context).translate("screen_error")),
+        ]
+      ),
     );
   }
 }
