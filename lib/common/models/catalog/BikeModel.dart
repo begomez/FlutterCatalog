@@ -7,7 +7,9 @@ import '../core/BaseModel.dart';
 
 enum BikeCategories {UNKNOWN, MOUNTAIN, CITY, ELECTRIC}
 
-
+extension BikeCategoriesExtension on BikeCategories {
+  String toShortString() => this.toString().replaceAll("BikeCategories.", "");
+}
 
 /*
  * Data model that represents a bike entity
