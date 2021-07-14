@@ -8,9 +8,16 @@ import '../core/BaseModel.dart';
  */
 abstract class OrderCriteriaModelFactory {
 
-  static List<OrderCriteriaModel> getAllCriterias({@required String lbPriceAsc, @required String lbPriceDesc}) => [
+  static const PRICE_ASC = 1;
+  static const PRICE_DESC = 2;
+  static const CATEG_ASC = 3;
+  static const NAME_ASC = 4;
+
+  static List<OrderCriteriaModel> getAllCriterias({@required String lbPriceAsc, @required String lbPriceDesc, @required String lbCategAsc, @required lbNameAsc}) => [
     priceAscending(lbPriceAsc),
-    priceDescending(lbPriceDesc)
+    priceDescending(lbPriceDesc),
+    categAscending(lbCategAsc),
+    nameAscending(lbNameAsc),
   ];
 
   static OrderCriteriaModel defaultCriteria() => priceAscending("Price asc.");
@@ -18,6 +25,10 @@ abstract class OrderCriteriaModelFactory {
   static OrderCriteriaModel priceAscending(String lbPriceAsc) => OrderCriteriaModel.priceAscending(lbPriceAsc);
 
   static OrderCriteriaModel priceDescending(String lbPriceDesc) => OrderCriteriaModel.priceDescending(lbPriceDesc);
+
+  static OrderCriteriaModel categAscending(String lbCategAsc) => OrderCriteriaModel.categAscending(lbCategAsc);
+
+  static OrderCriteriaModel nameAscending(String lbNameAsc) => OrderCriteriaModel.nameAscending(lbNameAsc);
 }
 
 /*
@@ -35,14 +46,24 @@ class OrderCriteriaModel extends BaseModel {
 
   const OrderCriteriaModel._(this.id, this.name, this.reverse) : super();
 
-  factory OrderCriteriaModel.priceAscending(String lb) => OrderCriteriaModel._(1, lb, false);
+  factory OrderCriteriaModel.priceAscending(String lb) => OrderCriteriaModel._(OrderCriteriaModelFactory.PRICE_ASC, lb, false);
 
-  factory OrderCriteriaModel.priceDescending(String lb) => OrderCriteriaModel._(2, lb, true);
+  factory OrderCriteriaModel.priceDescending(String lb) => OrderCriteriaModel._(OrderCriteriaModelFactory.PRICE_DESC, lb, true);
+
+  factory OrderCriteriaModel.categAscending(String lb) => OrderCriteriaModel._(OrderCriteriaModelFactory.CATEG_ASC, lb, false);
+
+  factory OrderCriteriaModel.nameAscending(String lb) => OrderCriteriaModel._(OrderCriteriaModelFactory.NAME_ASC, lb, false);
 
   @override
   bool validate() {
     return this.id != null && this.name.isNotEmpty;
   }
+
+  bool isPriceAsc() => this._isSomeCateg(OrderCriteriaModelFactory.PRICE_ASC);
+  bool isPriceDesc() => this._isSomeCateg(OrderCriteriaModelFactory.PRICE_DESC);
+  bool isCategAsc() => this._isSomeCateg(OrderCriteriaModelFactory.CATEG_ASC);
+  bool isNameAsc() => this._isSomeCateg(OrderCriteriaModelFactory.NAME_ASC);
+  bool _isSomeCateg(int target) => this.id == target;
 
   @override
   bool operator ==(Object other) =>

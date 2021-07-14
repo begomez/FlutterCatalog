@@ -165,11 +165,23 @@ class BikeRepositoryImpl implements IBikeRepository {
     }
 
     // ORDERING
+    Comparator<BikeModel> comp;
     if (order.validate()) {
-      Comparator<BikeModel> compAsc = (a, b) => (a.price.amount - b.price.amount).toInt();
-      Comparator<BikeModel> compDesc = (a, b) => (b.price.amount - a.price.amount).toInt();
 
-      data.sort(order.reverse? compDesc : compAsc);
+      if (order.isPriceAsc()) {
+        comp = (a, b) => (a.price.amount - b.price.amount).toInt();
+
+      } else if (order.isPriceDesc()) {
+        comp = (a, b) => (b.price.amount - a.price.amount).toInt();
+
+      } else if (order.isCategAsc()) {
+        comp = (a, b) => (a.categ.toString().compareTo(b.categ.toString()));
+
+      } else {
+        comp = (a, b) => (a.name.compareTo(b.name));
+      }
+
+      data.sort(comp);
     }
 
     this._dumpSelection(data, filter: filter, order: order);

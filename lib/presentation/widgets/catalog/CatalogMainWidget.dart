@@ -28,7 +28,9 @@ class CatalogMainWidget extends BaseStatelessWidget {
   Widget buildWidgetContents(BuildContext context) {
     final criterias = OrderCriteriaModelFactory.getAllCriterias(
         lbPriceAsc: AppLocalizations.of(context).translate("order_price_asc"),
-        lbPriceDesc: AppLocalizations.of(context).translate("order_price_desc")
+        lbPriceDesc: AppLocalizations.of(context).translate("order_price_desc"),
+        lbCategAsc: AppLocalizations.of(context).translate("order_categ_asc"),
+        lbNameAsc: AppLocalizations.of(context).translate("order_name_asc")
     );
     
     return Scaffold(
