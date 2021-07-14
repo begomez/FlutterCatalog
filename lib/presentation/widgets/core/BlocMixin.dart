@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../inject/BlocProvider.dart';
 
+import '../../../common/models/ErrorModel.dart';
 import '../../../common/models/core/BaseModel.dart';
 import '../../../common/models/result/ResourceResult.dart';
 
@@ -65,17 +66,17 @@ mixin BlocMixin<
     return BlocProvider(
         child: StreamBuilder<ResourceResult<TargetModel>>(
           stream: this._bloc.output,
-          builder: (context, snap) {
+          builder: (cntxt, snap) {
             switch (snap?.data?.status) {
               case ResourceStatus.LOADING:
-                return this.buildLoading(context);
+                return this.buildLoading(cntxt);
               case ResourceStatus.ERROR:
-                return this.buildError(context);
+                return this.buildError(cntxt, snap.error);
               case ResourceStatus.SUCCESS:
-                return this.buildSuccess(context, snap.data.data);
+                return this.buildSuccess(cntxt, snap.data.data);
               case ResourceStatus.INITIAL:
               default:
-                return this.buildInitial(context);
+                return this.buildInitial(cntxt);
             }
           },
         ),
@@ -90,7 +91,7 @@ mixin BlocMixin<
   /*
    * Returns widget to show when bloc fails
    */
-  Widget buildError(BuildContext cntxt);
+  Widget buildError(BuildContext cntxt, ErrorModel err);
 
   /*
    * Returns widget to show when idle

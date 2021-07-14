@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/models/ErrorModel.dart';
 import '../../../common/models/core/BaseModel.dart';
 
 import '../../../domain/bloc/core/BaseBloc.dart';
@@ -75,7 +76,7 @@ abstract class BaseBlocWidgetState<
       );
 
   @override
-  Widget buildError(BuildContext cntxt) {
+  Widget buildError(BuildContext cntxt, ErrorModel err) {
     return AppErrorWidget();
   }
 

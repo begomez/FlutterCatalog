@@ -88,7 +88,7 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
         value: range.validate() && this._selectedPrice.validate()? this._selectedPrice.amount : range.min.amount,
         divisions: range.getNumSteps(),
         onChanged: this._onValueSelected,
-        label: this._selectedPrice.validate()? "": this._selectedPrice.toString(),
+        label: this._selectedPrice.toString(),
       ),
     );
   }
