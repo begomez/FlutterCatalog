@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/presentation/resources/AppStyles.dart';
 
 import '../../../common/models/catalog/BikeModel.dart';
-import '../core/BaseStatelessWidget.dart';
 import '../../resources/AppDimens.dart';
 import '../../resources/AppColors.dart';
+import '../../resources/AppStyles.dart';
+import '../../resources/CatalogStyles.dart';
+import '../core/BaseStatelessWidget.dart';
+
 
 /*
  * Widget displaying a bike card item
@@ -23,17 +25,34 @@ class CatalogItemWidget extends BaseStatelessWidget {
         this.onItemClicked?.call(this.item);
       },
       child: Container(
-        height: _ItemWidgetDimens.HEIGHT,
-        margin: EdgeInsets.all(AppDimens.SMALL_SPACING),
+        margin: EdgeInsets.all(AppDimens.MID_SPACING),
         child: Card(
           color: AppColors.white,
-          child: Stack(children: [
-            this._buildDecoration(context),
-            Positioned(top: 0, left: 0, child: this._buildPrice()),
-            Positioned(bottom: 0, right: 0, child: this._buildName())
-          ]),
+          child: SizedBox(
+            width: double.maxFinite,
+            height: _ItemWidgetDimens.HEIGHT,
+            child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  this._buildDecoration(context),
+                  Positioned(top: 0, right: 0, child: this._buildPrice()),
+                  Positioned(bottom: 0, right: 0, child: this._buildName()),
+                  Positioned(top: 0, left: 0, child: this._buildTypeBadge(this.item.categ))
+                ]
+            ),
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTypeBadge(BikeCategories categ) {
+    return Banner(
+      location: BannerLocation.topStart,
+      message: categ.toShortString(),
+      color: AppColors.accent.withOpacity(0.33),
+      textStyle: CatalogStyles.badge,
+      textDirection: TextDirection.ltr,
     );
   }
 

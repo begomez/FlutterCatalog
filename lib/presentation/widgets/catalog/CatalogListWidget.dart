@@ -53,15 +53,14 @@ class _CatalogListWidgetState
   Widget buildLoading(BuildContext cntxt) {
     return Container(
         alignment: Alignment.center,
-        height: MediaQuery.of(cntxt).size.height / 2,
+        height: MediaQuery.of(cntxt).size.height * 2 / 3,
         child: super.buildLoading(cntxt)
     );
   }
 
   Widget _buildListWrapper(BuildContext cntxt, List<BikeModel> data) {
     return Container(
-      margin: EdgeInsets.only(bottom: AppDimens.BIG_SPACING),
-      height: MediaQuery.of(cntxt).size.height * 1.0,
+      height: MediaQuery.of(cntxt).size.height,
       child: this._buildList(cntxt, data)
     );
   }
