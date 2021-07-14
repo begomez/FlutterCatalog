@@ -42,9 +42,9 @@ class BikeTypeWidget extends BaseStatelessWidget {
     );
   }
 
-  Widget _buildTypeName(BuildContext cntxt) => Text(this._getLabelForCategory(cntxt), style: this.selected? AppStyles.caption : AppStyles.captionWhite, maxLines: AppValues.TWO_LINES, overflow: TextOverflow.ellipsis,);
+  Widget _buildTypeName(BuildContext cntxt) => Text(this._getLabelForCategory(cntxt), style: AppStyles.captionWhite, maxLines: AppValues.TWO_LINES, overflow: TextOverflow.ellipsis,);
 
-  Widget _buildImg(BuildContext cntxt) => Image.asset(this._getImgResourceForCategory(), color: this._getForeground(),);
+  Widget _buildImg(BuildContext cntxt) => Image.asset(this._getImgResourceForCategory(), color: AppColors.white,);
 
   Color _getForeground() => this.selected? AppColors.black : AppColors.white;
 

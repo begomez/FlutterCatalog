@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/models/catalog/BikeModel.dart';
+
+import '../../resources/AppStyles.dart';
 import '../../resources/AppColors.dart';
 import '../../resources/AppDimens.dart';
 import '../../utils/AppLocalizations.dart';
 import '../factory/AppWidgetFactory.dart';
 import '../core/BaseStatefulWidget.dart';
+import '../detail/KeyValueWidget.dart';
 import 'BikeAdditionalInfoWidget.dart';
-
-import '../../../common/models/catalog/BikeModel.dart';
 
 
 /*
@@ -71,7 +73,24 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           this._buildImg(context),
-          this._buildBtn(context)
+
+
+          KeyValueWidget(
+            strKey: AppLocalizations.of(context).translate("lb_category"),
+            strValue: this.widget.bike.categ.toShortString(),
+          ),
+
+          KeyValueWidget(
+            strKey: AppLocalizations.of(context).translate("lb_frame"),
+            strValue: this.widget.bike.frameSize.toString(),
+          ),
+
+          KeyValueWidget(
+            strKey: AppLocalizations.of(context).translate("lb_price"),
+            strValue: this.widget.bike.price.toString(),
+          ),
+
+          this._buildMainAction(context)
         ],
       ),
     );
@@ -84,26 +103,26 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
     );
   }
 
-  Widget _buildBtn(BuildContext cntxt) {
+  Widget _buildMainAction(BuildContext cntxt) {
     return SlideTransition(
         position: this._tween.animate(this._ctrl),
         child: ClipRRect(child: Container(
             width: double.maxFinite,
-            child:
-            ElevatedButton(
-                onPressed: () {
+            child: AppWidgetFactory.buildBtn(
+                callback: () {
                   AppWidgetFactory.showBottomInfo(
                     context: cntxt,
                     child: BikeAdditionalInfoWidget(bike: this.widget.bike),
-                    color: AppColors.white,
-                    height: MediaQuery.of(cntxt).size.height * 3/4,
+                    color: AppColors.accent,
+                    height: MediaQuery.of(cntxt).size.height * 4/5,
                     onClose: () {
                       Navigator.of(cntxt).pop();
                     },
                     radius: _BikeMainWidgetDimens.RADIUS
                   );
                 },
-                child: Text(AppLocalizations.of(cntxt).translate("action_more"))
+                style: AppStyles.action,
+                text: AppLocalizations.of(cntxt).translate("action_more")
             )
         )
       )

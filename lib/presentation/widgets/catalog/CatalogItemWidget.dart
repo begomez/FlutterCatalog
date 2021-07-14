@@ -50,7 +50,7 @@ class CatalogItemWidget extends BaseStatelessWidget {
     return Banner(
       location: BannerLocation.topStart,
       message: categ.toShortString(),
-      color: AppColors.accent.withOpacity(0.33),
+      color: AppColors.primaryDark,
       textStyle: CatalogStyles.badge,
       textDirection: TextDirection.ltr,
     );
@@ -89,7 +89,7 @@ class CatalogItemWidget extends BaseStatelessWidget {
   }
 
   Widget _buildPrice() {
-    return Container(color: Colors.yellow, padding:EdgeInsets.all(AppDimens.SMALL_SPACING), child: Text(this.item.price.toString()),);
+    return Container(color: AppColors.accentLight, padding:EdgeInsets.all(AppDimens.SMALL_SPACING), child: Text(this.item.price.toString()),);
   }
 }
 

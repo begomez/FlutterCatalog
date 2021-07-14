@@ -42,7 +42,7 @@ class OrderingWidget extends BaseStatelessWidget {
   }
 
   Widget _buildDivider(BuildContext cntxt) {
-    return Container(height: OrderingWidgetDimens.SEP_H, color: Colors.red,);
+    return Container(height: OrderingWidgetDimens.SEP_H, color: AppColors.primary,);
   }
 
   Widget _buildHint(BuildContext cntxt) {
