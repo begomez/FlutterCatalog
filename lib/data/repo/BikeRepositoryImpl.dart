@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 import '../../common/models/catalog/BikeModel.dart';
 import '../../common/models/detail/BikeInfoModel.dart';
 import '../../common/models/catalog/FrameSizeListModel.dart';
@@ -42,7 +44,7 @@ class BikeRepositoryImpl implements IBikeRepository {
       if (result.hasData()) {
         var rawData = result.data;
 
-        final processedData = this._filterAndSort(rawData, filter, order);
+        var processedData = await this._processDataInBackground(rawData, order, filter);
 
         return BikeListModel(collection: processedData, pagination: result.pagination);
 
@@ -145,59 +147,83 @@ class BikeRepositoryImpl implements IBikeRepository {
 // HELPERS //////////////////////////////////////////////////////////////////////////////
 
   /*
-   * Applies sorting and filtering constraints over a list so the resulting items meet the specifications
+   * Entry point for "compute()" which performs filtering and sorting
    */
-  List<BikeModel> _filterAndSort(List<BikeModel> data, FilterModel filter, OrderCriteriaModel order) {
+  Future<List<BikeModel>> _processDataInBackground(List<BikeModel> data, OrderCriteriaModel order, FilterModel filter) async {
+    return await compute(_filterAndSort, _ComputeDataModel(data, order, filter));
+  }
+}
 
-    // BY CATEG
-    if (filter.hasValidCategories()) {
-      data = data.where((element) => filter.categs.contains(element.categ)).toList();
-    }
+// GLOBAL  //////////////////////////////////////////////////////////////////////////////
 
-    // BY FRAME SIZE
-    if (filter.hasValidFrameSize()) {
-      data = data.where((element) => (filter.frameSize == element.frameSize.size)).toList();
-    }
+/*
+ * Applies sorting and filtering constraints over a list so the resulting items meet the specifications
+ */
+List<BikeModel> _filterAndSort(_ComputeDataModel wrapper) {
+  FilterModel filter = wrapper.filter;
+  OrderCriteriaModel order = wrapper.order;
+  List<BikeModel> data = wrapper.list;
 
-    // BY PRICE
-    if (filter.hasValidPrice()) {
-      data = data.where((element) => element.price.amount <= filter.price).toList();
-    }
-
-    // ORDERING
-    Comparator<BikeModel> comp;
-    if (order.validate()) {
-
-      if (order.isPriceAsc()) {
-        comp = (a, b) => (a.price.amount - b.price.amount).toInt();
-
-      } else if (order.isPriceDesc()) {
-        comp = (a, b) => (b.price.amount - a.price.amount).toInt();
-
-      } else if (order.isCategAsc()) {
-        comp = (a, b) => (a.categ.toString().compareTo(b.categ.toString()));
-
-      } else {
-        comp = (a, b) => (a.name.compareTo(b.name));
-      }
-
-      data.sort(comp);
-    }
-
-    this._dumpSelection(data, filter: filter, order: order);
-
-    return data;
+  // BY CATEG
+  if (filter.hasValidCategories()) {
+    data = data.where((element) => filter.categs.contains(element.categ)).toList();
   }
 
-  /*
-   * Outputs a collection
-   */
-  void _dumpSelection(List<BikeModel> list, {FilterModel filter, OrderCriteriaModel order}) {
-    AppLogger.i(tag: TAG, msg: filter?.toString());
-    AppLogger.i(tag: TAG, msg: order?.toString());
-
-    list?.forEach((element) {AppLogger.i(tag: TAG, msg: element.toString());});
-
-    AppLogger.i(tag: TAG, msg: "Containing ${list?.length?? 0} items");
+  // BY FRAME SIZE
+  if (filter.hasValidFrameSize()) {
+    data = data.where((element) => (filter.frameSize == element.frameSize.size)).toList();
   }
+
+  // BY PRICE
+  if (filter.hasValidPrice()) {
+    data = data.where((element) => element.price.amount <= filter.price).toList();
+  }
+
+  // ORDERING
+  Comparator<BikeModel> comp;
+  if (order.validate()) {
+
+    if (order.isPriceAsc()) {
+      comp = (a, b) => (a.price.amount - b.price.amount).toInt();
+
+    } else if (order.isPriceDesc()) {
+      comp = (a, b) => (b.price.amount - a.price.amount).toInt();
+
+    } else if (order.isCategAsc()) {
+      comp = (a, b) => (a.categ.toString().compareTo(b.categ.toString()));
+
+    } else {
+      comp = (a, b) => (a.name.compareTo(b.name));
+    }
+
+    data.sort(comp);
+  }
+
+  _dumpSelection(data, filter: filter, order: order);
+
+  return data;
+}
+
+/*
+ * Outputs a collection
+ */
+void _dumpSelection(List<BikeModel> list, {FilterModel filter, OrderCriteriaModel order}) {
+  AppLogger.i(tag: TAG, msg: filter?.toString());
+  AppLogger.i(tag: TAG, msg: order?.toString());
+
+  list?.forEach((element) {AppLogger.i(tag: TAG, msg: element.toString());});
+
+  AppLogger.i(tag: TAG, msg: "Containing ${list?.length?? 0} items");
+}
+
+/*
+ * Struct used to encapsulate params in a single obj. so it can be accepted as
+ * param by compute()
+ */
+class _ComputeDataModel {
+  List<BikeModel> list;
+  OrderCriteriaModel order;
+  FilterModel filter;
+
+  _ComputeDataModel(this.list, this.order, this.filter);
 }
