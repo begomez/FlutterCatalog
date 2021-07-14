@@ -20,7 +20,7 @@ class MainApp extends StatelessWidget {
       child: MaterialApp(
           showPerformanceOverlay: false,
           debugShowCheckedModeBanner: false,
-          title: "MainApp",
+          title: "BuyCycle",
           theme: AppStyles.appTheme,
           home: SplashScreen(
             title: "",
