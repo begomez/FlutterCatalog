@@ -144,6 +144,6 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
 }
 
 abstract class _PriceRangeWidgetDimens {
-  static const SHOW_THUMB = 0.0;
-  static const HIDE_THUMB = 10.0;
+  static const SHOW_THUMB = 10.0;
+  static const HIDE_THUMB = 0.0;
 }
