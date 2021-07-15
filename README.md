@@ -114,7 +114,8 @@ The app contains basic test coverage in the "test" directory for the layers:
 ## Build & run
 
 flutter pub get
-flutter run --debug
+flutter build apk
+flutter run
 
 
 
