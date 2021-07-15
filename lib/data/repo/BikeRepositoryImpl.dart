@@ -163,6 +163,12 @@ List<BikeModel> _filterAndSort(_ComputeDataModel wrapper) {
   OrderCriteriaModel order = wrapper.order;
   List<BikeModel> data = wrapper.list;
 
+
+  _dumpSelection(data, filter: filter, order: order, msg: "PRE");
+
+
+// FILTERS
+
   // BY CATEG
   if (filter.hasValidCategories()) {
     data = data.where((element) => filter.categs.contains(element.categ)).toList();
@@ -178,27 +184,13 @@ List<BikeModel> _filterAndSort(_ComputeDataModel wrapper) {
     data = data.where((element) => element.price.amount <= filter.price).toList();
   }
 
-  // ORDERING
-  Comparator<BikeModel> comp;
+// ORDER
+
   if (order.validate()) {
-
-    if (order.isPriceAsc()) {
-      comp = (a, b) => (a.price.amount - b.price.amount).toInt();
-
-    } else if (order.isPriceDesc()) {
-      comp = (a, b) => (b.price.amount - a.price.amount).toInt();
-
-    } else if (order.isCategAsc()) {
-      comp = (a, b) => (a.categ.toString().compareTo(b.categ.toString()));
-
-    } else {
-      comp = (a, b) => (a.name.compareTo(b.name));
-    }
-
-    data.sort(comp);
+    data.sort(order.getComparator());
   }
 
-  _dumpSelection(data, filter: filter, order: order);
+  _dumpSelection(data, filter: filter, order: order, msg: "POST");
 
   return data;
 }
@@ -206,7 +198,8 @@ List<BikeModel> _filterAndSort(_ComputeDataModel wrapper) {
 /*
  * Outputs a collection
  */
-void _dumpSelection(List<BikeModel> list, {FilterModel filter, OrderCriteriaModel order}) {
+void _dumpSelection(List<BikeModel> list, {FilterModel filter, OrderCriteriaModel order, String msg = ""}) {
+  AppLogger.i(tag: TAG, msg: msg + "----------------------------------------------------------");
   AppLogger.i(tag: TAG, msg: filter?.toString());
   AppLogger.i(tag: TAG, msg: order?.toString());
 

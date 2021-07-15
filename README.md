@@ -55,10 +55,25 @@ Events in the DOMAIN folder are used to define use case inputs and provide type 
 
 - The ordering criterias are supposed to be fixed, so they are stored in the app (as opposed to
 being fetched dynamically). For a production ready app they should be dynamic so we can change them
-without redeploying to the app stores.
+without redeploying to the app stores. Ordering criterias implemented:
+
+* price asc
+* price desc
+* bike categ
+* bike name
 
 - The bike types are supposed to be fixed, so they are stored in the app (as opposed to
-being fetched dynamically).
+being fetched dynamically). Bike types included:
+
+* electric
+* city
+* mountain
+
+- The filters are implemented dinamically. Data filters available:
+
+* by max price
+* by bike type
+* by frame size
 
 - Considering that in a production environment the catalog would contain hundreds/thousands of items,
 filtering and ordering should be implemented in the backend to avoid performance issues.

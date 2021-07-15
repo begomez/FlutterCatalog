@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../catalog/BikeModel.dart';
 import '../core/BaseModel.dart';
 
 
@@ -79,5 +80,27 @@ class OrderCriteriaModel extends BaseModel {
   @override
   String toString() {
     return "id: $id name: $name reverse: $reverse";
+  }
+
+  /*
+   * Returns comparator for the current ordering criteria
+   */
+  Comparator<BikeModel> getComparator() {
+    Comparator<BikeModel> comp;
+
+    if (this.isPriceAsc()) {
+      comp = (a, b) => (a.price.amount - b.price.amount).toInt();
+
+    } else if (this.isPriceDesc()) {
+      comp = (a, b) => (b.price.amount - a.price.amount).toInt();
+
+    } else if (this.isCategAsc()) {
+      comp = (a, b) => (a.categ.toString().compareTo(b.categ.toString()));
+
+    } else {
+      comp = (a, b) => (a.name.compareTo(b.name));
+    }
+
+    return comp;
   }
 }
