@@ -81,15 +81,19 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
       width: double.maxFinite,
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,
-      child: Slider(
-        activeColor: AppColors.primaryDark,
-        inactiveColor: AppColors.primary,
-        min: range.validate()? range.min.amount : 0.0,
-        max: range.validate()? range.max.amount : 0.0,
-        value: range.validate() && this._selectedPrice.validate()? this._selectedPrice.amount : range.min.amount,
-        divisions: range.getNumSteps(),
-        onChanged: this._onValueSelected,
-        label: this._selectedPrice.toString(),
+      child: SliderTheme(
+        data: SliderTheme.of(cntxt).copyWith(
+            thumbShape: RoundSliderThumbShape(enabledThumbRadius: this._selectedPrice.validate()? _PriceRangeWidgetDimens.SHOW_THUMB : _PriceRangeWidgetDimens.HIDE_THUMB)),
+        child: Slider(
+          activeColor: AppColors.primaryDark,
+          inactiveColor: AppColors.primary,
+          min: range.validate()? range.min.amount : 0.0,
+          max: range.validate()? range.max.amount : 0.0,
+          value: range.validate() && this._selectedPrice.validate()? this._selectedPrice.amount : range.min.amount,
+          divisions: range.getNumSteps(),
+          onChanged: this._onValueSelected,
+          label: this._selectedPrice.toString(),
+        ),
       ),
     );
   }
@@ -137,4 +141,9 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
 
     AppData.of(this.context).saveFilterCache(currentFilterCache.copyWith(price: value));
   }
+}
+
+abstract class _PriceRangeWidgetDimens {
+  static const SHOW_THUMB = 0.0;
+  static const HIDE_THUMB = 10.0;
 }

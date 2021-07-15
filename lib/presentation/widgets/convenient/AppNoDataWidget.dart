@@ -13,6 +13,7 @@ class AppNoDataWidget extends BaseStatelessWidget {
   @override
   Widget buildWidgetContents(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height * 2 / 3,
       alignment: Alignment.center,
       child: Text(AppLocalizations.of(context).translate("error_no_data")),
     );

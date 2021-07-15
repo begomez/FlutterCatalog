@@ -10,6 +10,7 @@ enum PriceRanges {AFFORDABLE, MID, EXPENSIVE}
  * Ex: 99.99 €
  */
 class PriceModel extends BaseModel {
+  static const MAX_LENGTH = 9;
   static const NUM_DECIMALS = 2;
   static const DEFAULT_CURRENCY = "€";
   static const NO_AMOUNT = 0.0;
@@ -30,7 +31,7 @@ class PriceModel extends BaseModel {
 
   @override
   String toString() {
-    return "${this.amount.toStringAsFixed(NUM_DECIMALS)} ${this.currency}";
+    return "${this.amount.toStringAsFixed(NUM_DECIMALS)} ${this.currency}".padLeft(MAX_LENGTH, "0");
   }
 
   bool operator <(Object other) {
