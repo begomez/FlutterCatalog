@@ -1,10 +1,7 @@
 import '../../common/ErrorCodes.dart';
 import '../../common/models/catalog/FrameSizeListModel.dart';
-import '../../data/api/ICatalogAPI.dart';
-import '../../data/repo/BikeRepositoryImpl.dart';
-import '../../domain/repo/IBikeRepository.dart';
 import '../../domain/event/FrameSizesEvent.dart';
-
+import '../../domain/repo/IBikeRepository.dart';
 import 'core/BaseBloc.dart';
 
 /*
@@ -13,9 +10,7 @@ import 'core/BaseBloc.dart';
 class FrameSizesBloc extends BaseBloc<FrameSizesEvent, FrameSizeListModel> {
   IBikeRepository _repo;
 
-  FrameSizesBloc(ICatalogAPI api) {
-    this._repo = BikeRepositoryImpl(api);
-  }
+  FrameSizesBloc(this._repo) : super();
 
   @override
   Future<FrameSizeListModel> processEvent(FrameSizesEvent event) async {

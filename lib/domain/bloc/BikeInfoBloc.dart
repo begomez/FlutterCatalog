@@ -1,12 +1,7 @@
-import '../../data/api/ICatalogAPI.dart';
-import '../../data/repo/BikeRepositoryImpl.dart';
-
-import '../../domain/repo/IBikeRepository.dart';
-import '../../domain/event/BikeInfoEvent.dart';
-
 import '../../common/ErrorCodes.dart';
 import '../../common/models/detail/BikeInfoModel.dart';
-
+import '../../domain/event/BikeInfoEvent.dart';
+import '../../domain/repo/IBikeRepository.dart';
 import 'core/BaseBloc.dart';
 
 
@@ -16,9 +11,7 @@ import 'core/BaseBloc.dart';
 class BikeInfoBloc extends BaseBloc<BikeInfoEvent, BikeInfoModel> {
   IBikeRepository _repo;
 
-  BikeInfoBloc(ICatalogAPI api) : super() {
-    this._repo = BikeRepositoryImpl(api);
-  }
+  BikeInfoBloc(this._repo) : super();
 
   @override
   Future<BikeInfoModel> processEvent(BikeInfoEvent event) async {

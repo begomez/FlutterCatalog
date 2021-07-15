@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/repo/BikeRepositoryImpl.dart';
+
 import '../../../common/models/catalog/FrameSizeListModel.dart';
 import '../../../common/models/catalog/FrameSizeModel.dart';
 
@@ -92,7 +94,7 @@ class _FrameSizeSelectorWidgetState extends BaseBlocWidgetState<FrameSizeSelecto
   }
 
   @override
-  FrameSizesBloc getBlocInstance() => FrameSizesBloc(DummyCatalogAPIImpl());
+  FrameSizesBloc getBlocInstance() => FrameSizesBloc(BikeRepositoryImpl(DummyCatalogAPIImpl()));
 
   @override
   FrameSizesEvent getEvent() => FrameSizesEvent();

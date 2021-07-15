@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/repo/BikeRepositoryImpl.dart';
+
 import '../../../common/models/filters/FilterModel.dart';
 import '../../../common/models/filters/OrderCriteriaModel.dart';
 import '../../../common/models/catalog/BikeModel.dart';
@@ -79,7 +81,7 @@ class _CatalogListWidgetState
   }
 
   @override
-  CatalogBloc getBlocInstance() => CatalogBloc(DummyCatalogAPIImpl());
+  CatalogBloc getBlocInstance() => CatalogBloc(BikeRepositoryImpl(DummyCatalogAPIImpl()));
 
   @override
   CatalogEvent getEvent() =>

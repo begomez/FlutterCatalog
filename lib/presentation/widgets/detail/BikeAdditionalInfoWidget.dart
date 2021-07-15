@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/repo/BikeRepositoryImpl.dart';
+
 import '../../../common/models/catalog/BikeModel.dart';
 import '../../../common/models/detail/BikeInfoModel.dart';
 
@@ -113,7 +115,7 @@ class _BikeAdditionalInfoWidgetState
   }
 
   @override
-  BikeInfoBloc getBlocInstance() => BikeInfoBloc(DummyCatalogAPIImpl());
+  BikeInfoBloc getBlocInstance() => BikeInfoBloc(BikeRepositoryImpl(DummyCatalogAPIImpl()));
 
   @override
   BikeInfoEvent getEvent() => BikeInfoEvent(this.widget.bike.id);

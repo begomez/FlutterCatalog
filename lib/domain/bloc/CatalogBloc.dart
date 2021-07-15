@@ -2,11 +2,8 @@ import 'dart:async';
 
 import '../../common/ErrorCodes.dart';
 import '../../common/models/catalog/BikeListModel.dart';
-import '../../data/api/ICatalogAPI.dart';
-import '../../data/repo/BikeRepositoryImpl.dart';
-import '../../domain/repo/IBikeRepository.dart';
 import '../../domain/event/CatalogEvent.dart';
-
+import '../../domain/repo/IBikeRepository.dart';
 import 'core/BaseBloc.dart';
 
 
@@ -16,9 +13,7 @@ import 'core/BaseBloc.dart';
 class CatalogBloc extends BaseBloc<CatalogEvent, BikeListModel> {
   IBikeRepository _repo;
 
-  CatalogBloc(ICatalogAPI api) : super() {
-    this._repo = BikeRepositoryImpl(api);
-  }
+  CatalogBloc(this._repo) : super();
 
   @override
   Future<BikeListModel> processEvent(CatalogEvent event) async {
