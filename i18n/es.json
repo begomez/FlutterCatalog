@@ -22,9 +22,9 @@
     "lb_filter" : "Filtrar",
     "lb_model" : "Modelo: ",
 
-    "lb_price" : "Precio: ",
+    "lb_price" : "Precio máximo: ",
     "lb_category" : "Categoría: ",
-    "lb_frame" : "Tamaño de frame: ",
+    "lb_frame" : "Máximo tamaño de frame: ",
     "lb_kg" : "kg",
     "lb_cm" : "cm",
 

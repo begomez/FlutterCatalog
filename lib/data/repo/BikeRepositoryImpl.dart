@@ -170,7 +170,7 @@ List<BikeModel> _filterAndSort(_ComputeDataModel wrapper) {
 
   // BY FRAME SIZE
   if (filter.hasValidFrameSize()) {
-    data = data.where((element) => (filter.frameSize == element.frameSize.size)).toList();
+    data = data.where((element) => (filter.frameSize >= element.frameSize.size)).toList();
   }
 
   // BY PRICE
