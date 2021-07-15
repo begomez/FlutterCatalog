@@ -4,7 +4,7 @@ import '../core/BaseStatefulWidget.dart';
 
 
 /*
- * Widget displayed when loading
+ * Custom loading widget
  */
 class AppLoadingWidget extends BaseStatefulWidget {
   const AppLoadingWidget({Key key}) : super(key: key);

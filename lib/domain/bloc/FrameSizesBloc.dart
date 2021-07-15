@@ -8,7 +8,7 @@ import '../../domain/event/FrameSizesEvent.dart';
 import 'core/BaseBloc.dart';
 
 /*
- * BLoC class that retrieves available frame sizes
+ * BLoC that retrieves available frame sizes and updates subscribed widget
  */
 class FrameSizesBloc extends BaseBloc<FrameSizesEvent, FrameSizeListModel> {
   IBikeRepository _repo;

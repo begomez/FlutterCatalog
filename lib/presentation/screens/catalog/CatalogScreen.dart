@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/models/filters/SettingsModel.dart';
+import '../../../common/models/filters/CatalogSettingsModel.dart';
+
 import '../../app/AppData.dart';
 import '../../widgets/catalog/CatalogMainWidget.dart';
 import '../core/BaseStatelessScreen.dart';
-import '../../utils/AppLocalizations.dart';
-import '../../resources/AppDimens.dart';
 
 
 /*
@@ -23,7 +22,7 @@ class CatalogScreen extends BaseStatelessScreen {
       margin: EdgeInsets.zero,
       child: ValueListenableBuilder(
           valueListenable: AppData.of(context).vSettings,
-          builder: (BuildContext cntxt, SettingsModel settings, Widget child) {
+          builder: (BuildContext cntxt, CatalogSettingsModel settings, Widget child) {
             return CatalogMainWidget(
               order: settings.order,
               filter: settings.filter,

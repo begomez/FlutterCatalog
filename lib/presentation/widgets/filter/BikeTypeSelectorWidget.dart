@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/models/catalog/BikeModel.dart';
+
 import '../../resources/AppValues.dart';
 import '../../resources/AppDimens.dart';
 import '../../resources/AppStyles.dart';
@@ -7,8 +9,6 @@ import '../../utils/AppLocalizations.dart';
 import '../../app/AppData.dart';
 import '../core/BaseStatefulWidget.dart';
 import 'BikeTypeWidget.dart';
-
-import '../../../common/models/catalog/BikeModel.dart';
 
 
 /*
@@ -91,7 +91,7 @@ class _BikeTypeSelectorWidgetState extends BaseState<BikeTypeSelectorWidget> {
     // Rebuild widget to display changes immediately
     this.setState(() {});
 
-    // Save to cache, it will be applied when confirming
+    // Save to cache, it will be applied when confirming/saving
     AppData.of(this.context).saveFilterCache(currentFilterCache.copyWith(categs: this._selectedCategs));
   }
 }

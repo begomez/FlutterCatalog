@@ -13,7 +13,7 @@ import '../../widgets/convenient/AppLoadingWidget.dart';
 
 
 /*
- * Base class for widgets that use BLoC to perform some operation like data retrieval,
+ * Base class for widgets that use BLoC to perform some operation: data retrieval,
  * data storage, etc.
  */
 abstract class BaseBlocWidget<TargetBloc extends BaseBloc>
@@ -65,7 +65,7 @@ abstract class BaseBlocWidgetState<
           alignment: Alignment.center,
           width: double.maxFinite,
           color: Colors.red,
-          child: Text("Call initMixin(params) from constructor()"));
+          child: Text("Call initMixin(params) from constructor()!!!"));
     }
   }
 
@@ -77,7 +77,7 @@ abstract class BaseBlocWidgetState<
 
   @override
   Widget buildError(BuildContext cntxt, ErrorModel err) {
-    return AppErrorWidget();
+    return AppErrorWidget(err: err,);
   }
 
   /*

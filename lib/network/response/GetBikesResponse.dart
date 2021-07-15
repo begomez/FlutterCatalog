@@ -6,7 +6,7 @@ import 'core/BaseResponse.dart';
 
 
 /*
- * Response object used when retrieving a list of bike items from remote server
+ * Response used when retrieving a list of bike items from remote server
  */
 class GetBikesResponse extends BaseResponse {
   final List<BikeModel> data;

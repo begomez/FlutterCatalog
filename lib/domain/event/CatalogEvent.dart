@@ -1,11 +1,11 @@
 import '../../common/models/filters/FilterModel.dart';
-import '../../common/models/catalog/OrderCriteriaModel.dart';
+import '../../common/models/filters/OrderCriteriaModel.dart';
 
 import 'core/BaseEvent.dart';
 
 
 /*
- * Input class used for catalog BLoC
+ * Input class for catalog BLoC
  *
  * @see CatalogBloc
  */

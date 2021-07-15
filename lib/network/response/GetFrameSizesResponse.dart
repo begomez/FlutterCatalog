@@ -1,13 +1,11 @@
-import 'package:flutter_catalog/common/models/MessageModel.dart';
-import 'package:flutter_catalog/common/models/catalog/FrameSizeModel.dart';
-
-import '../../common/models/catalog/OrderCriteriaModel.dart';
+import '../../common/models/MessageModel.dart';
+import '../../common/models/catalog/FrameSizeModel.dart';
 
 import 'core/BaseResponse.dart';
 
 
 /*
- * Response object used when retrieving frame sizes items from remote server
+ * Response used when retrieving frame sizes items from remote server
  */
 class GetFrameSizesResponse extends BaseResponse {
   final List<FrameSizeModel> data;

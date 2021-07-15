@@ -1,7 +1,7 @@
 import 'core/BaseEvent.dart';
 
 /*
- * Input class used for frame sizes BLoC
+ * Input class for frame sizes BLoC
  *
  * @see FrameSizesBloc
  */

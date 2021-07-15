@@ -6,7 +6,7 @@ import '../../../common/models/detail/BikeInfoModel.dart';
 import '../../../domain/bloc/BikeInfoBloc.dart';
 import '../../../domain/event/BikeInfoEvent.dart';
 
-import '../../../network/api/CatalogAPIImpl.dart';
+import '../../../network/api/DummyCatalogAPIImpl.dart';
 
 import '../../resources/AppDimens.dart';
 import '../../resources/AppStyles.dart';
@@ -16,7 +16,6 @@ import '../convenient/AppNoDataWidget.dart';
 import '../core/BaseBlocWidget.dart';
 import 'KeyValueWidget.dart';
 import 'FakeActionsWidget.dart';
-
 
 
 /*
@@ -37,8 +36,13 @@ class BikeAdditionalInfoWidget extends BaseBlocWidget<BikeInfoBloc> {
 /*
  * Companion state class
  */
-class _BikeAdditionalInfoWidgetState extends BaseBlocWidgetState<
-    BikeAdditionalInfoWidget, BikeInfoBloc, BikeInfoEvent, BikeInfoModel> {
+class _BikeAdditionalInfoWidgetState
+    extends BaseBlocWidgetState<
+      BikeAdditionalInfoWidget,
+      BikeInfoBloc,
+      BikeInfoEvent,
+      BikeInfoModel> {
+
   _BikeAdditionalInfoWidgetState() : super();
 
   @override
@@ -109,7 +113,7 @@ class _BikeAdditionalInfoWidgetState extends BaseBlocWidgetState<
   }
 
   @override
-  BikeInfoBloc getBlocInstance() => BikeInfoBloc(CatalogAPIImpl());
+  BikeInfoBloc getBlocInstance() => BikeInfoBloc(DummyCatalogAPIImpl());
 
   @override
   BikeInfoEvent getEvent() => BikeInfoEvent(this.widget.bike.id);

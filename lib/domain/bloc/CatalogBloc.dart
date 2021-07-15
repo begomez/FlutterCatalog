@@ -11,7 +11,7 @@ import 'core/BaseBloc.dart';
 
 
 /*
- * BLoC class that retrieves catalog data
+ * BLoC that retrieves catalog data and updates subscribed widget
  */
 class CatalogBloc extends BaseBloc<CatalogEvent, BikeListModel> {
   IBikeRepository _repo;

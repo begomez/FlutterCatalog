@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../common/models/catalog/FrameSizeModel.dart';
 
-import '../../app/AppData.dart';
 import '../../resources/AppDimens.dart';
 import '../../resources/AppColors.dart';
 import '../../resources/AppStyles.dart';
@@ -25,7 +24,7 @@ class FrameSizeWidget extends BaseStatelessWidget {
   Widget buildWidgetContents(BuildContext context) {
     return Container(
       width: double.maxFinite,
-      height: FrameSizeWidgetDimens.ITEM_HEIGHT,
+      height: _FrameSizeWidgetDimens.ITEM_HEIGHT,
       padding: EdgeInsets.symmetric(horizontal: 4 * AppDimens.MID_SPACING),
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -40,6 +39,6 @@ class FrameSizeWidget extends BaseStatelessWidget {
   }
 }
 
-abstract class FrameSizeWidgetDimens {
+abstract class _FrameSizeWidgetDimens {
   static const ITEM_HEIGHT = 30.0;
 }

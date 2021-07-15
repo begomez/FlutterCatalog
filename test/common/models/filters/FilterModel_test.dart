@@ -7,10 +7,10 @@ import 'package:test/test.dart';
 
 
 void main() {
-  test("When having default filter then valid", () {
+  test("When having default filter then invalid", () {
     final FilterModel filter = FilterModel.defaultFilter();
 
-    expect(filter.validate(), true);
+    expect(filter.validate(), false);
   });
 
   test("When having price then valid", () {

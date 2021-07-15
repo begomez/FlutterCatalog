@@ -9,7 +9,7 @@ import 'core/BaseBloc.dart';
 
 
 /*
- * BLoC class that retrieves prices range
+ * BLoC that retrieves prices range and updates subscribed widget
  */
 class PriceRangeBloc extends BaseBloc<PriceRangeEvent, PriceRangeModel> {
   IBikeRepository _repo;

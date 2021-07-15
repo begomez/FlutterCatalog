@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/models/catalog/OrderCriteriaModel.dart';
+import '../../../common/models/filters/OrderCriteriaModel.dart';
 import '../../../common/models/filters/FilterModel.dart';
 
 import '../../resources/AppDimens.dart';
@@ -10,11 +10,9 @@ import '../AppBarWidget.dart';
 import 'OrderingWidget.dart';
 import 'CatalogListWidget.dart';
 
-
-
 /*
- * Widget containing:
- * - app bar
+ * Wrapper widget containing:
+ * - dynamic app bar
  * - order selector
  * - list of bikes
  */

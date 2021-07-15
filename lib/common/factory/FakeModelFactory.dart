@@ -1,14 +1,12 @@
 import 'dart:math';
 
-import 'package:flutter_catalog/common/models/catalog/FrameSizeModel.dart';
-import 'package:flutter_catalog/common/models/detail/BikeInfoModel.dart';
-
+import '../models/catalog/FrameSizeModel.dart';
+import '../models/detail/BikeInfoModel.dart';
 import '../models/filters/FilterModel.dart';
 import '../models/catalog/BikeModel.dart';
 import '../models/catalog/ImageModel.dart';
 import '../models/MessageModel.dart';
 import '../models/catalog/PaginationModel.dart';
-import '../models/catalog/FrameSizeModel.dart';
 import '../models/catalog/PriceModel.dart';
 import '../models/catalog/PriceRangeModel.dart';
 
@@ -48,7 +46,6 @@ abstract class FakeModelFactory {
   static ImageModel _eBikeImg() =>
     ImageModel(url: "https://www.ruff-cycles.com/pub/media/img-cms/ruff-cycles-pauljrdesigns-ruffian-3.png");
 
-  //https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber_BikeoftheYear_ES_HomepageMarquee?$responsive-pjpg$&cache=on,on&wid=1920
   static ImageModel randomImg() =>
       ImageModel(url: "https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber_BikeoftheYear_ES_HomepageMarquee?");
 
@@ -95,7 +92,7 @@ abstract class FakeModelFactory {
         frameSize: randomFrame().size,
       );
 
-  static List<BikeModel> randomBikes({int num = 20}) =>
+  static List<BikeModel> randomBikes({int num = 25}) =>
     List<BikeModel>.generate(num, (index) => randomBike(id: index));
 
   static BikeModel randomBike({int id = 1}) {

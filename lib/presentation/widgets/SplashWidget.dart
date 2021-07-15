@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -6,6 +5,9 @@ import 'package:flutter/material.dart';
 import '../resources/AppColors.dart';
 import 'core/BaseStatelessWidget.dart';
 
+/*
+ * Widget displayed when launching app
+ */
 class SplashWidget extends BaseStatelessWidget {
 
   const SplashWidget({Key key}) : super(key: key);

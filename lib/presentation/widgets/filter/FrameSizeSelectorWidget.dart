@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../resources/AppDimens.dart';
-import '../../resources/AppStyles.dart';
-import '../../resources/AppValues.dart';
-import '../../utils/AppLocalizations.dart';
-import '../core/BaseBlocWidget.dart';
-import '../../app/AppData.dart';
-import 'FrameSizeWidget.dart';
-
 import '../../../common/models/catalog/FrameSizeListModel.dart';
 import '../../../common/models/catalog/FrameSizeModel.dart';
 
 import '../../../domain/bloc/FrameSizesBloc.dart';
 import '../../../domain/event/FrameSizesEvent.dart';
 
-import '../../../network/api/CatalogAPIImpl.dart';
+import '../../../network/api/DummyCatalogAPIImpl.dart';
+
+import '../../resources/AppDimens.dart';
+import '../../resources/AppStyles.dart';
+import '../../resources/AppValues.dart';
+import '../../utils/AppLocalizations.dart';
+import '../../app/AppData.dart';
+import '../core/BaseBlocWidget.dart';
+import 'FrameSizeWidget.dart';
 
 
 /*
@@ -92,7 +92,7 @@ class _FrameSizeSelectorWidgetState extends BaseBlocWidgetState<FrameSizeSelecto
   }
 
   @override
-  FrameSizesBloc getBlocInstance() => FrameSizesBloc(CatalogAPIImpl());
+  FrameSizesBloc getBlocInstance() => FrameSizesBloc(DummyCatalogAPIImpl());
 
   @override
   FrameSizesEvent getEvent() => FrameSizesEvent();

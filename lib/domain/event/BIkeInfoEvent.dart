@@ -1,7 +1,7 @@
 import 'core/BaseEvent.dart';
 
 /*
- * Input class used for bike info BLoC
+ * Input class for bike info BLoC
  *
  * @see BikeInfoBloc
  */

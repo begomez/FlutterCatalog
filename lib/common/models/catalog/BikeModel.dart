@@ -1,10 +1,12 @@
-import 'package:flutter_catalog/common/models/catalog/FrameSizeModel.dart';
-
+import '../core/BaseModel.dart';
+import 'FrameSizeModel.dart';
 import 'PriceModel.dart';
 import 'ImageModel.dart';
-import '../core/BaseModel.dart';
 
 
+/*
+ * Bike type enumeration
+ */
 enum BikeCategories {UNKNOWN, MOUNTAIN, CITY, ELECTRIC}
 
 extension BikeCategoriesExtension on BikeCategories {
@@ -15,7 +17,6 @@ extension BikeCategoriesExtension on BikeCategories {
  * Data model that represents a bike entity
  */
 class BikeModel extends BaseModel {
-
   final int id;
   final PriceModel price;
   final String name;

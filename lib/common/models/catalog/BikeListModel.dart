@@ -1,11 +1,10 @@
-import 'package:flutter_catalog/common/models/catalog/PaginationModel.dart';
-
-import 'BikeModel.dart';
+import '../catalog/PaginationModel.dart';
 import '../core/BaseModel.dart';
+import 'BikeModel.dart';
 
 
 /*
- * Data model with a collection of bike entities
+ * Data model with a collection of bike entities and pag. info
  */
 class BikeListModel extends BaseModel {
 

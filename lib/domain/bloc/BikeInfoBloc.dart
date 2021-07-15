@@ -1,18 +1,17 @@
-import '../../common/ErrorCodes.dart';
-
 import '../../data/api/ICatalogAPI.dart';
 import '../../data/repo/BikeRepositoryImpl.dart';
 
 import '../../domain/repo/IBikeRepository.dart';
 import '../../domain/event/BikeInfoEvent.dart';
 
+import '../../common/ErrorCodes.dart';
 import '../../common/models/detail/BikeInfoModel.dart';
 
 import 'core/BaseBloc.dart';
 
 
 /*
- * BLoC class that retrieves additional data about a bike
+ * BLoC that retrieves additional data about a bike and updates subscribed widget
  */
 class BikeInfoBloc extends BaseBloc<BikeInfoEvent, BikeInfoModel> {
   IBikeRepository _repo;

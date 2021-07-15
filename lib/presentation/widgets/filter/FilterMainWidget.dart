@@ -11,7 +11,7 @@ import 'PriceRangeWidget.dart';
 
 
 /*
- * Filter main widget
+ * Widget containing different views to filter data
  */
 class FilterMainWidget extends BaseStatelessWidget {
   final FilterModel currentFilter;

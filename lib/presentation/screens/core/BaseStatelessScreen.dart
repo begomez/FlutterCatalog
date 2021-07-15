@@ -5,13 +5,13 @@ import 'ScreenMixin.dart';
 
 /*
  * Base class for screens (containers) with no state
+ *
+ * @see ScreenMixin
  */
 abstract class BaseStatelessScreen extends StatelessWidget with ScreenMixin {
   final String title;
 
   const BaseStatelessScreen({this.title = "", Key key}) : super(key: key);
-
-  // See ScreenMixin
 
   @override
   Widget build(BuildContext context) {

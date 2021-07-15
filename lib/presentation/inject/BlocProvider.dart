@@ -40,6 +40,9 @@ class _BlocProviderState extends State<BlocProvider> {
     return this.widget.child;
   }
 
+  /*
+   * Free resources (streams...)
+   */
   @override
   void dispose() {
     this.widget.bloc.dispose();

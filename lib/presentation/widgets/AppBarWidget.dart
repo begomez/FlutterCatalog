@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/presentation/navigation/AppNavigator.dart';
-import 'package:flutter_catalog/presentation/resources/AppDimens.dart';
-import 'package:flutter_catalog/presentation/resources/AppStyles.dart';
-import 'package:flutter_catalog/presentation/widgets/convenient/AppLoadingWidget.dart';
 
+import '../navigation/AppNavigator.dart';
+import '../resources/AppDimens.dart';
+import '../resources/AppStyles.dart';
+import '../widgets/convenient/AppLoadingWidget.dart';
 import '../utils/AppConstants.dart';
 import '../resources/AppColors.dart';
+
 import 'core/BaseStatelessWidget.dart';
 
 /*

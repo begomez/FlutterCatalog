@@ -1,7 +1,5 @@
 import 'dart:math';
 
-import 'package:mockito/annotations.dart';
-
 import '../../common/factory/FakeModelFactory.dart';
 
 import '../../data/api/ICatalogAPI.dart';
@@ -17,14 +15,15 @@ import '../response/GetBikeInfoResponse.dart';
 
 
 /*
- * Implementation for operations of remote catalog API
+ * Implementation for operations of remote catalog API.
+ * It does not fetch data from a real remote server, instead it uses a factory to create dummy data.
  *
  * @see ICatalogAPI
  */
-class CatalogAPIImpl implements ICatalogAPI {
+class DummyCatalogAPIImpl implements ICatalogAPI {
   final MAX_RESPONSE_TIME_IN_SECS = 3;
 
-  const CatalogAPIImpl();
+  const DummyCatalogAPIImpl();
 
 
   @override

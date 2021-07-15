@@ -1,5 +1,5 @@
-import 'package:flutter_catalog/common/models/catalog/FrameSizeModel.dart';
-import 'package:flutter_catalog/common/models/core/BaseModel.dart';
+import '../catalog/FrameSizeModel.dart';
+import '../core/BaseModel.dart';
 
 /*
  * Data model with a collection of possible frame sizes

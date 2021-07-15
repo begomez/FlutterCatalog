@@ -5,7 +5,7 @@ import 'core/BaseResponse.dart';
 
 
 /*
- * Response object used when getting additional info about an item
+ * Response used when getting additional info about an item
  */
 class GetBikeInfoResponse extends BaseResponse {
   final BikeInfoModel data;

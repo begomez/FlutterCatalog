@@ -5,7 +5,7 @@ import 'core/BaseResponse.dart';
 
 
 /*
- * Response object used when retrieving a price range from remote server
+ * Response used when retrieving a price range from remote server
  */
 class GetPriceRangesResponse extends BaseResponse {
   final PriceRangeModel data;

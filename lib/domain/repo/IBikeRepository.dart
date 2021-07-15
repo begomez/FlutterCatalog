@@ -2,7 +2,7 @@ import '../../common/models/catalog/FrameSizeListModel.dart';
 import '../../common/models/catalog/PriceRangeModel.dart';
 import '../../common/models/detail/BikeInfoModel.dart';
 import '../../common/models/filters/FilterModel.dart';
-import '../../common/models/catalog/OrderCriteriaModel.dart';
+import '../../common/models/filters/OrderCriteriaModel.dart';
 import '../../common/models/catalog/BikeListModel.dart';
 
 
@@ -12,17 +12,17 @@ import '../../common/models/catalog/BikeListModel.dart';
 abstract class IBikeRepository {
 
   /*
-   * Retrieve a list of bike items for the requested page, applying contraints (filter & order) specified
+   * Retrieve a list of bike items for the requested page, applying the constraints (filter & order) specified
    */
   Future<BikeListModel> getBikesForPage(int page, FilterModel filter, OrderCriteriaModel order);
 
   /*
-   * Retrieve a list with all possible frame size
+   * Retrieve a list with all possible frame sizes
    */
   Future<FrameSizeListModel> getAvailableFrameSizes();
 
   /*
-   * Retrieve min and max price in the catalog
+   * Retrieve min and max price in the catalog to create a range
    */
   Future<PriceRangeModel> getPricesRange();
 

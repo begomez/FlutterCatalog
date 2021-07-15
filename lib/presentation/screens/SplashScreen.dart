@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/presentation/widgets/SplashWidget.dart';
 
+import '../widgets/SplashWidget.dart';
 import '../navigation/AppNavigator.dart';
 import 'core/BaseStatelessScreen.dart';
 

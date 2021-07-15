@@ -7,7 +7,6 @@ import '../core/BaseModel.dart';
  * Factory that provides ordering criteria objects
  */
 abstract class OrderCriteriaModelFactory {
-
   static const PRICE_ASC = 1;
   static const PRICE_DESC = 2;
   static const CATEG_ASC = 3;

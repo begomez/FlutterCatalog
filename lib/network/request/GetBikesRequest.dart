@@ -1,11 +1,11 @@
 import '../../common/models/filters/FilterModel.dart';
-import '../../common/models/catalog/OrderCriteriaModel.dart';
+import '../../common/models/filters/OrderCriteriaModel.dart';
 
 import 'core/BaseRequest.dart';
 
 
 /*
- * Request object used to retrieve a list of bike items from remote server
+ * Request used to retrieve a list of bike items from remote server
  */
 class GetBikesRequest extends BaseRequest {
   final int page;

@@ -41,7 +41,7 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
 
     this._ctrl = AnimationController(vsync: this, duration: Duration(seconds: DURATION_IN_SECS));
 
-    this._launchAnim();
+    this._ctrl.forward();
 
     super.initState();
   }
@@ -51,15 +51,6 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
     this._ctrl?.dispose();
 
     super.dispose();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-  void _launchAnim() {
-    this._ctrl.forward();
   }
 
   @override
@@ -73,7 +64,6 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           this._buildImg(context),
-
 
           KeyValueWidget(
             strKey: AppLocalizations.of(context).translate("lb_category"),

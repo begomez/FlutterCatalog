@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../navigation/AppNavigator.dart';
-import '../catalog/CatalogItemWidget.dart';
-import '../convenient/AppNoDataWidget.dart';
-import '../core/BaseBlocWidget.dart';
-
 import '../../../common/models/filters/FilterModel.dart';
-import '../../../common/models/catalog/OrderCriteriaModel.dart';
+import '../../../common/models/filters/OrderCriteriaModel.dart';
 import '../../../common/models/catalog/BikeModel.dart';
 import '../../../common/models/catalog/BikeListModel.dart';
+import '../../../common/models/catalog/PaginationModel.dart';
 
 import '../../../domain/bloc/CatalogBloc.dart';
 import '../../../domain/event/CatalogEvent.dart';
 
-import '../../../network/api/CatalogAPIImpl.dart';
+import '../../../network/api/DummyCatalogAPIImpl.dart';
 
+import '../../navigation/AppNavigator.dart';
+import '../catalog/CatalogItemWidget.dart';
+import '../convenient/AppNoDataWidget.dart';
+import '../core/BaseBlocWidget.dart';
 
 /*
  * Widget displaying a list of bike items
@@ -34,7 +34,7 @@ class CatalogListWidget extends BaseBlocWidget<CatalogBloc> {
  */
 class _CatalogListWidgetState
     extends BaseBlocWidgetState<CatalogListWidget, CatalogBloc, CatalogEvent, BikeListModel> {
-  int currentPage = 1;
+  int _currentPage = PaginationModel.FIRST_PAGE;
 
   _CatalogListWidgetState() : super();
 
@@ -79,11 +79,11 @@ class _CatalogListWidgetState
   }
 
   @override
-  CatalogBloc getBlocInstance() => CatalogBloc(CatalogAPIImpl());
+  CatalogBloc getBlocInstance() => CatalogBloc(DummyCatalogAPIImpl());
 
   @override
   CatalogEvent getEvent() =>
-    CatalogEvent(this.currentPage, this.widget.order, this.widget.filter);
+    CatalogEvent(this._currentPage, this.widget.order, this.widget.filter);
 
   @override
   bool isAutocall() => true;

@@ -2,6 +2,8 @@
 
 Flutter application catalog displaying collection of items
 
+
+
 ## Architecture Overview
 
 Project is structured in the following layers/modules:
@@ -19,6 +21,8 @@ single source).
 
 - NETWORK LAYER performs net connections (either real or fake) with remote server.
 
+
+
 ## About state management
 
 Different state management approaches are implemented in the app, depending on the requirements:
@@ -30,6 +34,8 @@ The global storage component contains info about current ordering criteria and f
 
 - local state for some widgets is persisted using simple state objects.
 
+
+
 ## About data structures
 
 For simplicity, data models are share across all modules, so there is no specific data model per layer.
@@ -39,9 +45,19 @@ use custom viewmodels for the corresponding widgets either.
 Events (in fact just simple Data Transport Object) are used to define use case inputs in domain
 layer and provide type safety.
 
+
+
 ## About requested features
 
-- The app uses a fake/dummy API that generates random data dinamically.
+- The ordering criterias are supposed to be fixed, so they are stored in the app (as opposed to
+being fetched dynamically). For a production ready app they should be dynamic so we can change them
+without redeploying to the app stores.
+
+- The bike types are supposed to be fixed, so they are stored in the app (as opposed to
+being fetched dynamically).
+
+- The app uses a fake/dummy API that generates random data dinamically. When applying filters, if
+being so restrictive, then could be no generated data matching the criteria, so we have to try again.
 
 - Considering that in a production environment the catalog would contain thousands of items, filtering
 and ordering should be implemented in the backend. Since there is no backend support, these operations
@@ -49,17 +65,25 @@ are implemented in the app, inside the DATA layer. Why? Because then we would be
 when working with different data sources. Nevertheless, as mentioned before, it should be implemented
 in the server-side, not the client.
 
+
+
 ## About testing
 
 The app contains several unit tests in the "test" directory.
 
+
+
+## Build & run
+
+flutter pub get
+flutter run --debug
+
+
+
 ## Code generation commands
 
-- Mockito auto generated classes:
+- Mockito auto generated classes (one of the following cmd):
 flutter packages pub run build_runner build --delete-conflicting-ouputs
-
-or
-
 dart run build_runner build
 
 - Launcher icons:

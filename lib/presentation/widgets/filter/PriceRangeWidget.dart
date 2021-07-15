@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import '../../../common/models/catalog/PriceRangeModel.dart';
+import '../../../common/models/catalog/PriceModel.dart';
+
+import '../../../domain/bloc/PriceRangeBloc.dart';
+import '../../../domain/event/PriceRangeEvent.dart';
+
+import '../../../network/api/DummyCatalogAPIImpl.dart';
+
 import '../../app/AppData.dart';
 import '../../resources/AppValues.dart';
 import '../../resources/AppStyles.dart';
@@ -8,13 +16,6 @@ import '../../resources/AppDimens.dart';
 import '../../resources/AppColors.dart';
 import '../../utils/AppLocalizations.dart';
 import '../core/BaseBlocWidget.dart';
-
-import '../../../common/models/catalog/PriceRangeModel.dart';
-import '../../../common/models/catalog/PriceModel.dart';
-
-import '../../../domain/bloc/PriceRangeBloc.dart';
-import '../../../domain/event/PriceRangeEvent.dart';
-import '../../../network/api/CatalogAPIImpl.dart';
 
 
 /*
@@ -119,7 +120,7 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
   }
 
   @override
-  PriceRangeBloc getBlocInstance() => PriceRangeBloc(CatalogAPIImpl());
+  PriceRangeBloc getBlocInstance() => PriceRangeBloc(DummyCatalogAPIImpl());
 
   @override
   PriceRangeEvent getEvent() => PriceRangeEvent();

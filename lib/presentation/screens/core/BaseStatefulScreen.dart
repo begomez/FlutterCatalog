@@ -18,13 +18,13 @@ abstract class BaseStatefulScreen extends StatefulWidget {
  * It is a generic class:
  *
  * - TargetScreen: data type for the widget binded to this class
+ *
+ * @see ScreenMixin
  */
 abstract class BaseStatefulScreenState<TargetScreen extends BaseStatefulScreen>
     extends State<TargetScreen> with ScreenMixin {
 
   BaseStatefulScreenState() : super();
-
-  // See ScreenMixin
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,8 @@
-import 'package:flutter_catalog/common/models/core/BaseModel.dart';
+import '../core/BaseModel.dart';
 
-
+/*
+ * Enum with available price categories
+ */
 enum PriceRanges {AFFORDABLE, MID, EXPENSIVE}
 
 /*

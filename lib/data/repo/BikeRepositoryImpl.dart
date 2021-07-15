@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';//-> compute()
 
 import '../../common/models/catalog/BikeModel.dart';
 import '../../common/models/detail/BikeInfoModel.dart';
@@ -8,7 +7,7 @@ import '../../common/models/catalog/FrameSizeListModel.dart';
 import '../../common/models/catalog/PriceRangeModel.dart';
 import '../../common/models/catalog/BikeListModel.dart';
 import '../../common/models/filters/FilterModel.dart';
-import '../../common/models/catalog/OrderCriteriaModel.dart';
+import '../../common/models/filters/OrderCriteriaModel.dart';
 import '../../common/utils/AppLogger.dart';
 
 import '../../domain/repo/IBikeRepository.dart';

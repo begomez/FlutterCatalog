@@ -9,7 +9,7 @@ import '../core/BaseStatelessWidget.dart';
 
 
 /*
- * Widget displaying a bike card item
+ * Widget displaying a bike card item inside the product list
  */
 class CatalogItemWidget extends BaseStatelessWidget {
   final Function(BikeModel) onItemClicked;

@@ -1,5 +1,5 @@
 import 'package:flutter_catalog/data/api/ICatalogAPI.dart';
-import 'package:flutter_catalog/network/api/CatalogAPIImpl.dart';
+import 'package:flutter_catalog/network/api/DummyCatalogAPIImpl.dart';
 import 'package:flutter_catalog/network/request/GetBikeInfoRequest.dart';
 import 'package:flutter_catalog/network/response/GetBikeInfoResponse.dart';
 import 'package:test/test.dart';
@@ -9,7 +9,7 @@ void main() {
   ICatalogAPI api;
 
   setUp(() {
-    api = CatalogAPIImpl();
+    api = DummyCatalogAPIImpl();
   });
 
   test("When getting bike info response", () async {

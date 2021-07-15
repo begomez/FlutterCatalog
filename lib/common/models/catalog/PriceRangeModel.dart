@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'PriceModel.dart';
 import '../core/BaseModel.dart';
+import 'PriceModel.dart';
 
 
 /*

@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 import 'package:flutter_catalog/data/repo/BikeRepositoryImpl.dart' as _i3;
-import 'package:flutter_catalog/network/api/CatalogAPIImpl.dart' as _i2;
+import 'package:flutter_catalog/network/api/DummyCatalogAPIImpl.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: comment_references
@@ -16,7 +16,7 @@ import 'package:mockito/mockito.dart' as _i1;
 /// A class which mocks [CatalogAPIImpl].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCatalogAPIImpl extends _i1.Mock implements _i2.CatalogAPIImpl {
+class MockCatalogAPIImpl extends _i1.Mock implements _i2.DummyCatalogAPIImpl {
   MockCatalogAPIImpl() {
     _i1.throwOnMissingStub(this);
   }

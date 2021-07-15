@@ -1,8 +1,7 @@
-import 'package:flutter_catalog/common/models/core/BaseModel.dart';
-
+import '../core/BaseModel.dart';
 
 /*
- * Data model that encapsulates info about remote pictures
+ * Data model that encapsulates a photo URL
  */
 class ImageModel extends BaseModel {
   final String url;

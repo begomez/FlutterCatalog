@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'PriceModel.dart';
-import 'ImageModel.dart';
 import '../core/BaseModel.dart';
 
-
+/*
+ * Data model with size and unit for a bike frame
+ */
 class FrameSizeModel extends BaseModel {
   static const DEFAULT_UNIT = "cm";
   static const NO_FRAME_SIZE = 0;

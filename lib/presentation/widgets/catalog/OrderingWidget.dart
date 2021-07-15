@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/models/catalog/OrderCriteriaModel.dart';
+import '../../../common/models/filters/OrderCriteriaModel.dart';
 
 import '../../resources/AppDimens.dart';
 import '../../resources/AppColors.dart';
 import '../../resources/AppStyles.dart';
 import '../../resources/CatalogStyles.dart';
 import '../../utils/AppLocalizations.dart';
-import '../core/BaseStatelessWidget.dart';
 import '../../app/AppData.dart';
+import '../core/BaseStatelessWidget.dart';
 
 
 /*
@@ -23,7 +23,7 @@ class OrderingWidget extends BaseStatelessWidget {
   @override
   Widget buildWidgetContents(BuildContext context) {
     return Container(
-      height: OrderingWidgetDimens.ORDER_WIDGET_HEIGHT,
+      height: _OrderingWidgetDimens.ORDER_WIDGET_HEIGHT,
       child: this._buildRowContents(context),
     );
   }
@@ -42,7 +42,7 @@ class OrderingWidget extends BaseStatelessWidget {
   }
 
   Widget _buildDivider(BuildContext cntxt) {
-    return Container(height: OrderingWidgetDimens.SEP_H, color: AppColors.primary,);
+    return Container(height: _OrderingWidgetDimens.SEP_H, color: AppColors.primary,);
   }
 
   Widget _buildHint(BuildContext cntxt) {
@@ -84,10 +84,7 @@ class OrderingWidget extends BaseStatelessWidget {
   }
 }
 
-/*
- * UI constants
- */
-abstract class OrderingWidgetDimens {
+abstract class _OrderingWidgetDimens {
   static const SEP_H = 1.0;
   static const ORDER_WIDGET_HEIGHT = 50.0;
 }

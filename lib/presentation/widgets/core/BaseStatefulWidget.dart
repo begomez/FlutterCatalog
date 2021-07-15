@@ -14,9 +14,13 @@ abstract class BaseStatefulWidget extends StatefulWidget {
 
 /*
  * Companion state class
+ *
+ * It is a generic class receiving:
+ *
+ * - TargetWidget: data type for widget binded to this state obj
  */
-abstract class BaseState<T extends BaseStatefulWidget>
-    extends State<T> {
+abstract class BaseState<TargetWidget extends BaseStatefulWidget>
+    extends State<TargetWidget> {
   BaseState() : super();
 
   @override
@@ -24,7 +28,7 @@ abstract class BaseState<T extends BaseStatefulWidget>
     return this.buildWidgetContents(context);
   }
 
-  /**
+  /*
    * Returns widget contents.
    * 
    * Must be overriden by children
