@@ -56,14 +56,26 @@ without redeploying to the app stores.
 - The bike types are supposed to be fixed, so they are stored in the app (as opposed to
 being fetched dynamically).
 
-- The app uses a fake/dummy API that generates random data dinamically. When applying filters, if
-being so restrictive, then could be no generated data matching the criteria, so we have to try again.
-
 - Considering that in a production environment the catalog would contain thousands of items, filtering
 and ordering should be implemented in the backend. Since there is no backend support, these operations
 are implemented in the app, inside the DATA layer. Why? Because then we would be able to reuse this logic
-when working with different data sources. Nevertheless, as mentioned before, it should be implemented
-in the server-side, not the client.
+when working with different data sources or BLoC. The operation is performed on a different isolate so
+UI thread is not blocked. Nevertheless, as mentioned before, it should be implemented in the server-side,
+not the client.
+
+- The app uses a fake/dummy API that generates random data dinamically. That is important since the
+behavior is not the one we would get when working with a real remote server. For instance:
+
+* every time the ordering criteria changes, a new set of dummy data is generated.
+
+* every time the filters change, a new set of dummy data is generated.
+
+* when applying filters, if being so restrictive, then could be no generated data matching the criteria,
+so we have to try again or reset them.
+
+* after applying filters, if we order the data, we will be generating a new set of data, so resulting data
+will match the criteria for order and filter too, but probably will not be the same data we were seeing
+previously.
 
 
 
