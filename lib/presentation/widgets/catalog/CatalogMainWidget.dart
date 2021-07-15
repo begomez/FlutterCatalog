@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../common/models/filters/OrderCriteriaModel.dart';
 import '../../../common/models/filters/FilterModel.dart';
 
+import '../../app/AppData.dart';
 import '../../resources/AppDimens.dart';
-import '../core/BaseStatelessWidget.dart';
 import '../../utils/AppLocalizations.dart';
+
+import '../core/BaseStatelessWidget.dart';
 import '../AppBarWidget.dart';
 import 'OrderingWidget.dart';
 import 'CatalogListWidget.dart';
@@ -51,6 +53,12 @@ class CatalogMainWidget extends BaseStatelessWidget {
         // list
         SliverToBoxAdapter(child: CatalogListWidget(order: this.order, filter: this.filter))
       ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          AppData.of(context).updateFilter(AppData.of(context).vSettings.value.filter);
+        },
+        child: Icon(Icons.refresh),
+      ),
     );
   }
 }
