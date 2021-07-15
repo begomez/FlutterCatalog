@@ -61,10 +61,10 @@ class CatalogItemWidget extends BaseStatelessWidget {
       position: DecorationPosition.foreground,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          stops: [0.0, 0.5, 1.0],
-          begin: Alignment.bottomLeft,
+          stops: [0.0, 0.70, 1.0],
+          begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [AppColors.trans, AppColors.trans, Colors.grey],
+          colors: [AppColors.trans, AppColors.trans, AppColors.grey],
         ),
       ),
       child: this._buildImg(cntxt),

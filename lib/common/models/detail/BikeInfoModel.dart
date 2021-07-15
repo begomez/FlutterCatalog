@@ -25,7 +25,7 @@ class BikeInfoModel extends BaseModel {
 
   bool hasRearLight() => this.rearLight;
 
-  String get formattedWeight => this.weight.toStringAsFixed(NUM_DECIMALS);
+  String getFormattedWeight(String suffix) => this.weight.toStringAsFixed(NUM_DECIMALS) + suffix;
 
-  String get formattedWheelSize => this.wheelSize.toStringAsFixed(NUM_DECIMALS);
+  String getFormattedWheelSize(String suffix) => this.wheelSize.toStringAsFixed(NUM_DECIMALS) + suffix;
 }

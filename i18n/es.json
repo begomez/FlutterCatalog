@@ -25,6 +25,8 @@
     "lb_price" : "Precio: ",
     "lb_category" : "Categoría: ",
     "lb_frame" : "Tamaño de frame: ",
+    "lb_kg" : "kg",
+    "lb_cm" : "cm",
 
     "info_overview" : "Información",
     "info_weight" : "Peso:",

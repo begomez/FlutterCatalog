@@ -52,7 +52,7 @@ class FakeActionsWidget extends BaseStatelessWidget {
   }
 
   Widget _buildIcon(BuildContext cntxt, IconData data) {
-    return IconButton(icon: Icon(data), color: AppColors.primary, onPressed: () {
+    return IconButton(icon: Icon(data), color: AppColors.primaryDark, onPressed: () {
       AppWidgetFactory.notAvailable(cntxt);
     },);
   }

@@ -64,11 +64,11 @@ class _BikeAdditionalInfoWidgetState extends BaseBlocWidgetState<
             this._buildDescrip(cntxt, data.descrip),
             KeyValueWidget(
               strKey: AppLocalizations.of(cntxt).translate("info_weight"),
-              strValue: data.formattedWeight,
+              strValue: data.getFormattedWeight(AppLocalizations.of(cntxt).translate("lb_kg")),
             ),
             KeyValueWidget(
               strKey: AppLocalizations.of(cntxt).translate("info_wheel_size"),
-              strValue: data.formattedWheelSize,
+              strValue: data.getFormattedWheelSize(AppLocalizations.of(cntxt).translate("lb_cm")),
             ),
             KeyValueWidget(
               strKey: AppLocalizations.of(cntxt).translate("info_lights"),
