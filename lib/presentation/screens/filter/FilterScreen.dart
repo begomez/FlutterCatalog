@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/models/filters/FilterModel.dart';
 import '../../app/AppData.dart';
-import '../../widgets/factory/AppWidgetFactory.dart';
 import '../../widgets/filter/FilterMainWidget.dart';
 import '../../utils/AppLocalizations.dart';
 import '../core/BaseStatelessScreen.dart';
@@ -16,7 +16,9 @@ class FilterScreen extends BaseStatelessScreen {
 
   @override
   Widget buildScreenContents(BuildContext context) {
-      return FilterMainWidget(currentFilter: AppData.of(context).vSettings.value.filter);
+      return ValueListenableBuilder(
+          valueListenable: AppData.of(context).vSettings,
+          builder: (cntxt, value, child) => FilterMainWidget(key: UniqueKey(), currentFilter: value.filter));
   }
   
   @override
@@ -25,8 +27,13 @@ class FilterScreen extends BaseStatelessScreen {
   @override
   List<Widget> getBarActions(BuildContext cntxt) => [
     IconButton(icon: Icon(Icons.autorenew), iconSize: ScreenDimens.BAR_ICON_SIZE, onPressed: () {
-      AppWidgetFactory.notAvailable(cntxt);
-    },)
+      AppData.of(cntxt).updateFilter(FilterModel.defaultFilter());
+    },),
+
+    IconButton(icon: Icon(Icons.save), iconSize: ScreenDimens.BAR_ICON_SIZE, onPressed: () {
+      AppData.of(cntxt).applyFilterCache();
+      Navigator.of(cntxt).pop();
+    },),
   ];
 }
 
