@@ -43,7 +43,6 @@ class FakeActionsWidget extends BaseStatelessWidget {
 
   Widget _buildMainAction(BuildContext cntxt) {
     return AppWidgetFactory.buildBtn(
-      color: AppColors.primaryDark,
       text: AppLocalizations.of(cntxt).translate("action_buy"),
       callback: () {
         AppWidgetFactory.notAvailable(cntxt);

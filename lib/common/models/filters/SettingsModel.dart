@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'FilterModel.dart';
 import '../catalog/OrderCriteriaModel.dart';
 import '../core/BaseModel.dart';
+import 'FilterModel.dart';
 
 
 /*
@@ -10,17 +9,19 @@ import '../core/BaseModel.dart';
 class SettingsModel extends BaseModel {
   final FilterModel filter;
   final OrderCriteriaModel order;
+  final int timestamp;
 
-  const SettingsModel(this.filter, this.order) : super();
+  const SettingsModel(this.filter, this.order, {this.timestamp = 0}) : super();
 
   factory SettingsModel.defaultSettings() =>
       SettingsModel(
           FilterModel.defaultFilter(),
-          OrderCriteriaModelFactory.defaultCriteria()
+          OrderCriteriaModelFactory.defaultCriteria(),
+          timestamp: DateTime.now().millisecondsSinceEpoch
       );
 
   SettingsModel copyWith({FilterModel filter, OrderCriteriaModel order}) {
-    return SettingsModel(filter?? this.filter, order?? this.order);
+    return SettingsModel(filter?? this.filter, order?? this.order, timestamp: DateTime.now().millisecondsSinceEpoch);
   }
 
   @override
@@ -29,8 +30,9 @@ class SettingsModel extends BaseModel {
       other is SettingsModel &&
           runtimeType == other.runtimeType &&
           filter == other.filter &&
-          order == other.order;
+          order == other.order &&
+          timestamp == other.timestamp;
 
   @override
-  int get hashCode => filter.hashCode ^ order.hashCode;
+  int get hashCode => filter.hashCode ^ order.hashCode ^ timestamp.hashCode;
 }

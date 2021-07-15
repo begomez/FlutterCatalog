@@ -72,9 +72,15 @@ abstract class AppWidgetFactory {
           title: Text(strTitle),
           content: Text(strContent),
           actions: [
-            ElevatedButton(onPressed: () {
-              action?.call();
-            }, child: Text(strAction, maxLines: AppValues.ONE_LINE,))
+            ElevatedButton(
+              onPressed: () {
+                action?.call();
+              },
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(AppColors.primaryDark),
+                backgroundColor: MaterialStateProperty.all<Color>(AppColors.accent)
+              ),
+              child: Text(strAction.toUpperCase(), maxLines: AppValues.ONE_LINE,))
           ],
         );
       }
@@ -94,7 +100,7 @@ abstract class AppWidgetFactory {
       child: MaterialButton(
           color: color,
           child: Text(
-            text,
+            text.toUpperCase(),
             style: style,
           ),
           onPressed: callback.call),

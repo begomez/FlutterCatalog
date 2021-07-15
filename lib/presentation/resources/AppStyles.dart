@@ -41,9 +41,9 @@ abstract class AppStyles {
 
   static TextStyle get action => TextStyle(
         color: AppColors.actionColor,
-        fontSize: 11,
+        fontSize: 12,
         fontStyle: FontStyle.normal,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.bold,
       );
 
   static TextTheme get appThemeText =>

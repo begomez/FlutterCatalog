@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../resources/AppDimens.dart';
 import '../../navigation/AppNavigator.dart';
 import '../catalog/CatalogItemWidget.dart';
 import '../convenient/AppNoDataWidget.dart';

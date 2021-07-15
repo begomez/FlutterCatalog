@@ -3,13 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../common/models/catalog/FrameSizeModel.dart';
 import '../../../common/models/catalog/PriceModel.dart';
 import '../../../common/models/filters/FilterModel.dart';
-
-import '../../app/AppData.dart';
 import '../../resources/AppDimens.dart';
-import '../../resources/AppStyles.dart';
-import '../../utils/AppLocalizations.dart';
 import '../core/BaseStatelessWidget.dart';
-import '../factory/AppWidgetFactory.dart';
 import 'BikeTypeSelectorWidget.dart';
 import 'FrameSizeSelectorWidget.dart';
 import 'PriceRangeWidget.dart';
@@ -42,8 +37,6 @@ class FilterMainWidget extends BaseStatelessWidget {
               this._buildPriceSlider(context),
 
               Expanded(child: this._buildFrameSizeSelector(context)),
-
-              this._buildAction(context)
             ],
           ),
         ),
@@ -74,18 +67,5 @@ class FilterMainWidget extends BaseStatelessWidget {
     return FrameSizeSelectorWidget(
         key: ValueKey(currentFrame.hashCode),
         currentSelection: currentFrame != FrameSizeModel.NO_FRAME_SIZE? FrameSizeModel.forSize(currentFrame) : null);
-  }
-
-  Widget _buildAction(BuildContext cntxt) {
-    return AppWidgetFactory.buildBtn(
-        text: AppLocalizations.of(cntxt).translate("action_close"),
-        callback: () {
-
-          // Update filters only when confirming, by applying temporary selection stored
-          AppData.of(cntxt).applyFilterCache();
-          Navigator.of(cntxt).pop();
-        },
-        style: AppStyles.action
-    );
   }
 }

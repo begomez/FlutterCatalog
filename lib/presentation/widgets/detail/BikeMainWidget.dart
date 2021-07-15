@@ -113,7 +113,7 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
                   AppWidgetFactory.showBottomInfo(
                     context: cntxt,
                     child: BikeAdditionalInfoWidget(bike: this.widget.bike),
-                    color: AppColors.accent,
+                    color: AppColors.accentLight,
                     height: MediaQuery.of(cntxt).size.height * 4/5,
                     onClose: () {
                       Navigator.of(cntxt).pop();

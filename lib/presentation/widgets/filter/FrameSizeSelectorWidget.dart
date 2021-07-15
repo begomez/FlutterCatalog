@@ -74,7 +74,7 @@ class _FrameSizeSelectorWidgetState extends BaseBlocWidgetState<FrameSizeSelecto
 
   List<Widget> _buildCollapsibleItems(List<FrameSizeModel> frames) {
     return frames.map((e) =>
-      GestureDetector(
+      InkWell(
         onTap: () {
           this._onItemClicked(e);
         },

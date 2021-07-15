@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/models/catalog/BikeModel.dart';
+import '../../../common/models/detail/BikeInfoModel.dart';
+
+import '../../../domain/bloc/BikeInfoBloc.dart';
+import '../../../domain/event/BikeInfoEvent.dart';
+
+import '../../../network/api/CatalogAPIImpl.dart';
+
 import '../../resources/AppDimens.dart';
 import '../../resources/AppStyles.dart';
 import '../../resources/AppValues.dart';
@@ -9,13 +17,7 @@ import '../core/BaseBlocWidget.dart';
 import 'KeyValueWidget.dart';
 import 'FakeActionsWidget.dart';
 
-import '../../../common/models/catalog/BikeModel.dart';
-import '../../../common/models/detail/BikeInfoModel.dart';
 
-import '../../../domain/bloc/BikeInfoBloc.dart';
-import '../../../domain/event/BikeInfoEvent.dart';
-
-import '../../../network/api/CatalogAPIImpl.dart';
 
 /*
  * Widget that displays additional data about an item

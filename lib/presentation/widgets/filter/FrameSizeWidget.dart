@@ -24,16 +24,16 @@ class FrameSizeWidget extends BaseStatelessWidget {
   @override
   Widget buildWidgetContents(BuildContext context) {
     return Container(
+      width: double.maxFinite,
       height: FrameSizeWidgetDimens.ITEM_HEIGHT,
-      margin: EdgeInsets.only(left: AppDimens.BIG_SPACING),
-      //padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
+      padding: EdgeInsets.symmetric(horizontal: 4 * AppDimens.MID_SPACING),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Visibility(visible: this.selected, child: Icon(Icons.check, color: AppColors.primaryDark,)),
           Text(this.frame.toString(), maxLines: AppValues.ONE_LINE, style: AppStyles.body,),
-          Visibility(visible: this.selected, child: Icon(Icons.check, color: AppColors.primaryDark,))
         ],
       ),
     );
