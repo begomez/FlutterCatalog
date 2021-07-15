@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../resources/AppColors.dart';
 
 /*
  * Mixin used in order to provide a common API for screen layout operations
@@ -28,7 +29,11 @@ mixin ScreenMixin {
 
     if (title.isNotEmpty) {
       return AppBar(
-        title: Text(title),
+        iconTheme: IconThemeData(
+          color: AppColors.white,
+        ),
+        title: Text(title, style: TextStyle(color: AppColors.white,)),
+        foregroundColor: AppColors.white,
         automaticallyImplyLeading: this.leading,
         actions: this.getBarActions(cntxt),
       );
