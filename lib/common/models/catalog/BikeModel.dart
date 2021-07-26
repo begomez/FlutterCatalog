@@ -3,11 +3,10 @@ import 'FrameSizeModel.dart';
 import 'PriceModel.dart';
 import 'ImageModel.dart';
 
-
 /*
  * Bike type enumeration
  */
-enum BikeCategories {UNKNOWN, MOUNTAIN, CITY, ELECTRIC}
+enum BikeCategories { UNKNOWN, MOUNTAIN, CITY, ELECTRIC }
 
 extension BikeCategoriesExtension on BikeCategories {
   String toShortString() => this.toString().replaceAll("BikeCategories.", "");
@@ -24,7 +23,15 @@ class BikeModel extends BaseModel {
   final BikeCategories categ;
   final FrameSizeModel frameSize;
 
-  const BikeModel({this.id = BaseModel.NO_ID, this.price = const PriceModel(), this.name = "", this.mainImg = const ImageModel(), this.categ = BikeCategories.UNKNOWN, this.frameSize = const FrameSizeModel(size: FrameSizeModel.MIN_FRAME_SIZE)}) : super();
+  const BikeModel(
+      {this.id = BaseModel.NO_ID,
+      this.price = const PriceModel(),
+      this.name = "",
+      this.mainImg = const ImageModel(),
+      this.categ = BikeCategories.UNKNOWN,
+      this.frameSize =
+          const FrameSizeModel(size: FrameSizeModel.MIN_FRAME_SIZE)})
+      : super();
 
   @override
   bool validate() {

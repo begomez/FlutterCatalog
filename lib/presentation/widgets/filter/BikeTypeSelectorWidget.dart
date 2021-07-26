@@ -16,7 +16,7 @@ import 'BikeTypeWidget.dart';
 class BikeTypeSelectorWidget extends BaseStatefulWidget {
   final List<BikeCategories> currentSelection;
 
-  BikeTypeSelectorWidget({this.currentSelection = const [], Key key})
+  const BikeTypeSelectorWidget({this.currentSelection = const [], Key key})
       : super(key: key);
 
   @override

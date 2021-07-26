@@ -9,7 +9,6 @@ import 'core/BaseStatelessWidget.dart';
  * Widget displayed when launching app
  */
 class SplashWidget extends BaseStatelessWidget {
-
   const SplashWidget({Key key}) : super(key: key);
 
   @override
@@ -35,5 +34,4 @@ class SplashWidget extends BaseStatelessWidget {
       child: Image.asset("assets/images/splash.png"),
     );
   }
-
 }

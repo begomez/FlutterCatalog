@@ -24,10 +24,10 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
   BaseBloc();
 
   /*
-   * Performs bloc's main operation (data retrieval, data storage...) using based
-   * on input parameter
+   * Performs bloc's main operation (data retrieval, data storage...) according
+   * to input parameters
    * 
-   * @param event Object containing operation parameters
+   * @param event Object containing operation input parameters
    */
   void performOperation(Input event) async {
     var result;
@@ -54,7 +54,7 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
   Future<Output> processEvent(Input event);
 
   /*
-   * Returns a specific error code for this operation.
+   * Returns a specific error code for the operation.
    *
    * Should be overriden by children.
    */

@@ -4,12 +4,10 @@ import '../widgets/SplashWidget.dart';
 import '../navigation/AppNavigator.dart';
 import 'core/BaseStatelessScreen.dart';
 
-
 /*
  * Initial/launch screen
  */
 class SplashScreen extends BaseStatelessScreen {
-
   const SplashScreen({String title = "", Key key})
       : super(title: title, key: key);
 

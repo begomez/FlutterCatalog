@@ -16,7 +16,7 @@ abstract class OrderCriteriaModelFactory {
           {@required String lbPriceAsc,
           @required String lbPriceDesc,
           @required String lbCategAsc,
-          @required lbNameAsc}) =>
+          @required String lbNameAsc}) =>
       [
         priceAscending(lbPriceAsc),
         priceDescending(lbPriceDesc),
@@ -24,7 +24,8 @@ abstract class OrderCriteriaModelFactory {
         nameAscending(lbNameAsc),
       ];
 
-  static OrderCriteriaModel defaultCriteria() => priceAscending("Price asc.");
+  static OrderCriteriaModel defaultCriteria() =>
+      OrderCriteriaModel.priceAscending("Price asc.");
 
   static OrderCriteriaModel priceAscending(String lbPriceAsc) =>
       OrderCriteriaModel.priceAscending(lbPriceAsc);

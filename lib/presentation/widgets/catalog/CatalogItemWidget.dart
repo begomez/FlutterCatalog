@@ -7,7 +7,6 @@ import '../../resources/AppStyles.dart';
 import '../../resources/CatalogStyles.dart';
 import '../core/BaseStatelessWidget.dart';
 
-
 /*
  * Widget displaying a bike card item inside the product list
  */
@@ -16,7 +15,8 @@ class CatalogItemWidget extends BaseStatelessWidget {
   final BikeModel item;
 
   const CatalogItemWidget(this.onItemClicked, this.item, {Key key})
-      : super(key: key);
+      : assert(item != null),
+        super(key: key);
 
   @override
   Widget buildWidgetContents(BuildContext context) {
@@ -31,22 +31,20 @@ class CatalogItemWidget extends BaseStatelessWidget {
           child: SizedBox(
             width: double.maxFinite,
             height: _ItemWidgetDimens.HEIGHT,
-            child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  this._buildDecoration(context),
-                  Positioned(top: 0, right: 0, child: this._buildPrice()),
-                  Positioned(bottom: 0, right: 0, child: this._buildName()),
-                  Positioned(top: 0, left: 0, child: this._buildTypeBadge(this.item.categ))
-                ]
-            ),
+            child: Stack(fit: StackFit.expand, children: [
+              this._buildDecoration(context),
+              Positioned(top: 0, right: 0, child: this._buildPrice()),
+              Positioned(bottom: 0, right: 0, child: this._buildName()),
+              Positioned(
+                  top: 0, left: 0, child: this._buildBadge(this.item.categ))
+            ]),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildTypeBadge(BikeCategories categ) {
+  Widget _buildBadge(BikeCategories categ) {
     return Banner(
       location: BannerLocation.topStart,
       message: categ.toShortString(),
@@ -85,11 +83,20 @@ class CatalogItemWidget extends BaseStatelessWidget {
   }
 
   Widget _buildName() {
-    return Padding(padding: EdgeInsets.all(AppDimens.SMALL_SPACING), child: Text(this.item.name.toUpperCase(), style: AppStyles.titleWhite,));
+    return Padding(
+        padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
+        child: Text(
+          this.item.name.toUpperCase(),
+          style: AppStyles.titleWhite,
+        ));
   }
 
   Widget _buildPrice() {
-    return Container(color: AppColors.accentLight, padding:EdgeInsets.all(AppDimens.SMALL_SPACING), child: Text(this.item.price.toString()),);
+    return Container(
+      color: AppColors.accentLight,
+      padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
+      child: Text(this.item.price.toString()),
+    );
   }
 }
 
