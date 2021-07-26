@@ -10,17 +10,18 @@ import '../../app/AppData.dart';
 import '../core/BaseStatefulWidget.dart';
 import 'BikeTypeWidget.dart';
 
-
 /*
  * Widget that allows user selecting different bike categories
  */
 class BikeTypeSelectorWidget extends BaseStatefulWidget {
   final List<BikeCategories> currentSelection;
 
-  BikeTypeSelectorWidget({this.currentSelection = const [], Key key}) : super(key: key);
+  BikeTypeSelectorWidget({this.currentSelection = const [], Key key})
+      : super(key: key);
 
   @override
-  BaseState<BaseStatefulWidget> createState() => _BikeTypeSelectorWidgetState(this.currentSelection);
+  BaseState<BaseStatefulWidget> createState() =>
+      _BikeTypeSelectorWidgetState(this.currentSelection);
 }
 
 /*
@@ -49,7 +50,12 @@ class _BikeTypeSelectorWidgetState extends BaseState<BikeTypeSelectorWidget> {
     );
   }
 
-  Widget _buildTitle(BuildContext cntxt) => Text(AppLocalizations.of(cntxt).translate("lb_category"), style: AppStyles.title,  textAlign: TextAlign.start, maxLines: AppValues.ONE_LINE,);
+  Widget _buildTitle(BuildContext cntxt) => Text(
+        AppLocalizations.of(cntxt).translate("lb_category"),
+        style: AppStyles.title,
+        textAlign: TextAlign.start,
+        maxLines: AppValues.ONE_LINE,
+      );
 
   Widget _buildSelector(BuildContext cntxt, List<BikeCategories> categs) {
     return Row(
@@ -57,9 +63,15 @@ class _BikeTypeSelectorWidgetState extends BaseState<BikeTypeSelectorWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        this._buildItem(categ: BikeCategories.CITY, selected: this._selectedCategs.contains(BikeCategories.CITY)),
-        this._buildItem(categ: BikeCategories.MOUNTAIN, selected: this._selectedCategs.contains(BikeCategories.MOUNTAIN)),
-        this._buildItem(categ: BikeCategories.ELECTRIC, selected: this._selectedCategs.contains(BikeCategories.ELECTRIC)),
+        this._buildItem(
+            categ: BikeCategories.CITY,
+            selected: this._selectedCategs.contains(BikeCategories.CITY)),
+        this._buildItem(
+            categ: BikeCategories.MOUNTAIN,
+            selected: this._selectedCategs.contains(BikeCategories.MOUNTAIN)),
+        this._buildItem(
+            categ: BikeCategories.ELECTRIC,
+            selected: this._selectedCategs.contains(BikeCategories.ELECTRIC)),
       ],
     );
   }
@@ -81,17 +93,17 @@ class _BikeTypeSelectorWidgetState extends BaseState<BikeTypeSelectorWidget> {
   void _onItemClicked(BikeCategories categ) {
     final currentFilterCache = AppData.of(this.context).filterCache;
 
-    if (this._selectedCategs.contains(categ)) {
-      this._selectedCategs.remove(categ);
-
-    } else {
-      this._selectedCategs.add(categ);
-    }
-
     // Rebuild widget to display changes immediately
-    this.setState(() {});
+    this.setState(() {
+      if (this._selectedCategs.contains(categ)) {
+        this._selectedCategs.remove(categ);
+      } else {
+        this._selectedCategs.add(categ);
+      }
+    });
 
     // Save to cache, it will be applied when confirming/saving
-    AppData.of(this.context).saveFilterCache(currentFilterCache.copyWith(categs: this._selectedCategs));
+    AppData.of(this.context).saveFilterCache(
+        currentFilterCache.copyWith(categs: this._selectedCategs));
   }
 }
