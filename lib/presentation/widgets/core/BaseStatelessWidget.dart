@@ -12,7 +12,7 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   }
 
   /*
-   * Returns widget content.
+   * Returns widget contents.
    * Must be overriden by children
    */
   Widget buildWidgetContents(BuildContext context);

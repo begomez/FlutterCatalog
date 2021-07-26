@@ -1,4 +1,3 @@
-import 'package:flutter_catalog/common/factory/FakeModelFactory.dart';
 import 'package:flutter_catalog/common/models/catalog/BikeModel.dart';
 import 'package:flutter_catalog/common/models/filters/FilterModel.dart';
 import 'package:flutter_catalog/common/models/catalog/FrameSizeModel.dart';

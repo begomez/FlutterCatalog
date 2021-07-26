@@ -1,4 +1,3 @@
-import 'package:flutter_catalog/common/factory/FakeModelFactory.dart';
 import 'package:flutter_catalog/common/models/catalog/PaginationModel.dart';
 import 'package:test/test.dart';
 

@@ -1,18 +1,18 @@
 import 'package:flutter_catalog/common/models/catalog/PriceModel.dart';
 import 'package:flutter_catalog/common/models/catalog/PriceRangeModel.dart';
 import 'package:test/test.dart';
-import 'dart:math';
-
 
 void main() {
   test("When min < max then valid", () {
-    final PriceRangeModel range = PriceRangeModel(min: PriceModel.unit(), max: PriceModel.forAmount(10.0));
+    final PriceRangeModel range = PriceRangeModel(
+        min: PriceModel.unit(), max: PriceModel.forAmount(10.0));
 
     expect(range.validate(), true);
   });
 
   test("When min > max then invalid", () {
-    final PriceRangeModel range = PriceRangeModel(max: PriceModel.unit(), min: PriceModel.forAmount(6.0));
+    final PriceRangeModel range =
+        PriceRangeModel(max: PriceModel.unit(), min: PriceModel.forAmount(6.0));
 
     expect(range.validate(), false);
   });
@@ -24,7 +24,8 @@ void main() {
   });
 
   test("When step size then ", () {
-    final PriceRangeModel range = PriceRangeModel(min: PriceModel.unit(), max: PriceModel.forAmount(6.0));
+    final PriceRangeModel range =
+        PriceRangeModel(min: PriceModel.unit(), max: PriceModel.forAmount(6.0));
 
     expect(range.getStepSize(), 1.0);
   });

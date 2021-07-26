@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart';//-> compute()
+import 'package:flutter/foundation.dart'; //-> compute()
 
 import '../../common/models/catalog/BikeModel.dart';
 import '../../common/models/detail/BikeInfoModel.dart';
@@ -20,9 +20,7 @@ import '../../network/request/GetFrameSizesRequest.dart';
 import '../../network/request/GetPriceRangesRequest.dart';
 import '../../network/request/GetBikeInfoRequest.dart';
 
-
 const String TAG = "BikeRepositoryImpl";
-
 
 /*
  * Implementation of bike repository
@@ -35,29 +33,29 @@ class BikeRepositoryImpl implements IBikeRepository {
   const BikeRepositoryImpl(this._api);
 
   @override
-  Future<BikeListModel> getBikesForPage(int page, FilterModel filter, OrderCriteriaModel order) async {
-
+  Future<BikeListModel> getBikesForPage(
+      int page, FilterModel filter, OrderCriteriaModel order) async {
     try {
-      final result = await this._api.getBikes(GetBikesRequest(page, order, filter));
+      final result =
+          await this._api.getBikes(GetBikesRequest(page, order, filter));
 
       if (result.hasData()) {
         var rawData = result.data;
 
-        var processedData = await this._processDataInBackground(rawData, order, filter);
+        var processedData =
+            await this._processDataInBackground(rawData, order, filter);
 
-        return BikeListModel(collection: processedData, pagination: result.pagination);
-
+        return BikeListModel(
+            collection: processedData, pagination: result.pagination);
       } else {
         throw Exception();
       }
-
     } on IOException catch (ioe) {
-      AppLogger.e(tag: "getBikeForPage()", msg: "", error: ioe);
+      AppLogger.e(tag: "getBikesForPage($page)", msg: "", error: ioe);
 
       throw ioe;
-
     } on Exception catch (e) {
-      AppLogger.e(tag: "getBikesForPage()", msg: "", error: e);
+      AppLogger.e(tag: "getBikesForPage($page)", msg: "", error: e);
 
       throw DataException();
     }
@@ -65,24 +63,18 @@ class BikeRepositoryImpl implements IBikeRepository {
 
   @override
   Future<FrameSizeListModel> getAvailableFrameSizes() async {
-
     try {
-      final result = await this._api.getFrameSizes(
-        GetFrameSizesRequest()
-      );
+      final result = await this._api.getFrameSizes(GetFrameSizesRequest());
 
       if (result.hasData()) {
         return FrameSizeListModel(collection: result.data);
-
       } else {
         throw Exception();
       }
-
     } on IOException catch (ioe) {
       AppLogger.e(tag: "getAvailableFrameSizes()", msg: "", error: ioe);
 
       throw ioe;
-
     } on Exception catch (e) {
       AppLogger.e(tag: "getAvailableFrameSizes()", msg: "", error: e);
 
@@ -92,24 +84,18 @@ class BikeRepositoryImpl implements IBikeRepository {
 
   @override
   Future<PriceRangeModel> getPricesRange() async {
-
     try {
-      final result = await this._api.getPriceRange(
-          GetPriceRangesRequest()
-      );
+      final result = await this._api.getPriceRange(GetPriceRangesRequest());
 
       if (result.hasData()) {
         return result.data;
-
       } else {
         throw Exception();
       }
-
     } on IOException catch (ioe) {
       AppLogger.e(tag: "getPricesRange()", msg: "", error: ioe);
 
       throw ioe;
-
     } on Exception catch (e) {
       AppLogger.e(tag: "getPricesRange()", msg: "", error: e);
 
@@ -120,22 +106,17 @@ class BikeRepositoryImpl implements IBikeRepository {
   @override
   Future<BikeInfoModel> getBikeInfo(int id) async {
     try {
-      final result = await this._api.getBikeInfo(
-          GetBikeInfoRequest(id)
-      );
+      final result = await this._api.getBikeInfo(GetBikeInfoRequest(id));
 
       if (result.hasData()) {
         return result.data;
-
       } else {
         throw Exception();
       }
-
     } on IOException catch (ioe) {
       AppLogger.e(tag: "getBikeInfo()", msg: "", error: ioe);
 
       throw ioe;
-
     } on Exception catch (e) {
       AppLogger.e(tag: "getBikeInfo()", msg: "", error: e);
 
@@ -148,8 +129,10 @@ class BikeRepositoryImpl implements IBikeRepository {
   /*
    * Entry point for "compute()" which performs filtering and sorting
    */
-  Future<List<BikeModel>> _processDataInBackground(List<BikeModel> data, OrderCriteriaModel order, FilterModel filter) async {
-    return await compute(_filterAndSort, _ComputeDataModel(data, order, filter));
+  Future<List<BikeModel>> _processDataInBackground(List<BikeModel> data,
+      OrderCriteriaModel order, FilterModel filter) async {
+    return await compute(
+        _filterAndSort, _ComputeDataModel(data, order, filter));
   }
 }
 
@@ -163,25 +146,27 @@ List<BikeModel> _filterAndSort(_ComputeDataModel wrapper) {
   OrderCriteriaModel order = wrapper.order;
   List<BikeModel> data = wrapper.list;
 
-
-  _dumpSelection(data, filter: filter, order: order, msg: "PRE");
-
+  //_dumpSelection(data, filter: filter, order: order, msg: "PRE");
 
 // FILTERS
 
   // BY CATEG
   if (filter.hasValidCategories()) {
-    data = data.where((element) => filter.categs.contains(element.categ)).toList();
+    data =
+        data.where((element) => filter.categs.contains(element.categ)).toList();
   }
 
   // BY FRAME SIZE
   if (filter.hasValidFrameSize()) {
-    data = data.where((element) => (filter.frameSize >= element.frameSize.size)).toList();
+    data = data
+        .where((element) => (filter.frameSize >= element.frameSize.size))
+        .toList();
   }
 
   // BY PRICE
   if (filter.hasValidPrice()) {
-    data = data.where((element) => element.price.amount <= filter.price).toList();
+    data =
+        data.where((element) => element.price.amount <= filter.price).toList();
   }
 
 // ORDER
@@ -190,7 +175,7 @@ List<BikeModel> _filterAndSort(_ComputeDataModel wrapper) {
     data.sort(order.getComparator());
   }
 
-  _dumpSelection(data, filter: filter, order: order, msg: "POST");
+  //_dumpSelection(data, filter: filter, order: order, msg: "POST");
 
   return data;
 }
@@ -198,14 +183,19 @@ List<BikeModel> _filterAndSort(_ComputeDataModel wrapper) {
 /*
  * Outputs a collection
  */
-void _dumpSelection(List<BikeModel> list, {FilterModel filter, OrderCriteriaModel order, String msg = ""}) {
-  AppLogger.i(tag: TAG, msg: msg + "----------------------------------------------------------");
+void _dumpSelection(List<BikeModel> list,
+    {FilterModel filter, OrderCriteriaModel order, String msg = ""}) {
+  AppLogger.i(
+      tag: TAG,
+      msg: msg + "----------------------------------------------------------");
   AppLogger.i(tag: TAG, msg: filter?.toString());
   AppLogger.i(tag: TAG, msg: order?.toString());
 
-  list?.forEach((element) {AppLogger.i(tag: TAG, msg: element.toString());});
+  list?.forEach((element) {
+    AppLogger.i(tag: TAG, msg: element.toString());
+  });
 
-  AppLogger.i(tag: TAG, msg: "Containing ${list?.length?? 0} items");
+  AppLogger.i(tag: TAG, msg: "Containing ${list?.length ?? 0} items");
 }
 
 /*

@@ -1,4 +1,3 @@
-import 'package:flutter_catalog/common/models/BooleanWrapper.dart';
 import 'package:flutter_catalog/common/models/ErrorModel.dart';
 import 'package:flutter_catalog/common/models/result/ResourceResult.dart';
 import 'package:test/test.dart';

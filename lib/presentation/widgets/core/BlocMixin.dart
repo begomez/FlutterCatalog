@@ -9,7 +9,6 @@ import '../../../common/models/result/ResourceResult.dart';
 import '../../../domain/bloc/core/BaseBloc.dart';
 import '../../../domain/event/core/BaseEvent.dart';
 
-
 /*
  * Mixin used to hook BLoC functionality on widgets.
  * 
@@ -19,12 +18,8 @@ import '../../../domain/event/core/BaseEvent.dart';
  * - TargetEvent: data type for the event used as bloc input
  * - TargetModel: data type for the model returned by bloc
  */
-mixin BlocMixin<
-    TargetBloc extends BaseBloc,
-    TargetEvent extends BaseEvent,
-    TargetModel extends BaseModel
-    > {
-
+mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
+    TargetModel extends BaseModel> {
   TargetBloc _bloc = null;
   bool _autocall = false;
 
@@ -38,22 +33,21 @@ mixin BlocMixin<
   }
 
   /*
-   * Performs a bloc operation
+   * Launches BLoC's main operation
    */
   void call() {
-    TargetEvent dto = this.getEvent();
+    TargetEvent event = this.getEvent();
 
     // BLOC initialized
     if (this.hasBloc()) {
-
       // show loading
       this._bloc.processResult(
           ResourceResult<TargetModel>(status: ResourceStatus.LOADING));
 
       // perform operation
-      this._bloc.performOperation(dto);
+      this._bloc.performOperation(event);
 
-    // NO BLOC available
+      // NO BLOC available
     } else {
       throw UnimplementedError("No bloc available in mixin");
     }
@@ -64,52 +58,53 @@ mixin BlocMixin<
    */
   Widget buildWidgetAccordingToState(BuildContext context) {
     return BlocProvider(
-        child: StreamBuilder<ResourceResult<TargetModel>>(
-          stream: this._bloc.output,
-          builder: (cntxt, snap) {
-            switch (snap?.data?.status) {
-              case ResourceStatus.LOADING:
-                return this.buildLoading(cntxt);
-              case ResourceStatus.ERROR:
-                return this.buildError(cntxt, snap.error);
-              case ResourceStatus.SUCCESS:
-                return this.buildSuccess(cntxt, snap.data.data);
-              case ResourceStatus.INITIAL:
-              default:
-                return this.buildInitial(cntxt);
-            }
-          },
-        ),
-        bloc: this._bloc);
+      bloc: this._bloc,
+      child: StreamBuilder<ResourceResult<TargetModel>>(
+        stream: this._bloc.output,
+        builder: (cntxt, snap) {
+          switch (snap?.data?.status) {
+            case ResourceStatus.LOADING:
+              return this.buildLoading(cntxt);
+            case ResourceStatus.ERROR:
+              return this.buildError(cntxt, snap.error);
+            case ResourceStatus.SUCCESS:
+              return this.buildSuccess(cntxt, snap.data.data);
+            case ResourceStatus.INITIAL:
+            default:
+              return this.buildInitial(cntxt);
+          }
+        },
+      ),
+    );
   }
 
   /*
-   * Returns widget to show when bloc is working
+   * Returns widget to show when BLoC is working
    */
   Widget buildLoading(BuildContext cntxt);
 
   /*
-   * Returns widget to show when bloc fails
+   * Returns widget to show when BLoC fails
    */
   Widget buildError(BuildContext cntxt, ErrorModel err);
 
   /*
-   * Returns widget to show when idle
+   * Returns widget to show when BLoC is idle
    */
   Widget buildInitial(BuildContext cntxt);
 
   /*
-   * Returns widget to show when operations finishes with no error
+   * Returns widget to show when operation finishes with no error
    */
   Widget buildSuccess(BuildContext cntxt, TargetModel data);
 
   /*
-   * Returns object used as bloc input.
+   * Returns object used as BLoC input.
    */
   TargetEvent getEvent();
 
   /*
-   * Checks if bloc initialized
+   * Checks if component is initialized
    */
   bool hasBloc() => (this._bloc != null);
 }

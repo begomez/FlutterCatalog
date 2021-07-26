@@ -1,4 +1,3 @@
-import 'package:flutter_catalog/common/factory/FakeModelFactory.dart';
 import 'package:flutter_catalog/common/models/filters/OrderCriteriaModel.dart';
 import 'package:test/test.dart';
 

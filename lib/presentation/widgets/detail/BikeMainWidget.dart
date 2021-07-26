@@ -11,7 +11,6 @@ import '../core/BaseStatefulWidget.dart';
 import '../detail/KeyValueWidget.dart';
 import 'BikeAdditionalInfoWidget.dart';
 
-
 /*
  * Bike main widget displaying item info
  */
@@ -27,7 +26,8 @@ class BikeMainWidget extends BaseStatefulWidget {
 /*
  * Companion state class
  */
-class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerProviderStateMixin {
+class _BikeMainWidgetState extends BaseState<BikeMainWidget>
+    with SingleTickerProviderStateMixin {
   AnimationController _ctrl;
   Tween<Offset> _tween;
 
@@ -37,9 +37,11 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
   void initState() {
     final DURATION_IN_SECS = 1;
 
-    this._tween = Tween<Offset>(begin: const Offset(0.0, 1.0), end: const Offset(0.0, 0.0));
+    this._tween = Tween<Offset>(
+        begin: const Offset(0.0, 1.0), end: const Offset(0.0, 0.0));
 
-    this._ctrl = AnimationController(vsync: this, duration: Duration(seconds: DURATION_IN_SECS));
+    this._ctrl = AnimationController(
+        vsync: this, duration: Duration(seconds: DURATION_IN_SECS));
 
     this._ctrl.forward();
 
@@ -55,7 +57,8 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
 
   @override
   Widget buildWidgetContents(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
+        child: Container(
       alignment: Alignment.topCenter,
       padding: EdgeInsets.all(AppDimens.MID_SPACING),
       child: Column(
@@ -64,28 +67,24 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           this._buildImg(context),
-
           KeyValueWidget(
             strKey: AppLocalizations.of(context).translate("lb_category"),
             strValue: this.widget.bike.categ.toShortString(),
           ),
-
           KeyValueWidget(
             strKey: AppLocalizations.of(context).translate("lb_frame"),
             strValue: this.widget.bike.frameSize.toString(),
           ),
-
           KeyValueWidget(
             strKey: AppLocalizations.of(context).translate("lb_price"),
             strValue: this.widget.bike.price.toString(),
           ),
-
           this._buildMainAction(context)
         ],
       ),
-    );
+    ));
   }
-  
+
   Widget _buildImg(BuildContext cntxt) {
     return Hero(
       tag: this.widget.bike.toTag(),
@@ -96,27 +95,25 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget> with SingleTickerPr
   Widget _buildMainAction(BuildContext cntxt) {
     return SlideTransition(
         position: this._tween.animate(this._ctrl),
-        child: ClipRRect(child: Container(
-            width: double.maxFinite,
-            child: AppWidgetFactory.buildBtn(
-                callback: () {
-                  AppWidgetFactory.showBottomInfo(
-                    context: cntxt,
-                    child: BikeAdditionalInfoWidget(bike: this.widget.bike),
-                    color: AppColors.accentLight,
-                    height: MediaQuery.of(cntxt).size.height * 4/5,
-                    onClose: () {
-                      Navigator.of(cntxt).pop();
+        child: ClipRRect(
+            child: Container(
+                width: double.maxFinite,
+                child: AppWidgetFactory.buildBtn(
+                    callback: () {
+                      AppWidgetFactory.showBottomInfo(
+                          context: cntxt,
+                          child:
+                              BikeAdditionalInfoWidget(bike: this.widget.bike),
+                          color: AppColors.accentLight,
+                          height: MediaQuery.of(cntxt).size.height * 4 / 5,
+                          onClose: () {
+                            Navigator.of(cntxt).pop();
+                          },
+                          radius: _BikeMainWidgetDimens.RADIUS);
                     },
-                    radius: _BikeMainWidgetDimens.RADIUS
-                  );
-                },
-                style: AppStyles.action,
-                text: AppLocalizations.of(cntxt).translate("action_more")
-            )
-        )
-      )
-    );
+                    style: AppStyles.action,
+                    text:
+                        AppLocalizations.of(cntxt).translate("action_more")))));
   }
 }
 

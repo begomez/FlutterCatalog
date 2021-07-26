@@ -9,7 +9,6 @@ import '../../../data/exception/DataException.dart';
 
 import '../../event/core/BaseEvent.dart';
 
-
 /*
  * Superclass for BLoC derived classes
  * 
@@ -19,17 +18,16 @@ import '../../event/core/BaseEvent.dart';
  * - Output: data model type used as bloc output/result
  */
 abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
-
   StreamController<ResourceResult<Output>> _controller =
       StreamController<ResourceResult<Output>>();
 
   BaseBloc();
 
   /*
-   * Performs bloc's main operation (data retrieval, data storage...) using data
-   * specified on input parameter
+   * Performs bloc's main operation (data retrieval, data storage...) using based
+   * on input parameter
    * 
-   * @param dto
+   * @param event Object containing operation parameters
    */
   void performOperation(Input event) async {
     var result;
@@ -37,7 +35,6 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
       final data = await this.processEvent(event);
 
       result = this.buildResult(data: data);
-
     } on DataException catch (de) {
       result = this.buildResult(data: null, errorCode: ErrorCodes.DATA_ERROR);
     } on Exception catch (e) {
@@ -57,7 +54,7 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
   Future<Output> processEvent(Input event);
 
   /*
-   * Returns a specific error code  for this operation.
+   * Returns a specific error code for this operation.
    *
    * Should be overriden by children.
    */
@@ -75,7 +72,7 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
   }
 
   /*
-   * Free bloc resources
+   * Frees BLoC resources
    */
   void dispose() {
     this.input.close();
@@ -88,13 +85,14 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
   /*
    * Wraps data on a result object, for consistency across the app
    * 
-   * @param data Data returned by the operation performed in the bloc
+   * @param data Data returned by the operation performed in the BLoC
    * @param errorCode Possible error code launched when performing the operation
    */
-  ResourceResult<Output> buildResult({Output data, int errorCode = ErrorCodes.INVALID}) {
-
-    ErrorModel err = (errorCode >= 0)? ErrorModel(code: errorCode) : null;
-    ResourceStatus status = (data != null)? ResourceStatus.SUCCESS : ResourceStatus.ERROR;
+  ResourceResult<Output> buildResult(
+      {Output data, int errorCode = ErrorCodes.INVALID}) {
+    ErrorModel err = (errorCode >= 0) ? ErrorModel(code: errorCode) : null;
+    ResourceStatus status =
+        (data != null) ? ResourceStatus.SUCCESS : ResourceStatus.ERROR;
 
     return ResourceResult<Output>(data: data, error: err, status: status);
   }

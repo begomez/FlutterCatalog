@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'ScreenMixin.dart';
 
-
 /*
  * Base class for screens (containers) with no state
  *

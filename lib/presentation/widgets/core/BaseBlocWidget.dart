@@ -11,14 +11,15 @@ import '../../widgets/core/BlocMixin.dart';
 import '../../widgets/convenient/AppErrorWidget.dart';
 import '../../widgets/convenient/AppLoadingWidget.dart';
 
-
 /*
- * Base class for widgets that use BLoC to perform some operation: data retrieval,
- * data storage, etc.
+ * Base class for widgets that use BLoC to perform some operation: 
+ * data retrieval, data storage, etc.
+ * 
+ * It is a generic class receiving:
+ * - TargetBloc: data type for the BLoC used by this widget
  */
 abstract class BaseBlocWidget<TargetBloc extends BaseBloc>
     extends BaseStatefulWidget {
-
   const BaseBlocWidget({Key key}) : super(key: key);
 
   @override
@@ -39,10 +40,8 @@ abstract class BaseBlocWidgetState<
         TargetWidget extends BaseBlocWidget,
         TargetBloc extends BaseBloc,
         TargetEvent extends BaseEvent,
-        TargetModel extends BaseModel>
-    extends BaseState<TargetWidget>
+        TargetModel extends BaseModel> extends BaseState<TargetWidget>
     with BlocMixin<TargetBloc, TargetEvent, TargetModel> {
-
   BaseBlocWidgetState() : super() {
     this.initMixin(autocall: this.isAutocall(), bloc: this.getBlocInstance());
   }
@@ -70,14 +69,15 @@ abstract class BaseBlocWidgetState<
   }
 
   @override
-  Widget buildLoading(BuildContext cntxt) =>
-      Stack(
+  Widget buildLoading(BuildContext cntxt) => Stack(
         children: [this.buildInitial(cntxt), AppLoadingWidget()],
       );
 
   @override
   Widget buildError(BuildContext cntxt, ErrorModel err) {
-    return AppErrorWidget(err: err,);
+    return AppErrorWidget(
+      err: err,
+    );
   }
 
   /*
