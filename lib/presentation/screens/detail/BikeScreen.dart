@@ -4,7 +4,6 @@ import '../../widgets/detail/BikeMainWidget.dart';
 import '../../../common/models/catalog/BikeModel.dart';
 import '../core/BaseStatelessScreen.dart';
 
-
 /*
  * Bike detail screen
  */

@@ -25,7 +25,7 @@ class CatalogScreen extends BaseStatelessScreen {
             return CatalogMainWidget(
               order: settings.order,
               filter: settings.filter,
-              key: UniqueKey(),
+              key: ValueKey(settings.hashCode),
             );
           },
         ));

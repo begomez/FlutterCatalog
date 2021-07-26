@@ -19,8 +19,8 @@ class FilterScreen extends BaseStatelessScreen {
   Widget buildScreenContents(BuildContext context) {
     return ValueListenableBuilder(
         valueListenable: AppData.of(context).vSettings,
-        builder: (cntxt, value, child) =>
-            FilterMainWidget(key: UniqueKey(), currentFilter: value.filter));
+        builder: (cntxt, value, child) => FilterMainWidget(
+            key: ValueKey(value.hashCode), currentFilter: value.filter));
   }
 
   @override
