@@ -28,10 +28,10 @@ class BikeTypeSelectorWidget extends BaseStatefulWidget {
  * Companion state class
  */
 class _BikeTypeSelectorWidgetState extends BaseState<BikeTypeSelectorWidget> {
-  List<BikeCategories> _selectedCategs;
+  List<BikeCategories> _selectedTypes;
 
   _BikeTypeSelectorWidgetState(List<BikeCategories> items) : super() {
-    this._selectedCategs = List.of(items);
+    this._selectedTypes = List.of(items);
   }
 
   @override
@@ -44,7 +44,7 @@ class _BikeTypeSelectorWidgetState extends BaseState<BikeTypeSelectorWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           this._buildTitle(context),
-          this._buildSelector(context, this._selectedCategs)
+          this._buildSelector(context, this._selectedTypes)
         ],
       ),
     );
@@ -65,13 +65,13 @@ class _BikeTypeSelectorWidgetState extends BaseState<BikeTypeSelectorWidget> {
       children: [
         this._buildItem(
             categ: BikeCategories.CITY,
-            selected: this._selectedCategs.contains(BikeCategories.CITY)),
+            selected: this._selectedTypes.contains(BikeCategories.CITY)),
         this._buildItem(
             categ: BikeCategories.MOUNTAIN,
-            selected: this._selectedCategs.contains(BikeCategories.MOUNTAIN)),
+            selected: this._selectedTypes.contains(BikeCategories.MOUNTAIN)),
         this._buildItem(
             categ: BikeCategories.ELECTRIC,
-            selected: this._selectedCategs.contains(BikeCategories.ELECTRIC)),
+            selected: this._selectedTypes.contains(BikeCategories.ELECTRIC)),
       ],
     );
   }
@@ -95,15 +95,15 @@ class _BikeTypeSelectorWidgetState extends BaseState<BikeTypeSelectorWidget> {
 
     // Rebuild widget to display changes immediately
     this.setState(() {
-      if (this._selectedCategs.contains(categ)) {
-        this._selectedCategs.remove(categ);
+      if (this._selectedTypes.contains(categ)) {
+        this._selectedTypes.remove(categ);
       } else {
-        this._selectedCategs.add(categ);
+        this._selectedTypes.add(categ);
       }
     });
 
     // Save to cache, it will be applied when confirming/saving
     AppData.of(this.context).saveFilterCache(
-        currentFilterCache.copyWith(categs: this._selectedCategs));
+        currentFilterCache.copyWith(categs: this._selectedTypes));
   }
 }
