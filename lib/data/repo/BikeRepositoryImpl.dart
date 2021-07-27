@@ -40,9 +40,9 @@ class BikeRepositoryImpl implements IBikeRepository {
           await this._api.getBikes(GetBikesRequest(page, order, filter));
 
       if (result.hasData()) {
-        var rawData = result.data;
+        final rawData = result.data;
 
-        var processedData =
+        final processedData =
             await this._processDataInBackground(rawData, order, filter);
 
         return BikeListModel(
@@ -139,7 +139,8 @@ class BikeRepositoryImpl implements IBikeRepository {
 // GLOBAL  //////////////////////////////////////////////////////////////////////////////
 
 /*
- * Applies sorting and filtering constraints over a list so the resulting items meet the specifications
+ * Applies sorting and filtering constraints over a list so the resulting items 
+ * meet the specifications
  */
 List<BikeModel> _filterAndSort(_ComputeDataModel wrapper) {
   FilterModel filter = wrapper.filter;

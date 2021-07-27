@@ -25,19 +25,19 @@ abstract class OrderCriteriaModelFactory {
       ];
 
   static OrderCriteriaModel defaultCriteria() =>
-      OrderCriteriaModel.priceAscending("Price asc.");
+      OrderCriteriaModel._priceAscending("Price asc.");
 
   static OrderCriteriaModel priceAscending(String lbPriceAsc) =>
-      OrderCriteriaModel.priceAscending(lbPriceAsc);
+      OrderCriteriaModel._priceAscending(lbPriceAsc);
 
   static OrderCriteriaModel priceDescending(String lbPriceDesc) =>
-      OrderCriteriaModel.priceDescending(lbPriceDesc);
+      OrderCriteriaModel._priceDescending(lbPriceDesc);
 
   static OrderCriteriaModel categAscending(String lbCategAsc) =>
-      OrderCriteriaModel.categAscending(lbCategAsc);
+      OrderCriteriaModel._categAscending(lbCategAsc);
 
   static OrderCriteriaModel nameAscending(String lbNameAsc) =>
-      OrderCriteriaModel.nameAscending(lbNameAsc);
+      OrderCriteriaModel._nameAscending(lbNameAsc);
 }
 
 /*
@@ -55,16 +55,16 @@ class OrderCriteriaModel extends BaseModel {
   // Private constr.
   const OrderCriteriaModel._(this.id, this.name, this.reverse) : super();
 
-  factory OrderCriteriaModel.priceAscending(String lb) =>
+  factory OrderCriteriaModel._priceAscending(String lb) =>
       OrderCriteriaModel._(OrderCriteriaModelFactory.PRICE_ASC, lb, false);
 
-  factory OrderCriteriaModel.priceDescending(String lb) =>
+  factory OrderCriteriaModel._priceDescending(String lb) =>
       OrderCriteriaModel._(OrderCriteriaModelFactory.PRICE_DESC, lb, true);
 
-  factory OrderCriteriaModel.categAscending(String lb) =>
+  factory OrderCriteriaModel._categAscending(String lb) =>
       OrderCriteriaModel._(OrderCriteriaModelFactory.CATEG_ASC, lb, false);
 
-  factory OrderCriteriaModel.nameAscending(String lb) =>
+  factory OrderCriteriaModel._nameAscending(String lb) =>
       OrderCriteriaModel._(OrderCriteriaModelFactory.NAME_ASC, lb, false);
 
   @override

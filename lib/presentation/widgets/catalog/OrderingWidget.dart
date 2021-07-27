@@ -10,7 +10,6 @@ import '../../utils/AppLocalizations.dart';
 import '../../app/AppData.dart';
 import '../core/BaseStatelessWidget.dart';
 
-
 /*
  * Widget displaying a selector with ordering options
  */
@@ -18,10 +17,15 @@ class OrderingWidget extends BaseStatelessWidget {
   final List<OrderCriteriaModel> criterias;
   final OrderCriteriaModel current;
 
-  const OrderingWidget({@required this.criterias, @required this.current, Key key}) : assert(criterias != null), assert(current != null), super(key: key);
+  const OrderingWidget(
+      {@required this.criterias, @required this.current, Key key})
+      : assert(criterias != null),
+        assert(current != null),
+        super(key: key);
 
   @override
   Widget buildWidgetContents(BuildContext context) {
+    OrderCriteriaModel o = null;
     return Container(
       height: _OrderingWidgetDimens.ORDER_WIDGET_HEIGHT,
       child: this._buildRowContents(context),
@@ -42,13 +46,19 @@ class OrderingWidget extends BaseStatelessWidget {
   }
 
   Widget _buildDivider(BuildContext cntxt) {
-    return Container(height: _OrderingWidgetDimens.SEP_H, color: AppColors.primary,);
+    return Container(
+      height: _OrderingWidgetDimens.SEP_H,
+      color: AppColors.primary,
+    );
   }
 
   Widget _buildHint(BuildContext cntxt) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimens.MID_SPACING),
-      child: Text(AppLocalizations.of(cntxt).translate("lb_order"), style: AppStyles.subtitle,),
+      child: Text(
+        AppLocalizations.of(cntxt).translate("lb_order"),
+        style: AppStyles.subtitle,
+      ),
     );
   }
 
@@ -56,7 +66,9 @@ class OrderingWidget extends BaseStatelessWidget {
     return Container(
       child: DropdownButton<OrderCriteriaModel>(
         isDense: false,
-        underline: Container(width: 0.0,),
+        underline: Container(
+          width: 0.0,
+        ),
         dropdownColor: AppColors.white,
         value: this._getSelectedValue(this.current.id),
         icon: Icon(Icons.arrow_drop_down),
@@ -69,18 +81,21 @@ class OrderingWidget extends BaseStatelessWidget {
     );
   }
 
-  DropdownMenuItem<OrderCriteriaModel> _buildDropItem(OrderCriteriaModel order) {
+  DropdownMenuItem<OrderCriteriaModel> _buildDropItem(
+      OrderCriteriaModel order) {
     return DropdownMenuItem<OrderCriteriaModel>(
         value: order,
-        child: Text(
-            order.name,
-            style: this.current == order? CatalogStyles.selectedItem : CatalogStyles.unselectedItem));
+        child: Text(order.name,
+            style: this.current == order
+                ? CatalogStyles.selectedItem
+                : CatalogStyles.unselectedItem));
   }
 
   OrderCriteriaModel _getSelectedValue(int target) {
-    final candidates = this.criterias.where((element) => element.id == target).toList();
+    final candidates =
+        this.criterias.where((element) => element.id == target).toList();
 
-    return candidates.isNotEmpty? candidates[0] : null;
+    return candidates.isNotEmpty ? candidates[0] : null;
   }
 }
 
