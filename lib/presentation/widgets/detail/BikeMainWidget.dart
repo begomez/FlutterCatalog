@@ -96,28 +96,26 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget>
   Widget _buildMainAction(BuildContext cntxt) {
     return SlideTransition(
         position: this._tween.animate(this._ctrl),
-        child: ClipRRect(
-            child: Container(
-                width: double.maxFinite,
-                child: AppWidgetFactory.buildBtn(
-                    callback: () {
-                      AppWidgetFactory.showBottomInfo(
-                          context: cntxt,
-                          child:
-                              BikeAdditionalInfoWidget(bike: this.widget.bike),
-                          color: AppColors.accentLight,
-                          height: MediaQuery.of(cntxt).size.height * 4 / 5,
-                          onClose: () {
-                            Navigator.of(cntxt).pop();
-                          },
-                          radius: _BikeMainWidgetDimens.RADIUS);
-                    },
-                    style: AppStyles.action,
-                    text:
-                        AppLocalizations.of(cntxt).translate("action_more")))));
+        child: Container(
+            width: double.maxFinite,
+            child: AppWidgetFactory.buildBtn(
+                callback: () {
+                  AppWidgetFactory.showBottomInfo(
+                      context: cntxt,
+                      child:
+                          BikeAdditionalInfoWidget(bikeId: this.widget.bike.id),
+                      color: AppColors.accentLight,
+                      height: MediaQuery.of(cntxt).size.height * 4 / 5,
+                      onClose: () {
+                        Navigator.of(cntxt).pop();
+                      },
+                      radius: _BikeMainWidgetDimens.INNER_RADIUS);
+                },
+                style: AppStyles.action,
+                text: AppLocalizations.of(cntxt).translate("action_more"))));
   }
 }
 
 abstract class _BikeMainWidgetDimens {
-  static const RADIUS = 15.0;
+  static const INNER_RADIUS = 15.0;
 }

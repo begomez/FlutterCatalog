@@ -19,7 +19,6 @@ import '../../resources/AppColors.dart';
 import '../../utils/AppLocalizations.dart';
 import '../core/BaseBlocWidget.dart';
 
-
 /*
  * Widget that allows setting a price inside a price range.
  *
@@ -31,13 +30,15 @@ class PriceRangeWidget extends BaseBlocWidget {
   const PriceRangeWidget({this.currentSelection, Key key}) : super(key: key);
 
   @override
-  _PriceRangeWidgetState createState() => _PriceRangeWidgetState(this.currentSelection);
+  _PriceRangeWidgetState createState() =>
+      _PriceRangeWidgetState(this.currentSelection);
 }
 
 /*
  * Companion state class
  */
-class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, PriceRangeBloc, PriceRangeEvent, PriceRangeModel> {
+class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget,
+    PriceRangeBloc, PriceRangeEvent, PriceRangeModel> {
   PriceModel _selectedPrice;
 
   _PriceRangeWidgetState(this._selectedPrice) : super();
@@ -62,21 +63,19 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
         children: [
           this._buildTitle(cntxt),
           Visibility(
-            visible: data.validate(),
-            child: this._buildSlider(cntxt, data)),
+              visible: data.validate(), child: this._buildSlider(cntxt, data)),
           Visibility(
-            visible: data.validate(),
-            child: this._buildHints(cntxt, data))
+              visible: data.validate(), child: this._buildHints(cntxt, data))
         ],
       ),
     );
   }
 
   Widget _buildTitle(BuildContext cntxt) =>
-    Text(AppLocalizations.of(cntxt).translate("lb_price"),
-        style: AppStyles.title,
-        maxLines: AppValues.ONE_LINE,
-        textAlign: TextAlign.start);
+      Text(AppLocalizations.of(cntxt).translate("lb_price"),
+          style: AppStyles.title,
+          maxLines: AppValues.ONE_LINE,
+          textAlign: TextAlign.start);
 
   Widget _buildSlider(BuildContext cntxt, PriceRangeModel range) {
     return Container(
@@ -85,15 +84,20 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
       margin: EdgeInsets.zero,
       child: SliderTheme(
         data: SliderTheme.of(cntxt).copyWith(
-            thumbShape: RoundSliderThumbShape(enabledThumbRadius: this._selectedPrice.validate()? _PriceRangeWidgetDimens.SHOW_THUMB : _PriceRangeWidgetDimens.HIDE_THUMB)),
+            thumbShape: RoundSliderThumbShape(
+                enabledThumbRadius: this._selectedPrice.validate()
+                    ? _PriceRangeWidgetDimens.SHOW_THUMB
+                    : _PriceRangeWidgetDimens.HIDE_THUMB)),
         child: Slider(
           activeColor: AppColors.primaryDark,
           inactiveColor: AppColors.primary,
-          min: range.validate()? range.min.amount : 0.0,
-          max: range.validate()? range.max.amount : 0.0,
-          value: range.validate() && this._selectedPrice.validate()? this._selectedPrice.amount : range.min.amount,
+          min: range.validate() ? range.min.amount : 0.0,
+          max: range.validate() ? range.max.amount : 0.0,
+          value: range.validate() && this._selectedPrice.validate()
+              ? this._selectedPrice.amount
+              : range.min.amount,
           divisions: range.getNumSteps(),
-          onChanged: this._onValueSelected,
+          onChanged: this._onPriceValueChanged,
           label: this._selectedPrice.toString(),
         ),
       ),
@@ -118,15 +122,16 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
     return List.generate(
         range.getNumSteps() + 1,
         (index) => Transform.rotate(
-            angle: pi / 2,
-            child: Text(PriceModel.forAmount(range.min.amount + (range.getStepSize() * index)).toString()//build dynamically using min + increments
-            )
-        )
-    );
+            angle: pi / 4,
+            child: Text(PriceModel.forAmount(
+                        range.min.amount + (range.getStepSize() * index))
+                    .toString() //build dynamically using min + increments
+                )));
   }
 
   @override
-  PriceRangeBloc getBlocInstance() => PriceRangeBloc(BikeRepositoryImpl(DummyCatalogAPIImpl()));
+  PriceRangeBloc getBlocInstance() =>
+      PriceRangeBloc(BikeRepositoryImpl(DummyCatalogAPIImpl()));
 
   @override
   PriceRangeEvent getEvent() => PriceRangeEvent();
@@ -134,14 +139,15 @@ class _PriceRangeWidgetState extends BaseBlocWidgetState<PriceRangeWidget, Price
   @override
   bool isAutocall() => true;
 
-  void _onValueSelected(double value) {
+  void _onPriceValueChanged(double value) {
     final currentFilterCache = AppData.of(this.context).filterCache;
 
     this.setState(() {
       this._selectedPrice = PriceModel.forAmount(value);
     });
 
-    AppData.of(this.context).saveFilterCache(currentFilterCache.copyWith(price: value));
+    AppData.of(this.context)
+        .saveFilterCache(currentFilterCache.copyWith(price: value));
   }
 }
 

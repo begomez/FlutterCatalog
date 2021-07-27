@@ -10,7 +10,6 @@ import '../../resources/AppColors.dart';
  * Utils for dialogs, toast, overlays...
  */
 abstract class AppWidgetFactory {
-
   /*
    * Shows a bottom card  
    */
@@ -24,10 +23,9 @@ abstract class AppWidgetFactory {
     assert(context != null);
     assert(child != null);
 
-    showModalBottomSheet<void>(
+    showBottomSheet<void>(
         context: context,
         backgroundColor: Colors.transparent,
-        isScrollControlled: true,
         builder: (BuildContext context) {
           return Container(
             height: height,
@@ -49,42 +47,43 @@ abstract class AppWidgetFactory {
             ), //center
           );
         } //builder
-      ); //show
+        ); //show
   }
 
   static Future<bool> notAvailable(BuildContext cntxt) {
-    return _buildDialog(
-      cntxt,
-      () {
-        Navigator.of(cntxt).pop();
-      },
-      strTitle: AppLocalizations.of(cntxt).translate("app_name"),
-      strContent: AppLocalizations.of(cntxt).translate("msg_not_available"),
-      strAction: AppLocalizations.of(cntxt).translate("action_accept")
-    );
+    return _buildDialog(cntxt, () {
+      Navigator.of(cntxt).pop();
+    },
+        strTitle: AppLocalizations.of(cntxt).translate("app_name"),
+        strContent: AppLocalizations.of(cntxt).translate("msg_not_available"),
+        strAction: AppLocalizations.of(cntxt).translate("action_accept"));
   }
 
-  static Future<bool> _buildDialog(BuildContext cntxt, Function action, {String strTitle, String strContent, String strAction}) {
+  static Future<bool> _buildDialog(BuildContext cntxt, Function action,
+      {String strTitle, String strContent, String strAction}) {
     return showDialog<bool>(
-      context: cntxt,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(strTitle),
-          content: Text(strContent),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                action?.call();
-              },
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(AppColors.primaryDark),
-                backgroundColor: MaterialStateProperty.all<Color>(AppColors.accent)
-              ),
-              child: Text(strAction.toUpperCase(), maxLines: AppValues.ONE_LINE,))
-          ],
-        );
-      }
-    ); 
+        context: cntxt,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(strTitle),
+            content: Text(strContent),
+            actions: [
+              ElevatedButton(
+                  onPressed: () {
+                    action?.call();
+                  },
+                  style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                          AppColors.primaryDark),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(AppColors.accent)),
+                  child: Text(
+                    strAction.toUpperCase(),
+                    maxLines: AppValues.ONE_LINE,
+                  ))
+            ],
+          );
+        });
   }
 
   /*

@@ -18,7 +18,6 @@ import '../../app/AppData.dart';
 import '../core/BaseBlocWidget.dart';
 import 'FrameSizeWidget.dart';
 
-
 /*
  * Widget that displays a collection of frame sizes and allows user selection
  *
@@ -27,19 +26,25 @@ import 'FrameSizeWidget.dart';
 class FrameSizeSelectorWidget extends BaseBlocWidget<FrameSizesBloc> {
   final FrameSizeModel currentSelection;
 
-  const FrameSizeSelectorWidget({@required this.currentSelection, Key key}) : super(key: key);
+  const FrameSizeSelectorWidget({@required this.currentSelection, Key key})
+      : super(key: key);
 
   @override
-  _FrameSizeSelectorWidgetState createState() => _FrameSizeSelectorWidgetState(this.currentSelection);
+  _FrameSizeSelectorWidgetState createState() =>
+      _FrameSizeSelectorWidgetState(this.currentSelection);
 }
 
 /*
  * Companion state class
  */
-class _FrameSizeSelectorWidgetState extends BaseBlocWidgetState<FrameSizeSelectorWidget, FrameSizesBloc, FrameSizesEvent, FrameSizeListModel> {
-  FrameSizeModel _frameSelected;
+class _FrameSizeSelectorWidgetState extends BaseBlocWidgetState<
+    FrameSizeSelectorWidget,
+    FrameSizesBloc,
+    FrameSizesEvent,
+    FrameSizeListModel> {
+  FrameSizeModel _selectedFrame;
 
-  _FrameSizeSelectorWidgetState(this._frameSelected) : super();
+  _FrameSizeSelectorWidgetState(this._selectedFrame) : super();
 
   Widget _buildUI(BuildContext context, FrameSizeListModel frames) {
     return Container(
@@ -56,11 +61,12 @@ class _FrameSizeSelectorWidgetState extends BaseBlocWidgetState<FrameSizeSelecto
     );
   }
 
-  Widget _buildTitle(BuildContext cntxt) =>
-      Text(AppLocalizations.of(cntxt).translate("lb_frame"),
+  Widget _buildTitle(BuildContext cntxt) => Text(
+        AppLocalizations.of(cntxt).translate("lb_frame"),
         style: AppStyles.title,
         maxLines: AppValues.ONE_LINE,
-        textAlign: TextAlign.start,);
+        textAlign: TextAlign.start,
+      );
 
   Widget _buildCollapsible(BuildContext cntxt, List<FrameSizeModel> frames) {
     return Container(
@@ -75,12 +81,18 @@ class _FrameSizeSelectorWidgetState extends BaseBlocWidgetState<FrameSizeSelecto
   }
 
   List<Widget> _buildCollapsibleItems(List<FrameSizeModel> frames) {
-    return frames.map((e) =>
-      InkWell(
-        onTap: () {
-          this._onItemClicked(e);
-        },
-        child: FrameSizeWidget(frame: e, selected: (this._frameSelected != null)? e == this._frameSelected : false,))).toList();
+    return frames
+        .map((e) => InkWell(
+            onTap: () {
+              this._onFrameClicked(e);
+            },
+            child: FrameSizeWidget(
+              frame: e,
+              selected: (this._selectedFrame != null)
+                  ? e == this._selectedFrame
+                  : false,
+            )))
+        .toList();
   }
 
   @override
@@ -94,7 +106,8 @@ class _FrameSizeSelectorWidgetState extends BaseBlocWidgetState<FrameSizeSelecto
   }
 
   @override
-  FrameSizesBloc getBlocInstance() => FrameSizesBloc(BikeRepositoryImpl(DummyCatalogAPIImpl()));
+  FrameSizesBloc getBlocInstance() =>
+      FrameSizesBloc(BikeRepositoryImpl(DummyCatalogAPIImpl()));
 
   @override
   FrameSizesEvent getEvent() => FrameSizesEvent();
@@ -102,13 +115,14 @@ class _FrameSizeSelectorWidgetState extends BaseBlocWidgetState<FrameSizeSelecto
   @override
   bool isAutocall() => true;
 
-  void _onItemClicked(FrameSizeModel frame) {
+  void _onFrameClicked(FrameSizeModel frame) {
     final currentFilterCache = AppData.of(this.context).filterCache;
 
     this.setState(() {
-      this._frameSelected = frame;
+      this._selectedFrame = frame;
     });
 
-    AppData.of(context).saveFilterCache(currentFilterCache.copyWith(frameSize: frame.size));
+    AppData.of(context)
+        .saveFilterCache(currentFilterCache.copyWith(frameSize: frame.size));
   }
 }

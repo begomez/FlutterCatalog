@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../data/repo/BikeRepositoryImpl.dart';
 
-import '../../../common/models/catalog/BikeModel.dart';
 import '../../../common/models/detail/BikeInfoModel.dart';
 
 import '../../../domain/bloc/BikeInfoBloc.dart';
@@ -19,15 +18,14 @@ import '../core/BaseBlocWidget.dart';
 import 'KeyValueWidget.dart';
 import 'FakeActionsWidget.dart';
 
-
 /*
  * Widget that displays additional data about an item
  */
 class BikeAdditionalInfoWidget extends BaseBlocWidget<BikeInfoBloc> {
-  final BikeModel bike;
+  final int bikeId;
 
-  const BikeAdditionalInfoWidget({@required this.bike, Key key})
-      : assert(bike != null),
+  const BikeAdditionalInfoWidget({@required this.bikeId, Key key})
+      : assert(bikeId != null),
         super(key: key);
 
   @override
@@ -38,13 +36,8 @@ class BikeAdditionalInfoWidget extends BaseBlocWidget<BikeInfoBloc> {
 /*
  * Companion state class
  */
-class _BikeAdditionalInfoWidgetState
-    extends BaseBlocWidgetState<
-      BikeAdditionalInfoWidget,
-      BikeInfoBloc,
-      BikeInfoEvent,
-      BikeInfoModel> {
-
+class _BikeAdditionalInfoWidgetState extends BaseBlocWidgetState<
+    BikeAdditionalInfoWidget, BikeInfoBloc, BikeInfoEvent, BikeInfoModel> {
   _BikeAdditionalInfoWidgetState() : super();
 
   @override
@@ -58,7 +51,6 @@ class _BikeAdditionalInfoWidgetState
   }
 
   Widget _buildUI(BuildContext cntxt, BikeInfoModel data) {
-
     // DATA
     if (data.validate()) {
       return Container(
@@ -70,11 +62,13 @@ class _BikeAdditionalInfoWidgetState
             this._buildDescrip(cntxt, data.descrip),
             KeyValueWidget(
               strKey: AppLocalizations.of(cntxt).translate("info_weight"),
-              strValue: data.getFormattedWeight(AppLocalizations.of(cntxt).translate("lb_kg")),
+              strValue: data.getFormattedWeight(
+                  suffix: AppLocalizations.of(cntxt).translate("lb_kg")),
             ),
             KeyValueWidget(
               strKey: AppLocalizations.of(cntxt).translate("info_wheel_size"),
-              strValue: data.getFormattedWheelSize(AppLocalizations.of(cntxt).translate("lb_cm")),
+              strValue: data.getFormattedWheelSize(
+                  suffix: AppLocalizations.of(cntxt).translate("lb_cm")),
             ),
             KeyValueWidget(
               strKey: AppLocalizations.of(cntxt).translate("info_lights"),
@@ -93,7 +87,7 @@ class _BikeAdditionalInfoWidgetState
         ),
       );
 
-    // NO DATA
+      // NO DATA
     } else {
       return AppNoDataWidget();
     }
@@ -115,10 +109,11 @@ class _BikeAdditionalInfoWidgetState
   }
 
   @override
-  BikeInfoBloc getBlocInstance() => BikeInfoBloc(BikeRepositoryImpl(DummyCatalogAPIImpl()));
+  BikeInfoBloc getBlocInstance() =>
+      BikeInfoBloc(BikeRepositoryImpl(DummyCatalogAPIImpl()));
 
   @override
-  BikeInfoEvent getEvent() => BikeInfoEvent(this.widget.bike.id);
+  BikeInfoEvent getEvent() => BikeInfoEvent(this.widget.bikeId);
 
   @override
   bool isAutocall() => true;

@@ -40,28 +40,30 @@ class FilterMainWidget extends BaseStatelessWidget {
   }
 
   Widget _buildTypeSelector(BuildContext cntxt) {
-    final currentType = this.currentFilter.categs;
+    final currentTypes = this.currentFilter.categs;
 
     return BikeTypeSelectorWidget(
-        key: ValueKey(currentType.hashCode),
-        currentSelection: currentType ?? const []);
+      currentSelection: currentTypes ?? const [],
+      key: ValueKey(currentTypes.hashCode),
+    );
   }
 
   Widget _buildPriceSlider(BuildContext cntxt) {
     final currentPrice = this.currentFilter.price;
 
     return PriceRangeWidget(
-        key: ValueKey(PriceModel.forAmount(currentPrice)),
-        currentSelection: PriceModel.forAmount(currentPrice));
+      currentSelection: PriceModel.forAmount(currentPrice),
+      key: ValueKey(PriceModel.forAmount(currentPrice)),
+    );
   }
 
   Widget _buildFrameSizeSelector(BuildContext cntxt) {
     final currentFrame = this.currentFilter.frameSize;
 
     return FrameSizeSelectorWidget(
-        key: ValueKey(currentFrame.hashCode),
         currentSelection: currentFrame != FrameSizeModel.NO_FRAME_SIZE
             ? FrameSizeModel.forSize(currentFrame)
-            : null);
+            : null,
+        key: ValueKey(currentFrame.hashCode));
   }
 }
