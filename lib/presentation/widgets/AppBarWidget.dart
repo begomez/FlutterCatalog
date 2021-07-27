@@ -69,9 +69,9 @@ class AppBarWidget extends BaseStatelessWidget {
 
   Widget _buildDecoration(BuildContext cntxt) {
     return DecoratedBox(
-        position: DecorationPosition.foreground,
-        decoration: BoxDecoration(
-            gradient: RadialGradient(
+      position: DecorationPosition.foreground,
+      decoration: BoxDecoration(
+        gradient: RadialGradient(
           radius: _AppBarDimens.GRADIENT_RADIUS,
           colors: [AppColors.primaryDark, AppColors.trans],
         ),

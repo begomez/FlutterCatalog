@@ -92,7 +92,7 @@ class _CatalogListWidgetState extends BaseBlocWidgetState<CatalogListWidget,
   @override
   bool isAutocall() => true;
 
-  void _onItemClicked(BikeModel bike) async {
+  Future<void> _onItemClicked(BikeModel bike) async {
     await AppNavigator.toDetail(this.context, bike);
   }
 }

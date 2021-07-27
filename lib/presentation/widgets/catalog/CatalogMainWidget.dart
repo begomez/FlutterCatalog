@@ -13,10 +13,12 @@ import 'OrderingWidget.dart';
 import 'CatalogListWidget.dart';
 
 /*
- * Wrapper widget containing:
+ * Wrapper widget for the products catalog containing:
  * - dynamic app bar
  * - order selector
  * - list of bikes
+ * 
+ * All these items are slivers
  */
 class CatalogMainWidget extends BaseStatelessWidget {
   final OrderCriteriaModel order;

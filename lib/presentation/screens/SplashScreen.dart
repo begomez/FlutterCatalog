@@ -20,10 +20,10 @@ class SplashScreen extends BaseStatelessScreen {
     return SplashWidget();
   }
 
-  void _navigateDelayed(BuildContext cntxt) async {
+  Future<void> _navigateDelayed(BuildContext cntxt) async {
     final int DELAY_IN_SECS = 2;
 
-    await Future.delayed(Duration(seconds: DELAY_IN_SECS))
+    return await Future.delayed(Duration(seconds: DELAY_IN_SECS))
         .then((value) async => await AppNavigator.toCatalog(cntxt));
   }
 }

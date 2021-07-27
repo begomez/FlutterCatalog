@@ -54,6 +54,7 @@ abstract class FakeModelFactory {
       case PriceRanges.MID:
         return PriceModel(amount: 3000.0 + Random().nextInt(500).toDouble());
       case PriceRanges.EXPENSIVE:
+      default:
         return PriceModel(amount: 5000.0 + Random().nextInt(1000).toDouble());
     }
   }

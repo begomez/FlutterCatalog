@@ -9,37 +9,33 @@ import 'BikeTypeSelectorWidget.dart';
 import 'FrameSizeSelectorWidget.dart';
 import 'PriceRangeWidget.dart';
 
-
 /*
  * Widget containing different views to filter data
  */
 class FilterMainWidget extends BaseStatelessWidget {
   final FilterModel currentFilter;
 
-
-  const FilterMainWidget({@required this.currentFilter, Key key}) : super(key: key);
+  const FilterMainWidget({@required this.currentFilter, Key key})
+      : super(key: key);
 
   @override
   Widget buildWidgetContents(BuildContext context) {
     return SingleChildScrollView(
-        child: Container(
-          width: double.maxFinite,
-          height: MediaQuery.of(context).size.height,
-          margin: EdgeInsets.all(AppDimens.MID_SPACING),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-
-              this._buildTypeSelector(context),
-
-              this._buildPriceSlider(context),
-
-              Expanded(child: this._buildFrameSizeSelector(context)),
-            ],
-          ),
+      child: Container(
+        width: double.maxFinite,
+        height: MediaQuery.of(context).size.height,
+        margin: EdgeInsets.all(AppDimens.MID_SPACING),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            this._buildTypeSelector(context),
+            this._buildPriceSlider(context),
+            Expanded(child: this._buildFrameSizeSelector(context)),
+          ],
         ),
+      ),
     );
   }
 
@@ -47,18 +43,16 @@ class FilterMainWidget extends BaseStatelessWidget {
     final currentType = this.currentFilter.categs;
 
     return BikeTypeSelectorWidget(
-      key: ValueKey(currentType.hashCode),
-      currentSelection: currentType?? const []
-    );
+        key: ValueKey(currentType.hashCode),
+        currentSelection: currentType ?? const []);
   }
 
   Widget _buildPriceSlider(BuildContext cntxt) {
     final currentPrice = this.currentFilter.price;
 
     return PriceRangeWidget(
-      key: ValueKey(PriceModel.forAmount(currentPrice)),
-      currentSelection: PriceModel.forAmount(currentPrice)
-    );
+        key: ValueKey(PriceModel.forAmount(currentPrice)),
+        currentSelection: PriceModel.forAmount(currentPrice));
   }
 
   Widget _buildFrameSizeSelector(BuildContext cntxt) {
@@ -66,6 +60,8 @@ class FilterMainWidget extends BaseStatelessWidget {
 
     return FrameSizeSelectorWidget(
         key: ValueKey(currentFrame.hashCode),
-        currentSelection: currentFrame != FrameSizeModel.NO_FRAME_SIZE? FrameSizeModel.forSize(currentFrame) : null);
+        currentSelection: currentFrame != FrameSizeModel.NO_FRAME_SIZE
+            ? FrameSizeModel.forSize(currentFrame)
+            : null);
   }
 }

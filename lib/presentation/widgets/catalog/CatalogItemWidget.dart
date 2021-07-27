@@ -36,21 +36,11 @@ class CatalogItemWidget extends BaseStatelessWidget {
               Positioned(top: 0, right: 0, child: this._buildPrice()),
               Positioned(bottom: 0, right: 0, child: this._buildName()),
               Positioned(
-                  top: 0, left: 0, child: this._buildBadge(this.item.categ))
+                  top: 0, left: 0, child: this._buildType(this.item.categ))
             ]),
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildBadge(BikeCategories categ) {
-    return Banner(
-      location: BannerLocation.topStart,
-      message: categ.toShortString(),
-      color: AppColors.primaryDark,
-      textStyle: CatalogStyles.badge,
-      textDirection: TextDirection.ltr,
     );
   }
 
@@ -82,6 +72,14 @@ class CatalogItemWidget extends BaseStatelessWidget {
     );
   }
 
+  Widget _buildPrice() {
+    return Container(
+      color: AppColors.accentLight,
+      padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
+      child: Text(this.item.price.toString()),
+    );
+  }
+
   Widget _buildName() {
     return Padding(
         padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
@@ -91,11 +89,13 @@ class CatalogItemWidget extends BaseStatelessWidget {
         ));
   }
 
-  Widget _buildPrice() {
-    return Container(
-      color: AppColors.accentLight,
-      padding: EdgeInsets.all(AppDimens.SMALL_SPACING),
-      child: Text(this.item.price.toString()),
+  Widget _buildType(BikeCategories categ) {
+    return Banner(
+      location: BannerLocation.topStart,
+      message: categ.toShortString(),
+      color: AppColors.primaryDark,
+      textStyle: CatalogStyles.badge,
+      textDirection: TextDirection.ltr,
     );
   }
 }

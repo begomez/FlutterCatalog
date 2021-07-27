@@ -12,7 +12,7 @@ import '../detail/KeyValueWidget.dart';
 import 'BikeAdditionalInfoWidget.dart';
 
 /*
- * Bike main widget displaying item info
+ * Bike main widget displaying info about selected item
  */
 class BikeMainWidget extends BaseStatefulWidget {
   final BikeModel bike;
@@ -57,8 +57,7 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget>
 
   @override
   Widget buildWidgetContents(BuildContext context) {
-    return SingleChildScrollView(
-        child: Container(
+    return Container(
       alignment: Alignment.topCenter,
       padding: EdgeInsets.all(AppDimens.MID_SPACING),
       child: Column(
@@ -66,7 +65,7 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          this._buildImg(context),
+          Expanded(child: this._buildImg(context)),
           KeyValueWidget(
             strKey: AppLocalizations.of(context).translate("lb_category"),
             strValue: this.widget.bike.categ.toShortString(),
@@ -82,13 +81,15 @@ class _BikeMainWidgetState extends BaseState<BikeMainWidget>
           this._buildMainAction(context)
         ],
       ),
-    ));
+    );
   }
 
   Widget _buildImg(BuildContext cntxt) {
     return Hero(
       tag: this.widget.bike.toTag(),
-      child: Image.network(this.widget.bike.mainImg.url),
+      child: Container(
+          alignment: Alignment.center,
+          child: Image.network(this.widget.bike.mainImg.url)),
     );
   }
 
