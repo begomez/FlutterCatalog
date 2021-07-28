@@ -4,7 +4,6 @@ import 'package:flutter_catalog/common/models/catalog/FrameSizeModel.dart';
 import 'package:flutter_catalog/common/models/catalog/PriceModel.dart';
 import 'package:test/test.dart';
 
-
 void main() {
   test("When having default filter then invalid", () {
     final FilterModel filter = FilterModel.defaultFilter();
@@ -19,7 +18,8 @@ void main() {
   });
 
   test("When having frame size then valid", () {
-    final FilterModel filter = FilterModel(frameSize: FrameSizeModel.min().size);
+    final FilterModel filter =
+        FilterModel(frameSize: FrameSizeModel.min().size);
 
     expect(filter.validate(), true);
   });
@@ -30,8 +30,9 @@ void main() {
     expect(filter.validate(), true);
   });
 
-  test("When copying with prices then categories are mantained", () {
-    final FilterModel original = FilterModel(frameSize: FrameSizeModel.max().size, categs: BikeCategories.values);
+  test("When copying price then categories are mantained", () {
+    final FilterModel original = FilterModel(
+        frameSize: FrameSizeModel.max().size, categs: BikeCategories.values);
     final FilterModel copy = original.copyWith(price: PriceModel.unit().amount);
 
     expect(original.categs == copy.categs, true);
@@ -40,9 +41,11 @@ void main() {
     expect(original.price != copy.price, true);
   });
 
-  test("When copying with frames then prices are mantained", () {
-    final FilterModel original = FilterModel(frameSize: FrameSizeModel.max().size, price: PriceModel.unit().amount);
-    final FilterModel copy = original.copyWith(frameSize: FrameSizeModel.min().size);
+  test("When copying with frames then price is mantained", () {
+    final FilterModel original = FilterModel(
+        frameSize: FrameSizeModel.max().size, price: PriceModel.unit().amount);
+    final FilterModel copy =
+        original.copyWith(frameSize: FrameSizeModel.min().size);
 
     expect(original.price == copy.price, true);
     expect(original.categs == copy.categs, true);
@@ -51,7 +54,8 @@ void main() {
   });
 
   test("When copying with categs then frames are mantained", () {
-    final FilterModel original = FilterModel(frameSize: FrameSizeModel.max().size, price: PriceModel.unit().amount);
+    final FilterModel original = FilterModel(
+        frameSize: FrameSizeModel.max().size, price: PriceModel.unit().amount);
     final FilterModel copy = original.copyWith(categs: [BikeCategories.CITY]);
 
     expect(original.price == copy.price, true);
@@ -59,5 +63,4 @@ void main() {
     expect(original.categs == copy.categs, false);
     expect(original.categs != copy.categs, true);
   });
-
 }

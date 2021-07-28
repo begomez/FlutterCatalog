@@ -23,7 +23,7 @@ void main() {
     expect(range.validate(), false);
   });
 
-  test("When step size then ", () {
+  test("When havin min and max then step size is calculated", () {
     final PriceRangeModel range =
         PriceRangeModel(min: PriceModel.unit(), max: PriceModel.forAmount(6.0));
 

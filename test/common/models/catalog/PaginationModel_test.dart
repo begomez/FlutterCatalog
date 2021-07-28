@@ -1,9 +1,7 @@
 import 'package:flutter_catalog/common/models/catalog/PaginationModel.dart';
 import 'package:test/test.dart';
 
-
 void main() {
-
   test("When invalid constructor then not valid", () {
     PaginationModel pag = PaginationModel.invalid();
 
@@ -11,7 +9,7 @@ void main() {
   });
 
   test("When having current page then valid", () {
-    PaginationModel pag = PaginationModel(currentPage: PaginationModel.FIRST_PAGE);
+    PaginationModel pag = PaginationModel(currentPage: 4);
 
     expect(pag.validate(), true);
   });
@@ -23,13 +21,18 @@ void main() {
   });
 
   test("When pagination starts in 1 then valid", () {
-    PaginationModel pag = PaginationModel(currentPage: PaginationModel.FIRST_PAGE);
+    PaginationModel pag =
+        PaginationModel(currentPage: PaginationModel.FIRST_PAGE);
 
     expect(pag.validate(), true);
   });
 
   test("When copying current then values are mantained", () {
-    PaginationModel original = PaginationModel(currentPage: PaginationModel.FIRST_PAGE, totalPages: 2, itemsPerPage: 5, hasMoreData: false);
+    PaginationModel original = PaginationModel(
+        currentPage: PaginationModel.FIRST_PAGE,
+        totalPages: 2,
+        itemsPerPage: 5,
+        hasMoreData: false);
     PaginationModel copy = original.copyWith(currentPage: 2);
 
     expect(original.totalPages == copy.totalPages, true);
@@ -39,7 +42,11 @@ void main() {
   });
 
   test("When copying total then values are mantained", () {
-    PaginationModel original = PaginationModel(currentPage: PaginationModel.FIRST_PAGE, totalPages: 2, itemsPerPage: 5, hasMoreData: false);
+    PaginationModel original = PaginationModel(
+        currentPage: PaginationModel.FIRST_PAGE,
+        totalPages: 2,
+        itemsPerPage: 5,
+        hasMoreData: false);
     PaginationModel copy = original.copyWith(totalPages: 3);
 
     expect(original.itemsPerPage == copy.itemsPerPage, true);
@@ -49,7 +56,11 @@ void main() {
   });
 
   test("When copying hasMore then values are mantained", () {
-    PaginationModel original = PaginationModel(currentPage: PaginationModel.FIRST_PAGE, totalPages: 2, itemsPerPage: 5, hasMoreData: false);
+    PaginationModel original = PaginationModel(
+        currentPage: PaginationModel.FIRST_PAGE,
+        totalPages: 2,
+        itemsPerPage: 5,
+        hasMoreData: false);
     PaginationModel copy = original.copyWith(hasMoreData: true);
 
     expect(original.totalPages == copy.totalPages, true);
@@ -59,7 +70,11 @@ void main() {
   });
 
   test("When copying items then values are mantained", () {
-    PaginationModel original = PaginationModel(currentPage: PaginationModel.FIRST_PAGE, totalPages: 2, itemsPerPage: 5, hasMoreData: false);
+    PaginationModel original = PaginationModel(
+        currentPage: PaginationModel.FIRST_PAGE,
+        totalPages: 2,
+        itemsPerPage: 5,
+        hasMoreData: false);
     PaginationModel copy = original.copyWith(itemsPerPage: 10);
 
     expect(original.totalPages == copy.totalPages, true);
