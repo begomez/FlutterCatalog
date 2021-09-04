@@ -8,18 +8,18 @@ Flutter application displaying a collection of items and its detail view. Allows
 
 Project is structured in the following layers/modules:
 
-- PRESENTATION LAYER, which is Flutter dependent. This layer defines its own custom hierarchy of views:
+1. PRESENTATION LAYER, which is Flutter dependent. This layer defines its own custom hierarchy of views:
 
-*** screens (widgets usually used as containers, similar to Android activities)
-*** widgets (pieces of UI with behavior, similar to Android fragments).
+* screens (widgets usually used as containers, similar to Android activities)
+* widgets (pieces of UI with behavior, similar to Android fragments).
 
-- DOMAIN LAYER, that provides state management through BLoC's for different use cases.
+2. DOMAIN LAYER, that provides state management through BLoC's for different use cases.
 Ex: retrieving a product list.
 
-- DATA LAYER, used to manage and orchestrate different data sources (although right now there is a
+3. DATA LAYER, used to manage and orchestrate different data sources (although right now there is a
 single source).
 
-- NETWORK LAYER, which performs net connections (either real or fake) with remote server. Since there
+4. NETWORK LAYER, which performs net connections (either real or fake) with remote server. Since there
 is no real API attached, the components on this layer are dummy.
 
 Aditionally, the COMMON directory contains data models shared across all the modules.
@@ -57,23 +57,23 @@ Events in the DOMAIN folder are used to define use case inputs and provide type 
 being fetched dynamically). For a production ready app they should be dynamic so we can change them
 without redeploying to the app stores. Ordering criterias implemented:
 
-* price asc
-* price desc
-* bike categ
-* bike name
+1. price asc
+2. price desc
+3. bike categ
+4. bike name
 
 - The bike types are supposed to be fixed, so they are stored in the app (as opposed to
 being fetched dynamically). Bike types included:
 
-* electric
-* city
-* mountain
+1. electric
+2. city
+3. mountain
 
 - The filters are implemented dinamically. Data filters available:
 
-* by max price
-* by bike type
-* by frame size
+1. by max price
+2. by bike type
+3. by frame size
 
 - Considering that in a production environment the catalog would contain hundreds/thousands of items,
 filtering and ordering should be implemented in the backend to avoid performance issues.
