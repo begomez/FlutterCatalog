@@ -1,6 +1,6 @@
 # BuyCycle
 
-Flutter application displaying collection of items
+Flutter application displaying a collection of items and its detail view. Allows sorting and filtering. 
 
 
 
@@ -10,8 +10,8 @@ Project is structured in the following layers/modules:
 
 - PRESENTATION LAYER, which is Flutter dependent. This layer defines its own custom hierarchy of views:
 
-* screens (widgets usually used as containers, similar to Android activities)
-* widgets (pieces of UI with behavior, similar to Android fragments).
+*** screens (widgets usually used as containers, similar to Android activities)
+*** widgets (pieces of UI with behavior, similar to Android fragments).
 
 - DOMAIN LAYER, that provides state management through BLoC's for different use cases.
 Ex: retrieving a product list.
